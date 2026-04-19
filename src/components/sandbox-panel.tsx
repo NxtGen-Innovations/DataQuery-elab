@@ -10,7 +10,14 @@ import ReactMarkdown from 'react-markdown'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 
-const MonacoEditor = dynamic(() => import('@monaco-editor/react'), { ssr: false })
+const MonacoEditor = dynamic(() => import('@monaco-editor/react'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full bg-[#1e1e1e] flex items-center justify-center text-white/30 text-xs">
+      Loading editor...
+    </div>
+  ),
+})
 
 interface Props {
   challenge: Challenge
