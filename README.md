@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DataQuest eLab
+
+An Integrated Learning & Execution Environment for Undergraduate Data Science.
+
+## Features
+
+- **Curriculum Engine** — Structured lessons with Markdown and LaTeX math rendering (KaTeX) across Statistics and Machine Learning domains
+- **Smart Quizzes** — MCQ and fill-in-the-blank questions with instant feedback and detailed explanations
+- **Python Sandbox** — Monaco editor with Pyodide runtime; run NumPy, Matplotlib, and Scikit-Learn in the browser
+- **Automated Grader** — Variable-state checks that verify solution correctness beyond simple string matching
+
+## Tech Stack
+
+- Next.js 16 (Turbopack) + TypeScript
+- Tailwind CSS + shadcn/ui components
+- KaTeX / rehype-katex for LaTeX math rendering
+- Pyodide (WebAssembly Python) for in-browser code execution
+- Monaco Editor for the Python code editor
+- TanStack React Query
+- Supabase (client setup, ready for auth integration)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.local.example .env.local  # Fill in your Supabase credentials
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    page.tsx                    # Landing page
+    curriculum/page.tsx         # Curriculum index
+    curriculum/[lessonId]/      # Individual lesson pages
+  components/
+    lesson-view.tsx             # Tabbed lesson view (Notes / Quiz / Sandbox)
+    markdown-renderer.tsx       # Markdown + LaTeX renderer
+    quiz-panel.tsx              # Interactive quiz with MCQ/fill-blank
+    sandbox-panel.tsx           # Monaco editor + Pyodide sandbox
+    ui/                         # shadcn/ui components
+  lib/
+    curriculum-data.ts          # Lessons, quizzes, and challenges data
+    supabase.ts                 # Supabase browser client
+    utils.ts                    # Utility functions (cn)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Statistics**: Normal Distribution, Binomial Distribution, Hypothesis Testing
+- **Machine Learning**: Linear Regression, Logistic Regression, Classification Metrics
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Each lesson includes theory notes with LaTeX math, interactive quizzes, and coding challenges with automated grading.
