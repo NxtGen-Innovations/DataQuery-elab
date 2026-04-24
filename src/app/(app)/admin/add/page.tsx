@@ -2,14 +2,34 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ChevronLeft, Save, Plus, Trash2, BookOpen, Brain, Trophy, Code2 } from 'lucide-react'
+import { ChevronLeft, Save, Plus, Trash2, BookOpen, Brain, Trophy, Code2, ShieldAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useAuth } from '@/lib/auth-context'
 
 const inputCls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/30 transition-all"
 
 export default function AddContentPage() {
+  const { isAdmin, isLoggedIn } = useAuth()
+
+  if (!isLoggedIn || !isAdmin) {
+    return (
+      <div className="p-6 lg:p-8 max-w-5xl mx-auto flex items-center justify-center min-h-[60vh]">
+        <div className="text-center space-y-4">
+          <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto">
+            <ShieldAlert className="w-8 h-8 text-red-400" />
+          </div>
+          <h2 className="text-xl font-black text-white">Access Denied</h2>
+          <p className="text-sm text-white/40">Admin privileges required.</p>
+          <Link href="/dashboard">
+            <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold mt-2">Back to Dashboard</Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="p-6 lg:p-8 max-w-4xl mx-auto">
       <Link href="/admin" className="inline-flex items-center gap-2 text-[10px] font-black text-white/30 uppercase tracking-widest hover:text-purple-400 transition-colors mb-8">
@@ -55,9 +75,26 @@ export default function AddContentPage() {
 }
 
 function LessonTemplate() {
+  const [domain, setDomain] = useState('Data Science')
+  const [newDomain, setNewDomain] = useState('')
+  const [isAddingNew, setIsAddingNew] = useState(false)
+
+  const existingDomains = ['Data Science']
+
+  const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value
+    if (val === '__ADD_NEW__') {
+      setIsAddingNew(true)
+      setDomain('')
+    } else {
+      setDomain(val)
+      setIsAddingNew(false)
+    }
+  }
+
   return (
     <Card className="bg-[#111111] border-white/5">
-      <CardHeader className="border-b border-white/5">
+      <CardHeader className="border-b border-white/5 py-4 px-6">
         <CardTitle className="text-base text-white">Lesson Details</CardTitle>
       </CardHeader>
       <CardContent className="p-6 space-y-5">
@@ -68,10 +105,34 @@ function LessonTemplate() {
           </div>
           <div className="space-y-2">
             <label className="text-[10px] font-black text-white/30 uppercase tracking-widest">Domain</label>
-            <select className={inputCls + " appearance-none"}>
-              <option>Statistics</option>
-              <option>Machine Learning</option>
-            </select>
+            {!isAddingNew ? (
+              <select 
+                value={domain}
+                onChange={handleDomainChange}
+                className={inputCls + " appearance-none"}
+              >
+                {existingDomains.map(d => <option key={d} value={d}>{d}</option>)}
+                <option value="__ADD_NEW__">+ Add New Domain...</option>
+              </select>
+            ) : (
+              <div className="relative">
+                <input 
+                  type="text" 
+                  placeholder="Type new domain name..." 
+                  value={newDomain}
+                  onChange={(e) => setNewDomain(e.target.value)}
+                  className={inputCls + " border-purple-500/30 pr-10"} 
+                  autoFocus
+                />
+                <button 
+                  onClick={() => setIsAddingNew(false)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/20 hover:text-white transition-colors"
+                  title="Cancel"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

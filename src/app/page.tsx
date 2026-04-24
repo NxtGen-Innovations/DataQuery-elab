@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Brain, BookOpen, Code2, Trophy, ArrowRight, BarChart2, Zap, Users, Star } from 'lucide-react'
+import { Brain, BookOpen, Code2, Trophy, ArrowRight, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const features = [
@@ -29,13 +29,6 @@ const features = [
     desc: 'Variable-state checks that verify correctness beyond simple string matching.',
     color: 'from-orange-500 to-yellow-500',
   },
-]
-
-const stats = [
-  { value: '10k+', label: 'Students', icon: Users },
-  { value: '4.9★', label: 'Rating', icon: Star },
-  { value: '2', label: 'Domains', icon: BarChart2 },
-  { value: '<2s', label: 'Execution', icon: Zap },
 ]
 
 export default function LandingPage() {
@@ -104,17 +97,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="border-y border-white/5 bg-white/[0.02] py-8">
-        <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-8">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <p className="text-2xl font-black text-white mb-1">{s.value}</p>
-              <p className="text-[11px] text-white/30 uppercase font-bold tracking-widest">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* Features */}
       <section className="py-24 px-6">

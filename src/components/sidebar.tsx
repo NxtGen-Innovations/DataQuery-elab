@@ -4,15 +4,20 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Home, BookOpen, LayoutDashboard, Settings, Brain, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useAuth } from '@/lib/auth-context'
 
 const navItems = [
-  { icon: Home, label: 'Dashboard', href: '/dashboard' },
-  { icon: BookOpen, label: 'Curriculum', href: '/curriculum' },
-  { icon: LayoutDashboard, label: 'Admin', href: '/admin' },
+  { icon: Home, label: 'Dashboard', href: '/dashboard', adminOnly: false },
+  { icon: BookOpen, label: 'Curriculum', href: '/curriculum', adminOnly: false },
+  { icon: LayoutDashboard, label: 'Admin', href: '/admin', adminOnly: true },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
+  const { user, isAdmin, logout } = useAuth()
+
+  const visibleNavItems = navItems.filter(item => !item.adminOnly || isAdmin)
+  const userInitial = user?.name?.charAt(0)?.toUpperCase() || 'U'
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-[72px] flex flex-col items-center py-6 bg-[#0c0c0c] border-r border-white/[0.06] z-50">
@@ -25,7 +30,7 @@ export function Sidebar() {
 
       {/* Nav Items */}
       <nav className="flex-1 flex flex-col gap-1.5 w-full px-3">
-        {navItems.map((item) => {
+        {visibleNavItems.map((item) => {
           const isActive = pathname.startsWith(item.href)
           return (
             <Link
@@ -63,15 +68,18 @@ export function Sidebar() {
         >
           <Settings className="w-5 h-5" />
         </button>
-        <Link
-          href="/login"
+        <button
+          onClick={() => {
+            logout()
+            window.location.href = '/login'
+          }}
           title="Sign Out"
           className="flex items-center justify-center p-2.5 rounded-xl text-white/20 hover:text-red-400 hover:bg-red-500/10 transition-all"
         >
           <LogOut className="w-5 h-5" />
-        </Link>
+        </button>
         <div className="mt-2 mx-auto w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-[11px] shadow-md">
-          U
+          {userInitial}
         </div>
       </div>
     </aside>

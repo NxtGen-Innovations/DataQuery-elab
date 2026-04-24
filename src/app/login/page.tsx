@@ -4,17 +4,20 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Brain, Eye, EyeOff, ArrowRight, GitBranch } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useAuth } from '@/lib/auth-context'
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const { login } = useAuth()
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setTimeout(() => {
+      login(email, password)
       setLoading(false)
       window.location.href = '/dashboard'
     }, 1000)

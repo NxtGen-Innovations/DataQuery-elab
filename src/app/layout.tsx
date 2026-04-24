@@ -26,6 +26,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
           crossOrigin="anonymous"
         />
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js" async></script>
       </head>
       <body className="antialiased bg-background text-foreground min-h-screen" style={{ fontFamily: "'Inter', sans-serif" }}>
         <Providers>

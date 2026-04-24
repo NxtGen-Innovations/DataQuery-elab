@@ -1,7 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { Lock, Trophy, Calendar, Zap, TrendingUp } from 'lucide-react'
+import { Lock, Trophy, Calendar, Zap, TrendingUp, Lightbulb } from 'lucide-react'
+import { useAuth } from '@/lib/auth-context'
+
+const tips = [
+  'Start with Foundations before jumping into Modeling.',
+  'Practice daily — even 10 minutes counts!',
+  'Run your code in the sandbox to truly learn.',
+  'Revisit quizzes to reinforce concepts.',
+  'Understand the math — it makes the code click.',
+]
 
 const lockedItems = [
   { icon: Trophy, label: 'Progress', desc: 'Track your completion' },
@@ -10,23 +19,41 @@ const lockedItems = [
 ]
 
 export function RightSidebar() {
+  const { isLoggedIn } = useAuth()
+
+  // Rotate tips by day of year
+  const now = new Date()
+  const dayOfYear = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24))
+  const tip = tips[dayOfYear % tips.length]
+
   return (
     <aside className="fixed right-0 top-0 h-screen w-[280px] hidden xl:flex flex-col py-6 px-4 bg-[#0c0c0c] border-l border-white/[0.06] z-40 overflow-y-auto">
 
-      {/* Login prompt */}
-      <div className="bg-gradient-to-br from-purple-500/10 to-indigo-500/5 border border-purple-500/15 rounded-2xl p-5 mb-5">
-        <p className="text-xs text-white/70 leading-relaxed mb-4">
-          You're just a step away —{' '}
-          <Link href="/login" className="text-purple-400 font-bold hover:text-purple-300 transition-colors">Login</Link>
-          {' '}or{' '}
-          <Link href="/signup" className="text-purple-400 font-bold hover:text-purple-300 transition-colors">Sign Up</Link>
-          {' '}to unlock all features!
-        </p>
-        <Link href="/signup">
-          <button className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-colors shadow-lg shadow-purple-500/20">
-            Get Started Free
-          </button>
-        </Link>
+      {/* Login prompt — only for unauthenticated */}
+      {!isLoggedIn && (
+        <div className="bg-gradient-to-br from-purple-500/10 to-indigo-500/5 border border-purple-500/15 rounded-2xl p-5 mb-5">
+          <p className="text-xs text-white/70 leading-relaxed mb-4">
+            You&apos;re just a step away —{' '}
+            <Link href="/login" className="text-purple-400 font-bold hover:text-purple-300 transition-colors">Login</Link>
+            {' '}or{' '}
+            <Link href="/signup" className="text-purple-400 font-bold hover:text-purple-300 transition-colors">Sign Up</Link>
+            {' '}to unlock all features!
+          </p>
+          <Link href="/signup">
+            <button className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-colors shadow-lg shadow-purple-500/20">
+              Get Started Free
+            </button>
+          </Link>
+        </div>
+      )}
+
+      {/* Quick Tip */}
+      <div className="bg-gradient-to-br from-yellow-500/5 to-orange-500/5 border border-yellow-500/10 rounded-2xl p-4 mb-5">
+        <div className="flex items-center gap-2 mb-2.5">
+          <Lightbulb className="w-4 h-4 text-yellow-400" />
+          <span className="text-[10px] font-black text-yellow-400/70 uppercase tracking-widest">Quick Tip</span>
+        </div>
+        <p className="text-xs text-white/50 leading-relaxed">{tip}</p>
       </div>
 
       {/* Locked features */}
@@ -54,7 +81,7 @@ export function RightSidebar() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         <div className="absolute inset-0 p-5 flex flex-col justify-end">
-          <span className="text-4xl text-white/20 font-serif leading-none">"</span>
+          <span className="text-4xl text-white/20 font-serif leading-none">&ldquo;</span>
           <p className="text-sm font-bold text-white leading-snug mt-[-8px]">
             Life has no remote. Get Up and change it yourself.
           </p>
@@ -69,8 +96,9 @@ export function RightSidebar() {
           <span className="text-[11px] font-black text-white/60 uppercase tracking-widest">This Week</span>
         </div>
         {[
-          { label: 'Statistics', pct: 33 },
-          { label: 'Machine Learning', pct: 10 },
+          { label: 'Foundations', pct: 33 },
+          { label: 'Modeling', pct: 15 },
+          { label: 'Evaluation', pct: 0 },
         ].map((d) => (
           <div key={d.label} className="mb-3 last:mb-0">
             <div className="flex justify-between text-[10px] font-bold mb-1.5">

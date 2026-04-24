@@ -2,18 +2,42 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Plus, BookOpen, Brain, Trophy, LayoutDashboard, Search, Filter } from 'lucide-react'
+import { Plus, BookOpen, Brain, Trophy, LayoutDashboard, Search, Filter, ShieldAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { CURRICULUM, getAllLessons } from '@/lib/curriculum-data'
+import { useAuth } from '@/lib/auth-context'
 
 function cn(...inputs: any[]) {
   return inputs.filter(Boolean).join(' ')
 }
 
 export default function AdminDashboard() {
+  const { isAdmin, isLoggedIn } = useAuth()
   const lessons = getAllLessons()
   const [search, setSearch] = useState('')
+
+  // Access guard
+  if (!isLoggedIn || !isAdmin) {
+    return (
+      <div className="p-6 lg:p-8 max-w-5xl mx-auto flex items-center justify-center min-h-[60vh]">
+        <div className="text-center space-y-4">
+          <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto">
+            <ShieldAlert className="w-8 h-8 text-red-400" />
+          </div>
+          <h2 className="text-xl font-black text-white">Access Denied</h2>
+          <p className="text-sm text-white/40 max-w-sm">
+            You need admin privileges to access this page. Please sign in with an admin account.
+          </p>
+          <Link href="/dashboard">
+            <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold mt-2">
+              Back to Dashboard
+            </Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   const filteredLessons = lessons.filter(l =>
     l.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -40,7 +64,7 @@ export default function AdminDashboard() {
         {[
           { label: 'Total Lessons', value: lessons.length, icon: BookOpen, color: 'text-blue-400', bg: 'bg-blue-500/10' },
           { label: 'Domains', value: CURRICULUM.length, icon: LayoutDashboard, color: 'text-purple-400', bg: 'bg-purple-500/10' },
-          { label: 'Quizzes', value: '5', icon: Brain, color: 'text-pink-400', bg: 'bg-pink-500/10' },
+          { label: 'Quizzes', value: '2', icon: Brain, color: 'text-pink-400', bg: 'bg-pink-500/10' },
           { label: 'Challenges', value: '3', icon: Trophy, color: 'text-orange-400', bg: 'bg-orange-500/10' },
         ].map((stat) => (
           <Card key={stat.label} className="bg-[#111111] border-white/5">

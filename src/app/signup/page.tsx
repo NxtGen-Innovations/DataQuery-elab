@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Brain, Eye, EyeOff, ArrowRight, GitBranch, CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useAuth } from '@/lib/auth-context'
 
 const perks = [
   'Structured Data Science curriculum',
@@ -15,11 +16,13 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', password: '' })
   const [loading, setLoading] = useState(false)
+  const { signup } = useAuth()
 
   function handleSignup(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setTimeout(() => {
+      signup(form.name, form.email, form.password)
       setLoading(false)
       window.location.href = '/dashboard'
     }, 1200)
