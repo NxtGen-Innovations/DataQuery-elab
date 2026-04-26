@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Home, BookOpen, LayoutDashboard, Settings, Brain, LogOut } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
+import { Home, BookOpen, LayoutDashboard, Settings, Brain, LogOut, ChevronLeft } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/lib/auth-context'
 
@@ -13,6 +13,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { user, isAdmin, logout } = useAuth()
 
   const visibleNavItems = navItems.filter(item => !item.adminOnly || isAdmin)
@@ -21,11 +22,23 @@ export function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 h-screen w-[72px] flex flex-col items-center py-6 bg-[#0c0c0c] border-r border-white/[0.06] z-50">
       {/* Logo */}
-      <Link href="/dashboard" className="mb-10 group">
+      <Link href="/dashboard" className="mb-6 group">
         <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
           <Brain className="w-5 h-5 text-white" />
         </div>
       </Link>
+
+      {/* Back Button */}
+      <button
+        onClick={() => router.back()}
+        className="mb-8 p-2.5 rounded-xl text-white/30 hover:text-white hover:bg-white/[0.06] transition-all group relative"
+        title="Go Back"
+      >
+        <ChevronLeft className="w-5 h-5" />
+        <span className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-2.5 py-1 bg-[#1a1a1a] border border-white/10 text-white text-[11px] font-bold rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-xl z-50">
+          Go Back
+        </span>
+      </button>
 
       {/* Nav Items */}
       <nav className="flex-1 flex flex-col gap-1.5 w-full px-3">

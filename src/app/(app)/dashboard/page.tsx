@@ -2,7 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { BookOpen, Brain, ChevronRight, Target, Circle, Search, GraduationCap, ArrowRight, HelpCircle, Code2 } from 'lucide-react'
+import { 
+  BookOpen, Brain, ChevronRight, Target, Circle, Search, GraduationCap, 
+  ArrowRight, HelpCircle, Code2, Database, BarChart3, Zap, TrendingUp, 
+  Star, Table, Eraser, PieChart, Sigma, Cog, Grid, Binary, Users, 
+  CheckSquare, LineChart, GitBranch, Trees, Dna, RefreshCw, Trophy
+} from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/lib/auth-context'
@@ -14,6 +19,41 @@ const domainConfig: Record<string, { icon: any; color: string; bg: string }> = {
     color: 'text-purple-400',
     bg: 'bg-purple-500/10',
   },
+}
+
+const moduleIconMap: Record<string, any> = {
+  'Module 1': Database,
+  'Module 2': BarChart3,
+  'Module 3': Zap,
+  'Module 4': TrendingUp,
+  'Module 5': Star,
+}
+
+const lessonIconMap: Record<string, any> = {
+  'Pandas Basics': Table,
+  'Data Cleaning': Eraser,
+  'Quick Visualization': PieChart,
+  'Descriptive Stats': Sigma,
+  'Feature Engineering': Cog,
+  'Correlation Heatmaps': Grid,
+  'Titanic Survival': Code2,
+  'Logistic Regression': Binary,
+  'K-Nearest Neighbors': Users,
+  'Model Evaluation': CheckSquare,
+  'Linear Regression': LineChart,
+  'Decision Trees': GitBranch,
+  'Random Forest': Trees,
+  'Clustering': Dna,
+  'ML Workflow': RefreshCw,
+  'Final eLab Project': Trophy,
+}
+
+function getLessonIcon(title: string) {
+  if (title.toLowerCase().includes('lab task')) return Code2
+  for (const [key, icon] of Object.entries(lessonIconMap)) {
+    if (title.includes(key)) return icon
+  }
+  return BookOpen
 }
 
 function cn(...inputs: any[]) {
@@ -67,7 +107,12 @@ export default function Dashboard() {
                       <p className="text-[10px] font-black text-white/30 uppercase tracking-widest">Module {i + 1}</p>
                       <p className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">{topic.topic.split(': ')[1] || topic.topic}</p>
                     </div>
-                    <Target className="w-4 h-4 text-purple-400/50" />
+                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-purple-400/50 group-hover:text-purple-400 group-hover:bg-purple-500/10 transition-all">
+                      {(() => {
+                        const Icon = moduleIconMap[`Module ${i + 1}`] || Target
+                        return <Icon className="w-5 h-5" />
+                      })()}
+                    </div>
                   </div>
                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-3">
                     <div
@@ -141,7 +186,10 @@ export default function Dashboard() {
                               <CardContent className="p-5 flex items-center gap-5">
                                 {/* Completion Indicator */}
                                 <div className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/10 group-hover:border-purple-500/40 group-hover:text-purple-400 transition-all shrink-0">
-                                  <Circle className="w-5 h-5" />
+                                  {(() => {
+                                    const Icon = getLessonIcon(lesson.title)
+                                    return <Icon className="w-5 h-5" />
+                                  })()}
                                 </div>
 
                                 <div className="flex-1 min-w-0">

@@ -116,10 +116,13 @@ export function SandboxPanel({ challenge }: Props) {
           indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/',
         })
 
-        if (mounted) setLoadingStatus('Loading packages...')
+        if (mounted) setLoadingStatus('Loading micropip...')
+        await pyodide.loadPackage('micropip')
+
+        if (mounted) setLoadingStatus('Installing numpy, pandas, matplotlib...')
         await pyodide.runPythonAsync(`
-import micropip
-await micropip.install(['numpy', 'matplotlib', 'scikit-learn'])
+          import micropip
+          await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
         `)
 
         if (mounted) {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "DataQuest eLab — Learn Data Science by Doing It",
@@ -26,7 +27,10 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
           crossOrigin="anonymous"
         />
-        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js" async></script>
+        <Script 
+          src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js" 
+          strategy="afterInteractive"
+        />
       </head>
       <body className="antialiased bg-background text-foreground min-h-screen" style={{ fontFamily: "'Inter', sans-serif" }}>
         <Providers>

@@ -41,17 +41,18 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
   ]
 
   return (
-    <div className="min-h-screen bg-[#080808] relative overflow-hidden">
-      {/* Background Blend */}
+    <div className="min-h-screen bg-[#060606] relative overflow-hidden">
+      {/* Enhanced Background Blend */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/10 blur-[120px] rounded-full" />
+        <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-purple-600/20 blur-[150px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] bg-indigo-900/20 blur-[150px] rounded-full" />
+        <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full" />
       </div>
 
       <div className="relative z-10">
       {/* Top Bar */}
       <div className="sticky top-0 z-30 bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/curriculum" className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all">
               <ChevronLeft className="w-4 h-4" />
@@ -107,7 +108,7 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="max-w-[1600px] mx-auto px-6 py-8">
         {/* Mobile title */}
         <div className="sm:hidden mb-6">
           <div className="flex items-center gap-2 mb-2">
