@@ -8,7 +8,6 @@ import { useAuth } from '@/lib/auth-context'
 
 const navItems = [
   { icon: Home, label: 'Dashboard', href: '/dashboard', adminOnly: false },
-  { icon: BookOpen, label: 'Curriculum', href: '/curriculum', adminOnly: false },
   { icon: LayoutDashboard, label: 'Admin', href: '/admin', adminOnly: true },
 ]
 

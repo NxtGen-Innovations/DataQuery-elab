@@ -344,7 +344,7 @@ plt.show = _patched_show
               }`}
             >
               <Terminal className="w-3 h-3 inline mr-1" />
-              Output
+              Task Output
             </button>
             {output?.graderResults && output.graderResults.length > 0 && (
               <button

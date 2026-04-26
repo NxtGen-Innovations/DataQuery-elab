@@ -22,7 +22,7 @@ const difficultyConfig: Record<string, { color: string; label: string }> = {
   advanced: { color: 'bg-red-500/20 text-red-400 border-red-500/30', label: 'Advanced' },
 }
 
-type ActiveSection = 'notes' | 'quiz' | 'sandbox'
+type ActiveSection = 'notes' | 'quiz' | 'lab'
 
 export function LessonView({ lesson, quiz, challenge }: Props) {
   const [activeSection, setActiveSection] = useState<ActiveSection>('notes')
@@ -37,11 +37,18 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
   const sections: { key: ActiveSection; label: string; icon: any; available: boolean; count?: number }[] = [
     { key: 'notes', label: 'Notes', icon: BookOpen, available: true },
     { key: 'quiz', label: 'Quiz', icon: HelpCircle, available: !!quiz, count: quiz?.questions.length },
-    { key: 'sandbox', label: 'Code Lab', icon: Code2, available: !!challenge },
+    { key: 'lab', label: 'Lab Tasks', icon: Code2, available: !!challenge },
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#080808] relative overflow-hidden">
+      {/* Background Blend */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/10 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="relative z-10">
       {/* Top Bar */}
       <div className="sticky top-0 z-30 bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -169,25 +176,25 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
                   </div>
                 </div>
                 <Button
-                  onClick={() => setActiveSection('sandbox')}
+                  onClick={() => setActiveSection('lab')}
                   className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 shadow-lg shadow-green-500/20 group shrink-0"
                 >
-                  Open Code Lab <Code2 className="w-4 h-4 ml-2" />
+                  Start Lab Task <Code2 className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             )}
           </div>
         )}
 
-        {/* Sandbox */}
-        {activeSection === 'sandbox' && challenge && (
+        {/* Lab Tasks */}
+        {activeSection === 'lab' && challenge && (
           <div className="-mx-6 -mb-8">
             <SandboxPanel challenge={challenge} />
           </div>
         )}
 
-        {/* Learning Path Progress — hidden when sandbox is active */}
-        {activeSection !== 'sandbox' && (
+        {/* Learning Path Progress — hidden when lab is active */}
+        {activeSection !== 'lab' && (
         <div className="mt-12 pt-8 border-t border-white/[0.06]">
           <div className="flex items-center justify-between mb-6">
             <p className="text-[10px] font-black text-white/20 uppercase tracking-widest">Learning Path</p>
@@ -236,6 +243,7 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
           </div>
         </div>
         )}
+        </div>
       </div>
     </div>
   )
