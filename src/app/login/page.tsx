@@ -24,68 +24,67 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080808] flex">
+    <div className="min-h-screen bg-[#0d1117] text-[#e6edf3] flex">
       {/* Left: Branding Panel */}
-      <div className="hidden lg:flex flex-col justify-between w-[45%] relative overflow-hidden p-12 bg-gradient-to-br from-purple-900/30 to-[#080808] border-r border-white/5">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-
+      <div className="hidden lg:flex flex-col justify-between w-[45%] relative overflow-hidden p-12 border-r border-[#30363d] bg-[#161b22]">
         <Link href="/" className="flex items-center gap-2.5 relative z-10">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-500/30">
-            <Brain className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 rounded-md border border-[#30363d] bg-[#0d1117] flex items-center justify-center shadow-sm">
+            <Brain className="w-5 h-5 text-[#58a6ff]" />
           </div>
-          <span className="font-black text-white text-lg tracking-tight">DataQuest <span className="text-purple-400">eLab</span></span>
+          <span className="font-semibold text-[#e6edf3] text-lg tracking-tight">DataQuest <span className="text-[#8b949e] font-normal">eLab</span></span>
         </Link>
 
         <div className="relative z-10">
-          <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-4">Student Testimonial</p>
-          <blockquote className="text-2xl font-bold text-white leading-snug mb-6">
+          <p className="text-[10px] font-semibold text-[#8b949e] uppercase tracking-widest mb-4">Student Testimonial</p>
+          <blockquote className="text-xl font-medium text-[#e6edf3] leading-snug mb-6 border-l-2 border-[#58a6ff] pl-4">
             "The only platform where I actually write code while learning theory. It just clicks."
           </blockquote>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-sm">A</div>
+            <div className="w-8 h-8 rounded-full bg-[#30363d] flex items-center justify-center text-[#e6edf3] font-semibold text-xs border border-[#8b949e]/20">
+              A
+            </div>
             <div>
-              <p className="text-sm font-bold text-white">Arjun Singh</p>
-              <p className="text-xs text-white/40">2nd Year, B.Tech Data Science</p>
+              <p className="text-xs font-semibold text-[#e6edf3]">Arjun Singh</p>
+              <p className="text-[11px] text-[#8b949e]">2nd Year, B.Tech Data Science</p>
             </div>
           </div>
         </div>
 
-        <p className="text-xs text-white/20 relative z-10">© 2025 DataQuest eLab</p>
+        <p className="text-[11px] text-[#8b949e] relative z-10">© 2025 DataQuest eLab</p>
       </div>
 
       {/* Right: Form Panel */}
       <div className="flex-1 flex items-center justify-center px-6 py-12">
-        <div className="w-full max-w-[400px]">
+        <div className="w-full max-w-[360px]">
           {/* Mobile Logo */}
           <Link href="/" className="flex items-center gap-2 mb-8 lg:hidden">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
-              <Brain className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-md border border-[#30363d] bg-[#161b22] flex items-center justify-center">
+              <Brain className="w-4 h-4 text-[#58a6ff]" />
             </div>
-            <span className="font-black text-white">DataQuest eLab</span>
+            <span className="font-semibold text-[#e6edf3]">DataQuest <span className="text-[#8b949e] font-normal">eLab</span></span>
           </Link>
 
           <div className="mb-8">
-            <h1 className="text-2xl font-black text-white mb-1.5">Welcome back</h1>
-            <p className="text-sm text-white/40">Sign in to continue your learning journey.</p>
+            <h1 className="text-xl font-semibold text-[#e6edf3] mb-1.5">Welcome back</h1>
+            <p className="text-[13px] text-[#8b949e]">Sign in to continue your learning journey.</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-[11px] font-bold text-white/40 uppercase tracking-widest">Email Address</label>
+              <label className="text-[12px] font-medium text-[#e6edf3]">Email address</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500/40 transition-all"
+                className="w-full bg-[#0d1117] border border-[#30363d] rounded-md px-3 py-1.5 text-[13px] text-[#e6edf3] placeholder:text-[#8b949e] focus:outline-none focus:ring-1 focus:ring-[#58a6ff] focus:border-[#58a6ff] transition-all"
               />
             </div>
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-[11px] font-bold text-white/40 uppercase tracking-widest">Password</label>
-                <button type="button" className="text-[11px] text-purple-400 hover:text-purple-300 font-bold transition-colors">
+                <label className="text-[12px] font-medium text-[#e6edf3]">Password</label>
+                <button type="button" className="text-[11px] text-[#58a6ff] hover:underline font-medium transition-colors">
                   Forgot password?
                 </button>
               </div>
@@ -96,14 +95,14 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-11 text-sm text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500/40 transition-all"
+                  className="w-full bg-[#0d1117] border border-[#30363d] rounded-md px-3 py-1.5 pr-9 text-[13px] text-[#e6edf3] placeholder:text-[#8b949e] focus:outline-none focus:ring-1 focus:ring-[#58a6ff] focus:border-[#58a6ff] transition-all"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/20 hover:text-white/60 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8b949e] hover:text-[#e6edf3] transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
               </div>
             </div>
@@ -111,36 +110,36 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-lg shadow-purple-500/20 group mt-2 disabled:opacity-60"
+              className="w-full h-8 mt-4 bg-[#238636] hover:bg-[#2ea043] text-white font-medium text-[13px] rounded-md border border-[rgba(240,246,252,0.1)] group disabled:opacity-60 shadow-sm transition-colors"
             >
               {loading ? (
                 <span className="flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Signing in...
                 </span>
               ) : (
-                <span className="flex items-center gap-2">
-                  Sign In
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="flex items-center gap-1.5">
+                  Sign in
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               )}
             </Button>
           </form>
 
-          <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 h-px bg-white/8" />
-            <span className="text-[11px] text-white/20 font-bold uppercase">or</span>
-            <div className="flex-1 h-px bg-white/8" />
+          <div className="flex items-center gap-3 my-6">
+            <div className="flex-1 h-px bg-[#30363d]" />
+            <span className="text-[11px] text-[#8b949e]">or</span>
+            <div className="flex-1 h-px bg-[#30363d]" />
           </div>
 
-          <Button variant="outline" className="w-full h-12 border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-semibold text-sm">
-            <GitBranch className="w-4 h-4 mr-2" /> Continue with GitHub
+          <Button variant="outline" className="w-full h-8 bg-[#21262d] hover:bg-[#30363d] border-[#30363d] text-[#e6edf3] font-medium text-[13px] rounded-md transition-colors">
+            <GitBranch className="w-3.5 h-3.5 mr-2 text-[#8b949e]" /> Continue with GitHub
           </Button>
 
-          <p className="text-center text-sm text-white/30 mt-6">
-            Don't have an account?{' '}
-            <Link href="/signup" className="text-purple-400 hover:text-purple-300 font-bold transition-colors">
-              Sign up free
+          <p className="text-center text-[12px] text-[#8b949e] mt-6 px-4 p-4 border border-[#30363d] rounded-md bg-[#161b22]">
+            New to DataQuest eLab?{' '}
+            <Link href="/signup" className="text-[#58a6ff] hover:underline transition-colors">
+              Create an account
             </Link>
           </p>
         </div>

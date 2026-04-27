@@ -46,15 +46,15 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-6 lg:p-8 max-w-5xl mx-auto">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-1">Management</p>
-          <h1 className="text-2xl font-black text-white mb-1">Admin Dashboard</h1>
-          <p className="text-sm text-white/30">Manage your curriculum, quizzes, and coding challenges.</p>
+          <p className="text-[11px] font-semibold text-[#8b949e] uppercase tracking-widest mb-1">Management</p>
+          <h1 className="text-xl font-semibold text-[#e6edf3] mb-1">Admin Dashboard</h1>
+          <p className="text-[13px] text-[#8b949e]">Manage your curriculum, quizzes, and coding challenges.</p>
         </div>
         <Link href="/admin/add">
-          <Button className="bg-purple-600 hover:bg-purple-700 text-white flex items-center gap-2 font-bold shadow-lg shadow-purple-500/20">
-            <Plus className="w-4 h-4" /> Add Content
+          <Button className="h-8 bg-[#238636] hover:bg-[#2ea043] text-white flex items-center gap-1.5 font-medium text-[13px] shadow-sm rounded-md border border-[rgba(240,246,252,0.1)] transition-colors">
+            <Plus className="w-3.5 h-3.5" /> Add Content
           </Button>
         </Link>
       </div>
@@ -62,19 +62,19 @@ export default function AdminDashboard() {
       {/* Stats Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
         {[
-          { label: 'Total Lessons', value: lessons.length, icon: BookOpen, color: 'text-blue-400', bg: 'bg-blue-500/10' },
-          { label: 'Domains', value: CURRICULUM.length, icon: LayoutDashboard, color: 'text-purple-400', bg: 'bg-purple-500/10' },
-          { label: 'Quizzes', value: '2', icon: Brain, color: 'text-pink-400', bg: 'bg-pink-500/10' },
-          { label: 'Challenges', value: '3', icon: Trophy, color: 'text-orange-400', bg: 'bg-orange-500/10' },
+          { label: 'Total Lessons', value: lessons.length, icon: BookOpen },
+          { label: 'Domains', value: CURRICULUM.length, icon: LayoutDashboard },
+          { label: 'Quizzes', value: '2', icon: Brain },
+          { label: 'Challenges', value: '3', icon: Trophy },
         ].map((stat) => (
-          <Card key={stat.label} className="bg-[#111111] border-white/5">
+          <Card key={stat.label} className="bg-[#0d1117] border-[#30363d] shadow-sm rounded-md">
             <CardContent className="p-4 flex items-center gap-3">
-              <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center shrink-0', stat.bg)}>
-                <stat.icon className={cn('w-5 h-5', stat.color)} />
+              <div className="w-10 h-10 rounded-md bg-[#161b22] border border-[#30363d] flex items-center justify-center shrink-0">
+                <stat.icon className="w-4 h-4 text-[#58a6ff]" />
               </div>
               <div>
-                <p className="text-[9px] text-white/30 uppercase font-black tracking-widest">{stat.label}</p>
-                <p className="text-xl font-bold text-white">{stat.value}</p>
+                <p className="text-[11px] text-[#8b949e] uppercase font-semibold tracking-widest">{stat.label}</p>
+                <p className="text-lg font-semibold text-[#e6edf3]">{stat.value}</p>
               </div>
             </CardContent>
           </Card>
@@ -82,69 +82,69 @@ export default function AdminDashboard() {
       </div>
 
       {/* Content Inventory Table */}
-      <Card className="bg-[#111111] border-white/5 overflow-hidden">
-        <CardHeader className="border-b border-white/5 py-4 px-6">
+      <Card className="bg-[#0d1117] border-[#30363d] overflow-hidden rounded-md shadow-sm">
+        <CardHeader className="border-b border-[#30363d] bg-[#161b22] py-3 px-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <CardTitle className="text-base font-bold text-white">Content Inventory</CardTitle>
+            <CardTitle className="text-[14px] font-semibold text-[#e6edf3]">Content Inventory</CardTitle>
             <div className="flex items-center gap-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#8b949e]" />
                 <input
                   type="text"
                   placeholder="Search..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-purple-500/40 w-44"
+                  className="bg-[#0d1117] border border-[#30363d] rounded-md py-1.5 pl-8 pr-3 text-[13px] text-[#e6edf3] placeholder:text-[#8b949e]/50 focus:outline-none focus:ring-1 focus:ring-[#58a6ff] focus:border-[#58a6ff] w-48 transition-all"
                 />
               </div>
-              <Button variant="outline" size="sm" className="bg-white/5 border-white/5 text-[11px] text-white/40 h-8 gap-1.5">
-                <Filter className="w-3 h-3" /> Filter
+              <Button variant="outline" className="bg-[#21262d] hover:bg-[#30363d] border-[#30363d] text-[#e6edf3] font-medium text-[12px] h-8 gap-1.5 rounded-md px-3 transition-colors">
+                <Filter className="w-3.5 h-3.5 text-[#8b949e]" /> Filter
               </Button>
             </div>
           </div>
         </CardHeader>
         <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-white/5 text-[9px] text-white/25 uppercase font-black tracking-widest">
-                <th className="px-6 py-3">Title</th>
-                <th className="px-6 py-3">Domain / Topic</th>
-                <th className="px-6 py-3">Difficulty</th>
-                <th className="px-6 py-3">Status</th>
-                <th className="px-6 py-3 text-right">Actions</th>
+          <table className="w-full text-left text-[13px]">
+            <thead className="bg-[#161b22]">
+              <tr className="border-b border-[#30363d] text-[11px] text-[#8b949e] font-semibold">
+                <th className="px-5 py-2.5">Title</th>
+                <th className="px-5 py-2.5">Domain / Topic</th>
+                <th className="px-5 py-2.5">Difficulty</th>
+                <th className="px-5 py-2.5">Status</th>
+                <th className="px-5 py-2.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/[0.04]">
+            <tbody className="divide-y divide-[#30363d]">
               {filteredLessons.map((lesson) => (
-                <tr key={lesson.id} className="hover:bg-white/[0.02] transition-colors group">
-                  <td className="px-6 py-4">
-                    <p className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">{lesson.title}</p>
-                    <p className="text-[10px] text-white/20 font-mono mt-0.5">{lesson.id}</p>
+                <tr key={lesson.id} className="hover:bg-[#161b22] transition-colors group">
+                  <td className="px-5 py-3.5">
+                    <p className="font-medium text-[#e6edf3] group-hover:text-[#58a6ff] transition-colors">{lesson.title}</p>
+                    <p className="text-[11px] text-[#8b949e] font-mono mt-0.5">{lesson.id}</p>
                   </td>
-                  <td className="px-6 py-4">
-                    <p className="text-xs text-white/50">{lesson.domain}</p>
-                    <p className="text-[10px] text-white/25 mt-0.5">{lesson.topic}</p>
+                  <td className="px-5 py-3.5">
+                    <p className="text-[#e6edf3]">{lesson.domain}</p>
+                    <p className="text-[11px] text-[#8b949e] mt-0.5">{lesson.topic}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-5 py-3.5">
                     <span className={cn(
-                      'text-[9px] font-black uppercase px-2 py-0.5 rounded',
-                      lesson.difficulty === 'beginner' ? 'bg-green-500/10 text-green-400' :
-                      lesson.difficulty === 'intermediate' ? 'bg-yellow-500/10 text-yellow-400' :
-                      'bg-red-500/10 text-red-400'
+                      'text-[11px] font-semibold px-2 py-0.5 rounded-md border',
+                      lesson.difficulty === 'beginner' ? 'bg-[#3fb950]/10 text-[#3fb950] border-[#3fb950]/20' :
+                      lesson.difficulty === 'intermediate' ? 'bg-[#d29922]/10 text-[#d29922] border-[#d29922]/20' :
+                      'bg-[#f85149]/10 text-[#f85149] border-[#f85149]/20'
                     )}>
                       {lesson.difficulty}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-5 py-3.5">
                     <div className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
-                      <span className="text-[10px] text-white/40 uppercase font-bold">Published</span>
+                      <span className="w-2 h-2 rounded-full bg-[#3fb950] inline-block shadow-[0_0_8px_rgba(63,185,80,0.4)]" />
+                      <span className="text-[11px] text-[#8b949e] font-semibold">Published</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <Button variant="ghost" size="sm" className="text-white/30 hover:text-white h-7 px-3 text-[11px]">Edit</Button>
-                      <Button variant="ghost" size="sm" className="text-red-400/30 hover:text-red-400 h-7 px-3 text-[11px]">Del</Button>
+                  <td className="px-5 py-3.5 text-right">
+                    <div className="flex items-center justify-end gap-1">
+                      <Button variant="ghost" size="sm" className="text-[#8b949e] hover:text-[#e6edf3] hover:bg-[#30363d] h-7 px-2.5 text-[12px] rounded-md transition-colors">Edit</Button>
+                      <Button variant="ghost" size="sm" className="text-[#f85149] hover:text-white hover:bg-[#f85149] h-7 px-2.5 text-[12px] rounded-md transition-colors">Del</Button>
                     </div>
                   </td>
                 </tr>

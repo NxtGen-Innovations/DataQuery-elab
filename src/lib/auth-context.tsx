@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react'
+import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react'
 
 export type UserRole = 'student' | 'admin'
 
@@ -26,11 +26,19 @@ const ADMIN_EMAIL = 'admin@dataquest.com'
 const ADMIN_PASSWORD = 'admin123'
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(() => {
-    if (typeof window === 'undefined') return null
+  const [user, setUser] = useState<AuthUser | null>(null)
+
+  useEffect(() => {
     const stored = localStorage.getItem('dq-auth-user')
-    return stored ? JSON.parse(stored) : null
-  })
+    if (stored) {
+      const nextUser = JSON.parse(stored) as AuthUser
+      const timeoutId = window.setTimeout(() => {
+        setUser(nextUser)
+      }, 0)
+
+      return () => window.clearTimeout(timeoutId)
+    }
+  }, [])
 
   const login = useCallback((email: string, password: string): boolean => {
     const isAdmin = email === ADMIN_EMAIL && password === ADMIN_PASSWORD
@@ -44,6 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const signup = useCallback((name: string, email: string, _password: string) => {
+    void _password
     const newUser: AuthUser = { name, email, role: 'student' }
     setUser(newUser)
     localStorage.setItem('dq-auth-user', JSON.stringify(newUser))

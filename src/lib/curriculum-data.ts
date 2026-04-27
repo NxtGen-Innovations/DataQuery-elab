@@ -295,6 +295,64 @@ print(f"Average CS Grade: {avg_cs}")
     ],
   },
   {
+    id: 'ch-ds-mod2-02',
+    lesson_id: 'ds-mod2-02',
+    title: 'Feature Engineering: Create an Age Column',
+    prompt: `## Task: Create a Reusable Age Feature
+You are given a small customer dataset with birth years and signup years.
+
+Create a new column called \`AgeAtSignup\` using:
+
+\`AgeAtSignup = SignupYear - BirthYear\`
+
+Then compute:
+
+1. \`avg_age\` → the average of the new \`AgeAtSignup\` column
+2. \`senior_count\` → the number of customers whose \`AgeAtSignup\` is at least 40
+
+Print the transformed dataframe so you can inspect the result.`,
+    starter_code: `import pandas as pd
+
+customers = pd.DataFrame(
+    {
+        "Customer": ["Asha", "Dev", "Mina", "Ravi", "Sara"],
+        "BirthYear": [1998, 1985, 1992, 1978, 1988],
+        "SignupYear": [2024, 2023, 2024, 2022, 2024],
+    }
+)
+
+# TODO: Create the AgeAtSignup feature
+
+# TODO: Compute the average age at signup
+avg_age = None
+
+# TODO: Count customers with age at signup >= 40
+senior_count = None
+
+print(customers)
+`,
+    grader_checks: [
+      {
+        variable: 'avg_age',
+        condition: 'eq',
+        value: 35.6,
+        message: 'Average AgeAtSignup should be 35.6',
+      },
+      {
+        variable: 'senior_count',
+        condition: 'eq',
+        value: 2,
+        message: 'There should be 2 customers with AgeAtSignup >= 40',
+      },
+      {
+        variable: `customers['AgeAtSignup'].tolist()`,
+        condition: 'eq',
+        value: '[26, 38, 32, 44, 36]',
+        message: 'AgeAtSignup should be created correctly for every row',
+      },
+    ],
+  },
+  {
     id: 'ch-ds-mod1-05',
     lesson_id: 'ds-mod1-05',
     title: 'Correlation Plot',

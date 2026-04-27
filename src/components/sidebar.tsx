@@ -2,13 +2,15 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Home, BookOpen, LayoutDashboard, Settings, Brain, LogOut, ChevronLeft } from 'lucide-react'
+import { BookOpen, Brain, ChevronLeft, LayoutDashboard, LogOut, Settings, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/lib/auth-context'
 
 const navItems = [
-  { icon: Home, label: 'Dashboard', href: '/dashboard', adminOnly: false },
-  { icon: LayoutDashboard, label: 'Admin', href: '/admin', adminOnly: true },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard', adminOnly: false },
+  { icon: BookOpen, label: 'Curriculum', href: '/curriculum', adminOnly: false },
+  { icon: Sparkles, label: 'Practice', href: '/curriculum/ds-mod2-02', adminOnly: false },
+  { icon: Brain, label: 'Admin', href: '/admin', adminOnly: true },
 ]
 
 export function Sidebar() {
@@ -16,82 +18,92 @@ export function Sidebar() {
   const router = useRouter()
   const { user, isAdmin, logout } = useAuth()
 
-  const visibleNavItems = navItems.filter(item => !item.adminOnly || isAdmin)
+  const visibleNavItems = navItems.filter((item) => !item.adminOnly || isAdmin)
   const userInitial = user?.name?.charAt(0)?.toUpperCase() || 'U'
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[72px] flex flex-col items-center py-6 bg-[#0c0c0c] border-r border-white/[0.06] z-50">
-      {/* Logo */}
-      <Link href="/dashboard" className="mb-6 group">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
-          <Brain className="w-5 h-5 text-white" />
-        </div>
-      </Link>
+    <aside className="fixed inset-y-0 left-0 z-50 flex w-[88px] flex-col border-r border-[#30363d] bg-[#0d1117] xl:w-[248px]">
+      <div className="border-b border-[#30363d] px-4 py-4 xl:px-5">
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <div className="flex size-10 items-center justify-center border border-[#30363d] bg-[#161b22]">
+            <Brain className="size-5 text-[#58a6ff]" />
+          </div>
+          <div className="hidden xl:block">
+            <div className="text-sm font-semibold text-[#e6edf3]">DataQuest eLab</div>
+            <div className="text-[11px] text-[#8b949e]">Student workspace</div>
+          </div>
+        </Link>
+      </div>
 
-      {/* Back Button */}
-      <button
-        onClick={() => router.back()}
-        className="mb-8 p-2.5 rounded-xl text-white/30 hover:text-white hover:bg-white/[0.06] transition-all group relative"
-        title="Go Back"
-      >
-        <ChevronLeft className="w-5 h-5" />
-        <span className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-2.5 py-1 bg-[#1a1a1a] border border-white/10 text-white text-[11px] font-bold rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-xl z-50">
-          Go Back
-        </span>
-      </button>
+      <div className="px-3 py-4 xl:px-4">
+        <button
+          onClick={() => router.back()}
+          className="flex w-full items-center justify-center gap-3 border border-[#30363d] bg-[#161b22] px-3 py-2 text-[13px] text-[#c9d1d9] hover:bg-[#21262d] xl:justify-start"
+          title="Go back"
+        >
+          <ChevronLeft className="size-4" />
+          <span className="hidden xl:inline">Back</span>
+        </button>
+      </div>
 
-      {/* Nav Items */}
-      <nav className="flex-1 flex flex-col gap-1.5 w-full px-3">
+      <nav className="flex-1 space-y-1 px-3 xl:px-4">
         {visibleNavItems.map((item) => {
-          const isActive = pathname.startsWith(item.href)
+          const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`)
           return (
             <Link
               key={item.href}
               href={item.href}
-              title={item.label}
               className={cn(
-                'group relative flex items-center justify-center p-2.5 rounded-xl transition-all duration-200',
+                'flex items-center justify-center gap-3 border px-3 py-3 text-[13px] font-medium xl:justify-start',
                 isActive
-                  ? 'bg-purple-500/15 text-purple-400'
-                  : 'text-white/30 hover:text-white/80 hover:bg-white/[0.06]'
+                  ? 'border-[#58a6ff]/40 bg-[#161b22] text-[#e6edf3]'
+                  : 'border-transparent text-[#8b949e] hover:border-[#30363d] hover:bg-[#161b22] hover:text-[#c9d1d9]'
               )}
+              title={item.label}
             >
-              <item.icon className="w-5 h-5" />
-
-              {/* Tooltip */}
-              <span className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-2.5 py-1 bg-[#1a1a1a] border border-white/10 text-white text-[11px] font-bold rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-xl z-50">
-                {item.label}
-              </span>
-
-              {/* Active bar */}
-              {isActive && (
-                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-purple-500 rounded-r-full shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
-              )}
+              <item.icon className={cn('size-4', isActive ? 'text-[#58a6ff]' : 'text-current')} />
+              <span className="hidden xl:inline">{item.label}</span>
             </Link>
           )
         })}
       </nav>
 
-      {/* Bottom */}
-      <div className="flex flex-col gap-1.5 w-full px-3 mb-2">
-        <button
-          title="Settings"
-          className="flex items-center justify-center p-2.5 rounded-xl text-white/20 hover:text-white/60 hover:bg-white/[0.06] transition-all"
-        >
-          <Settings className="w-5 h-5" />
-        </button>
-        <button
-          onClick={() => {
-            logout()
-            window.location.href = '/login'
-          }}
-          title="Sign Out"
-          className="flex items-center justify-center p-2.5 rounded-xl text-white/20 hover:text-red-400 hover:bg-red-500/10 transition-all"
-        >
-          <LogOut className="w-5 h-5" />
-        </button>
-        <div className="mt-2 mx-auto w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-[11px] shadow-md">
-          {userInitial}
+      <div className="mt-auto border-t border-[#30363d] px-3 py-4 xl:px-4">
+        <div className="mb-4 hidden border border-[#30363d] bg-[#161b22] p-3 xl:block">
+          <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Current Focus</div>
+          <div className="mt-2 text-sm font-medium text-[#e6edf3]">Data Science Path</div>
+          <div className="mt-1 text-[12px] leading-5 text-[#8b949e]">Move from notes to practice and pass your test cases.</div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 xl:justify-between">
+          <div className="hidden items-center gap-3 xl:flex">
+            <div className="flex size-9 items-center justify-center border border-[#30363d] bg-[#161b22] text-sm font-semibold text-[#e6edf3]">
+              {userInitial}
+            </div>
+            <div className="min-w-0">
+              <div className="truncate text-sm font-medium text-[#e6edf3]">{user?.name || 'Student'}</div>
+              <div className="truncate text-[12px] text-[#8b949e]">{user?.email || 'Guest mode'}</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              title="Settings"
+              className="flex size-9 items-center justify-center border border-[#30363d] bg-[#161b22] text-[#8b949e] hover:bg-[#21262d] hover:text-[#c9d1d9]"
+            >
+              <Settings className="size-4" />
+            </button>
+            <button
+              onClick={() => {
+                logout()
+                window.location.href = '/login'
+              }}
+              title="Sign out"
+              className="flex size-9 items-center justify-center border border-[#30363d] bg-[#161b22] text-[#8b949e] hover:border-[#f85149]/40 hover:bg-[#21262d] hover:text-[#f85149]"
+            >
+              <LogOut className="size-4" />
+            </button>
+          </div>
         </div>
       </div>
     </aside>

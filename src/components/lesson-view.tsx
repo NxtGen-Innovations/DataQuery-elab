@@ -7,8 +7,9 @@ import { MarkdownRenderer } from './markdown-renderer'
 import { QuizPanel } from './quiz-panel'
 import { SandboxPanel } from './sandbox-panel'
 import { Badge } from '@/components/ui/badge'
-import { BookOpen, HelpCircle, Code2, ChevronLeft, ChevronRight, Clock, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { BookOpen, HelpCircle, Code2, ChevronLeft, ChevronRight, Clock, ArrowRight, CheckCircle2, LucideIcon, FlaskConical, PanelLeftClose } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 interface Props {
   lesson: Lesson
@@ -25,7 +26,7 @@ const difficultyConfig: Record<string, { color: string; label: string }> = {
 type ActiveSection = 'notes' | 'quiz' | 'lab'
 
 export function LessonView({ lesson, quiz, challenge }: Props) {
-  const [activeSection, setActiveSection] = useState<ActiveSection>('notes')
+  const [activeSection, setActiveSection] = useState<ActiveSection>(challenge ? 'lab' : 'notes')
   const diff = difficultyConfig[lesson.difficulty]
 
   // Find adjacent lessons for navigation
@@ -34,41 +35,31 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
   const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null
   const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null
 
-  const sections: { key: ActiveSection; label: string; icon: any; available: boolean; count?: number }[] = [
+  const sections: { key: ActiveSection; label: string; icon: LucideIcon; available: boolean; count?: number }[] = [
     { key: 'notes', label: 'Notes', icon: BookOpen, available: true },
     { key: 'quiz', label: 'Quiz', icon: HelpCircle, available: !!quiz, count: quiz?.questions.length },
-    { key: 'lab', label: 'Lab Tasks', icon: Code2, available: !!challenge },
+    { key: 'lab', label: 'Practice', icon: Code2, available: !!challenge },
   ]
 
   return (
-    <div className="min-h-screen bg-[#060606] relative overflow-hidden">
-      {/* Enhanced Background Blend */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-purple-600/20 blur-[150px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] bg-indigo-900/20 blur-[150px] rounded-full" />
-        <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full" />
-      </div>
-
-      <div className="relative z-10">
-      {/* Top Bar */}
-      <div className="sticky top-0 z-30 bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.06]">
-        <div className="max-w-[1600px] mx-auto px-6 py-3 flex items-center justify-between">
+    <div className="min-h-screen bg-[#0d1117] text-[#c9d1d9]">
+      <div className="sticky top-0 z-30 border-b border-[#30363d] bg-[#0d1117]">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-3">
           <div className="flex items-center gap-4">
-            <Link href="/curriculum" className="p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all">
+            <Link href="/curriculum" className="p-2 text-[#8b949e] transition-colors hover:bg-[#161b22] hover:text-[#e6edf3]">
               <ChevronLeft className="w-4 h-4" />
             </Link>
             <div className="hidden sm:block">
-              <div className="flex items-center gap-2 text-[10px] text-white/25 uppercase tracking-widest font-bold">
+              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8b949e]">
                 <span>{lesson.domain}</span>
                 <ChevronRight className="w-3 h-3" />
                 <span>{lesson.topic}</span>
               </div>
-              <h1 className="text-sm font-bold text-white mt-0.5 truncate max-w-[300px]">{lesson.title}</h1>
+              <h1 className="mt-1 truncate text-base font-semibold text-[#e6edf3]">{lesson.title}</h1>
             </div>
           </div>
 
-          {/* Section Switcher */}
-          <div className="flex items-center gap-1 bg-white/[0.04] border border-white/[0.06] rounded-xl p-1">
+          <div className="hidden items-center gap-1 border border-[#30363d] bg-[#161b22] p-1 md:flex">
             {sections.map((s) => {
               if (!s.available) return null
               const isActive = activeSection === s.key
@@ -76,16 +67,17 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
                 <button
                   key={s.key}
                   onClick={() => setActiveSection(s.key)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
+                  className={cn(
+                    'flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors',
                     isActive
-                      ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20'
-                      : 'text-white/40 hover:text-white/70 hover:bg-white/[0.04]'
-                  }`}
+                      ? 'bg-[#0d1117] text-[#e6edf3]'
+                      : 'text-[#8b949e] hover:bg-[#0d1117] hover:text-[#c9d1d9]'
+                  )}
                 >
                   <s.icon className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">{s.label}</span>
+                  <span>{s.label}</span>
                   {s.count && (
-                    <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-white/5'}`}>
+                    <span className={`border px-1.5 py-0.5 text-[10px] ${isActive ? 'border-[#30363d]' : 'border-transparent'}`}>
                       {s.count}
                     </span>
                   )}
@@ -94,12 +86,20 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
             })}
           </div>
 
-          {/* Quick Info */}
-          <div className="hidden md:flex items-center gap-3">
-            <Badge variant="outline" className={`capitalize text-[10px] ${diff.color}`}>
+          <div className="hidden items-center gap-3 md:flex">
+            {challenge ? (
+              <button
+                onClick={() => setActiveSection('lab')}
+                className="flex items-center gap-2 border border-[#30363d] bg-[#161b22] px-3 py-1.5 text-[12px] font-medium text-[#e6edf3] transition-colors hover:bg-[#0d1117]"
+              >
+                <FlaskConical className="size-3.5 text-[#3fb950]" />
+                Open Practice
+              </button>
+            ) : null}
+            <Badge variant="outline" className={`capitalize border-[#30363d] text-[10px] ${diff.color}`}>
               {diff.label}
             </Badge>
-            <div className="flex items-center gap-1 text-[10px] text-white/25">
+            <div className="flex items-center gap-1 text-[10px] text-[#8b949e]">
               <Clock className="w-3 h-3" />
               <span>5–10 min</span>
             </div>
@@ -107,106 +107,149 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-[1600px] mx-auto px-6 py-8">
-        {/* Mobile title */}
-        <div className="sm:hidden mb-6">
-          <div className="flex items-center gap-2 mb-2">
-            <Badge variant="outline" className="text-purple-400 border-purple-500/30 bg-purple-500/10 text-[10px]">
-              {lesson.topic}
-            </Badge>
-            <Badge variant="outline" className={`capitalize text-[10px] ${diff.color}`}>
-              {diff.label}
-            </Badge>
-          </div>
-          <h1 className="text-xl font-black text-white">{lesson.title}</h1>
-        </div>
-
-        {/* Notes */}
-        {activeSection === 'notes' && (
-          <div className="space-y-8">
-            <MarkdownRenderer content={lesson.content_md} />
-
-            {/* After reading notes, prompt to take quiz */}
-            {quiz && (
-              <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/5 border border-purple-500/15 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center shrink-0">
-                    <HelpCircle className="w-5 h-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-white">Ready to test your knowledge?</h3>
-                    <p className="text-xs text-white/40">Take the {quiz.questions.length}-question quiz on {lesson.title}</p>
-                  </div>
-                </div>
-                <Button
-                  onClick={() => setActiveSection('quiz')}
-                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 shadow-lg shadow-purple-500/20 group shrink-0"
-                >
-                  Start Quiz <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Quiz */}
-        {activeSection === 'quiz' && quiz && (
-          <div className="space-y-6">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
-                <HelpCircle className="w-5 h-5 text-purple-400" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-white">{quiz.title}</h2>
-                <p className="text-xs text-white/40">{quiz.questions.length} questions · Instant feedback</p>
-              </div>
+      <div className="mx-auto max-w-[1600px] px-6 py-6">
+        <div className="mb-6 grid gap-4 border border-[#30363d] bg-[#161b22] p-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#8b949e]">
+              <PanelLeftClose className="size-3.5" />
+              <span>{challenge ? 'Lesson + Practice' : 'Lesson'}</span>
             </div>
-            <QuizPanel quiz={quiz} />
-
-            {/* After quiz, prompt to try code */}
-            {challenge && (
-              <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/5 border border-green-500/15 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center shrink-0">
-                    <Code2 className="w-5 h-5 text-green-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-white">Apply what you learned!</h3>
-                    <p className="text-xs text-white/40">Write Python code to solve: {challenge.title}</p>
-                  </div>
-                </div>
+            <h2 className="mb-2 text-2xl font-semibold text-[#e6edf3]">{lesson.title}</h2>
+            <p className="max-w-3xl text-[14px] leading-6 text-[#8b949e]">
+              Learn the concept, then move straight into a data-science coding exercise with editable Python, runnable test cases, and output tabs.
+            </p>
+          </div>
+          <div className="border border-[#30363d] bg-[#0d1117] p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-[12px] font-medium text-[#e6edf3]">Practice Status</span>
+              <span className="text-[12px] text-[#8b949e]">{challenge ? 'Available' : 'Coming soon'}</span>
+            </div>
+            <div className="space-y-2 text-[13px] text-[#8b949e]">
+              <p>{challenge ? challenge.title : 'This lesson does not have a coding lab yet.'}</p>
+              {challenge ? (
                 <Button
                   onClick={() => setActiveSection('lab')}
-                  className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 shadow-lg shadow-green-500/20 group shrink-0"
+                  className="mt-2 h-9 w-full rounded-md border border-[#2ea043]/50 bg-[#238636] text-white hover:bg-[#2ea043]"
                 >
-                  Start Lab Task <Code2 className="w-4 h-4 ml-2" />
+                  Start Practice
                 </Button>
+              ) : null}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-6 flex items-center gap-2 border border-[#30363d] bg-[#161b22] p-1 md:hidden">
+          {sections.map((s) => {
+            if (!s.available) return null
+            const isActive = activeSection === s.key
+            return (
+              <button
+                key={s.key}
+                onClick={() => setActiveSection(s.key)}
+                className={cn(
+                  'flex flex-1 items-center justify-center gap-2 px-3 py-2 text-xs font-medium',
+                  isActive ? 'bg-[#0d1117] text-[#e6edf3]' : 'text-[#8b949e]'
+                )}
+              >
+                <s.icon className="size-3.5" />
+                {s.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {activeSection === 'notes' && (
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <MarkdownRenderer content={lesson.content_md} />
+
+            <aside className="space-y-4">
+              <div className="border border-[#30363d] bg-[#161b22] p-4">
+                <div className="mb-2 text-[12px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Next Step</div>
+                <p className="mb-4 text-[13px] leading-6 text-[#c9d1d9]">
+                  {challenge
+                    ? 'Jump into the coding workspace to apply this concept on a structured data problem.'
+                    : 'Read the notes, then move to the next lesson for a hands-on practice task.'}
+                </p>
+                {challenge ? (
+                  <Button
+                    onClick={() => setActiveSection('lab')}
+                    className="h-9 w-full rounded-md border border-[#30363d] bg-[#0d1117] text-[#e6edf3] hover:bg-[#21262d]"
+                  >
+                    Open Practice <ArrowRight className="ml-2 size-4" />
+                  </Button>
+                ) : null}
+              </div>
+
+              <div className="border border-[#30363d] bg-[#161b22] p-4">
+                <div className="mb-2 text-[12px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Lesson Info</div>
+                <div className="space-y-2 text-[13px] text-[#c9d1d9]">
+                  <div className="flex items-center justify-between">
+                    <span>Difficulty</span>
+                    <span>{diff.label}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Quiz</span>
+                    <span>{quiz ? `${quiz.questions.length} question${quiz.questions.length > 1 ? 's' : ''}` : 'None'}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Practice</span>
+                    <span>{challenge ? 'Available' : 'Unavailable'}</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        )}
+
+        {activeSection === 'quiz' && quiz && (
+          <div className="space-y-6">
+            <div className="border border-[#30363d] bg-[#161b22] p-4">
+              <h2 className="text-lg font-semibold text-[#e6edf3]">{quiz.title}</h2>
+              <p className="mt-1 text-[13px] text-[#8b949e]">{quiz.questions.length} questions with instant feedback</p>
+            </div>
+            <QuizPanel quiz={quiz} />
+            {quiz && (
+              <div className="flex flex-col items-start justify-between gap-4 border border-[#30363d] bg-[#161b22] p-5 sm:flex-row sm:items-center">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center border border-[#30363d] bg-[#0d1117]">
+                    <Code2 className="w-5 h-5 text-[#3fb950]" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-[#e6edf3]">Ready for the coding side?</h3>
+                    <p className="text-xs text-[#8b949e]">Open the practice workspace and run code against test cases.</p>
+                  </div>
+                </div>
+                {challenge ? (
+                  <Button
+                    onClick={() => setActiveSection('lab')}
+                    className="h-9 shrink-0 rounded-md border border-[#2ea043]/50 bg-[#238636] px-5 text-white hover:bg-[#2ea043]"
+                  >
+                    Open Practice <Code2 className="ml-2 size-4" />
+                  </Button>
+                ) : null}
               </div>
             )}
           </div>
         )}
 
-        {/* Lab Tasks */}
         {activeSection === 'lab' && challenge && (
-          <div className="-mx-6 -mb-8">
-            <SandboxPanel challenge={challenge} />
+          <div className="-mx-6 -mb-6 border-y border-[#30363d] bg-[#0d1117] px-6 py-4">
+            <SandboxPanel key={challenge.id} challenge={challenge} lesson={lesson} quiz={quiz} />
           </div>
         )}
 
-        {/* Learning Path Progress — hidden when lab is active */}
         {activeSection !== 'lab' && (
-        <div className="mt-12 pt-8 border-t border-white/[0.06]">
-          <div className="flex items-center justify-between mb-6">
-            <p className="text-[10px] font-black text-white/20 uppercase tracking-widest">Learning Path</p>
+        <div className="mt-12 border-t border-[#30363d] pt-8">
+          <div className="mb-6 flex items-center justify-between">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8b949e]">Learning Path</p>
             <div className="flex items-center gap-1.5">
               {allLessons.map((l, i) => (
                 <div
                   key={l.id}
                   className={`w-6 h-1 rounded-full transition-colors ${
-                    i < currentIndex ? 'bg-green-500/60'
-                    : i === currentIndex ? 'bg-purple-500'
-                    : 'bg-white/10'
+                    i < currentIndex ? 'bg-[#238636]'
+                    : i === currentIndex ? 'bg-[#58a6ff]'
+                    : 'bg-[#30363d]'
                   }`}
                   title={l.title}
                 />
@@ -214,37 +257,35 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
             </div>
           </div>
 
-          {/* Prev / Next Navigation */}
           <div className="grid grid-cols-2 gap-4">
             {prevLesson ? (
               <Link href={`/curriculum/${prevLesson.id}`}>
-                <div className="group p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] transition-all cursor-pointer">
-                  <p className="text-[9px] font-black text-white/20 uppercase tracking-widest mb-1.5">← Previous</p>
-                  <p className="text-sm font-bold text-white/70 group-hover:text-white transition-colors truncate">{prevLesson.title}</p>
+                <div className="group cursor-pointer border border-[#30363d] bg-[#161b22] p-4 transition-colors hover:bg-[#0d1117]">
+                  <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#8b949e]">← Previous</p>
+                  <p className="truncate text-sm font-semibold text-[#c9d1d9] group-hover:text-[#e6edf3]">{prevLesson.title}</p>
                 </div>
               </Link>
             ) : <div />}
 
             {nextLesson ? (
               <Link href={`/curriculum/${nextLesson.id}`}>
-                <div className="group p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-purple-500/20 hover:bg-purple-500/5 transition-all cursor-pointer text-right">
-                  <p className="text-[9px] font-black text-purple-400/50 uppercase tracking-widest mb-1.5">Next →</p>
-                  <p className="text-sm font-bold text-white/70 group-hover:text-purple-300 transition-colors truncate">{nextLesson.title}</p>
+                <div className="group cursor-pointer border border-[#30363d] bg-[#161b22] p-4 text-right transition-colors hover:bg-[#0d1117]">
+                  <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#58a6ff]">Next →</p>
+                  <p className="truncate text-sm font-semibold text-[#c9d1d9] group-hover:text-[#e6edf3]">{nextLesson.title}</p>
                 </div>
               </Link>
             ) : (
-              <div className="p-4 rounded-xl border border-green-500/15 bg-green-500/5 text-right">
-                <div className="flex items-center justify-end gap-2 mb-1">
-                  <CheckCircle2 className="w-4 h-4 text-green-400" />
-                  <p className="text-[9px] font-black text-green-400/70 uppercase tracking-widest">Complete!</p>
+              <div className="border border-[#238636]/40 bg-[#238636]/10 p-4 text-right">
+                <div className="mb-1 flex items-center justify-end gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#3fb950]" />
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3fb950]">Complete!</p>
                 </div>
-                <p className="text-sm font-bold text-green-400/60">You've covered all lessons</p>
+                <p className="text-sm font-semibold text-[#3fb950]">You&apos;ve covered all lessons</p>
               </div>
             )}
           </div>
         </div>
         )}
-        </div>
       </div>
     </div>
   )

@@ -1,263 +1,213 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import { 
-  BookOpen, Brain, ChevronRight, Target, Circle, Search, GraduationCap, 
-  ArrowRight, HelpCircle, Code2, Database, BarChart3, Zap, TrendingUp, 
-  Star, Table, Eraser, PieChart, Sigma, Cog, Grid, Binary, Users, 
-  CheckSquare, LineChart, GitBranch, Trees, Dna, RefreshCw, Trophy
-} from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
+import { ArrowRight, BookOpen, Brain, CheckCircle2, Code2, Flame, LineChart, PlayCircle, Trophy } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { CURRICULUM, getAllLessons, getChallengeByLessonId, getDailyQuestion, getQuizByLessonId } from '@/lib/curriculum-data'
 import { useAuth } from '@/lib/auth-context'
-import { CURRICULUM, getAllLessons } from '@/lib/curriculum-data'
-
-const domainConfig: Record<string, { icon: any; color: string; bg: string }> = {
-  'Data Science': {
-    icon: Brain,
-    color: 'text-purple-400',
-    bg: 'bg-purple-500/10',
-  },
-}
-
-const moduleIconMap: Record<string, any> = {
-  'Module 1': Database,
-  'Module 2': BarChart3,
-  'Module 3': Zap,
-  'Module 4': TrendingUp,
-  'Module 5': Star,
-}
-
-const lessonIconMap: Record<string, any> = {
-  'Pandas Basics': Table,
-  'Data Cleaning': Eraser,
-  'Quick Visualization': PieChart,
-  'Descriptive Stats': Sigma,
-  'Feature Engineering': Cog,
-  'Correlation Heatmaps': Grid,
-  'Titanic Survival': Code2,
-  'Logistic Regression': Binary,
-  'K-Nearest Neighbors': Users,
-  'Model Evaluation': CheckSquare,
-  'Linear Regression': LineChart,
-  'Decision Trees': GitBranch,
-  'Random Forest': Trees,
-  'Clustering': Dna,
-  'ML Workflow': RefreshCw,
-  'Final eLab Project': Trophy,
-}
-
-function getLessonIcon(title: string) {
-  if (title.toLowerCase().includes('lab task')) return Code2
-  for (const [key, icon] of Object.entries(lessonIconMap)) {
-    if (title.includes(key)) return icon
-  }
-  return BookOpen
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ')
-}
 
 export default function Dashboard() {
   const { user } = useAuth()
+  const lessons = getAllLessons()
   const userName = user?.name || 'Explorer'
-  const totalLessons = getAllLessons().length
-  const domain = CURRICULUM[0] // Data Science
+  const currentLesson = lessons[0]
+  const recommendedPracticeLesson = lessons.find((lesson) => getChallengeByLessonId(lesson.id)) ?? lessons[0]
+  const practiceChallenge = recommendedPracticeLesson ? getChallengeByLessonId(recommendedPracticeLesson.id) : undefined
+  const dailyQuestion = getDailyQuestion()
+
+  const moduleSummaries = CURRICULUM[0].topics.map((topic, index) => {
+    const lessonCount = topic.lessons.length
+    const availableLabs = topic.lessons.filter((lesson) => getChallengeByLessonId(lesson.id)).length
+    const availableQuizzes = topic.lessons.filter((lesson) => getQuizByLessonId(lesson.id)).length
+    const progress = index === 0 ? 42 : index === 1 ? 18 : 0
+
+    return {
+      topic: topic.topic,
+      lessonCount,
+      availableLabs,
+      availableQuizzes,
+      progress,
+    }
+  })
 
   return (
-    <div className="min-h-screen bg-[#080808] relative overflow-hidden">
-      {/* Enhanced Background Blend */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-purple-600/20 blur-[140px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-indigo-600/15 blur-[140px] rounded-full" />
-        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-purple-500/10 blur-[100px] rounded-full" />
-      </div>
+    <div className="min-h-screen px-5 py-6 md:px-8 xl:px-10">
+      <div className="mx-auto max-w-[1600px] space-y-8">
+        <section className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
+          <div className="panel-fade ds-panel p-6">
+            <div className="mb-3 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#8b949e]">
+              <Brain className="size-3.5 text-[#58a6ff]" />
+              Student Dashboard
+            </div>
+            <h1 className="text-3xl font-semibold text-[#e6edf3] md:text-4xl">Welcome back, {userName}.</h1>
+            <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#8b949e]">
+              Keep learning in a focused workspace: review the concept, validate understanding with a quiz, and solve a data-science practice problem with runnable Python and test cases.
+            </p>
 
-      <div className="relative z-10 p-6 lg:p-10 space-y-10">
-        {/* Welcome Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div>
-            <p className="text-xs font-bold text-purple-400 uppercase tracking-[0.2em] mb-2">Student Dashboard</p>
-            <h1 className="text-3xl lg:text-4xl font-black text-white">Welcome back, {userName}! 👋</h1>
-            <p className="text-white/40 text-sm mt-2">Ready to continue your journey in <span className="text-purple-400 font-bold">Data Science</span>?</p>
-          </div>
-          <div className="relative group shrink-0">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-purple-400 transition-colors" />
-            <input
-              type="text"
-              placeholder="Search lessons..."
-              className="bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500/30 w-full sm:w-64 transition-all"
-            />
-          </div>
-        </div>
-
-        {/* Learning Progress Summary */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {domain.topics.map((topic, i) => {
-            const progressValues = [33, 0, 0, 0, 0]
-            const colors = ['from-purple-500 to-indigo-500', 'from-blue-500 to-cyan-500', 'from-emerald-500 to-green-500', 'from-orange-500 to-yellow-500', 'from-pink-500 to-rose-500']
-            const pct = progressValues[i] || 0
-            return (
-              <Card key={topic.topic} className="bg-white/[0.02] border-white/5 hover:border-white/10 transition-all duration-300 rounded-2xl overflow-hidden group">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-black text-white/30 uppercase tracking-widest">Module {i + 1}</p>
-                      <p className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">{topic.topic.split(': ')[1] || topic.topic}</p>
-                    </div>
-                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-purple-400/50 group-hover:text-purple-400 group-hover:bg-purple-500/10 transition-all">
-                      {(() => {
-                        const Icon = moduleIconMap[`Module ${i + 1}`] || Target
-                        return <Icon className="w-5 h-5" />
-                      })()}
-                    </div>
-                  </div>
-                  <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-3">
-                    <div
-                      className={`h-full bg-gradient-to-r ${colors[i % colors.length]} rounded-full transition-all duration-1000 ease-out`}
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[10px] text-white/30 font-bold uppercase tracking-tight">{pct}% Complete</p>
-                    <p className="text-[10px] text-white/30 font-bold uppercase tracking-tight">{topic.lessons.length} Lessons</p>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </section>
-
-        {/* Modules & Curriculum */}
-        <div className="space-y-12">
-          {CURRICULUM.map((domain) => {
-            const cfg = domainConfig[domain.domain]
-            const DomainIcon = cfg?.icon ?? BookOpen
-            const totalLessons = domain.topics.reduce((a, t) => a + t.lessons.length, 0)
-
-            return (
-              <section key={domain.domain}>
-                {/* Domain Header */}
-                <div className="flex items-center justify-between pb-6 border-b border-white/5 mb-8">
-                  <div className="flex items-center gap-4">
-                    <div className={cn('w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg', cfg?.bg ?? 'bg-white/5')}>
-                      <DomainIcon className={cn('w-6 h-6', cfg?.color ?? 'text-white/40')} />
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-black text-white">{domain.domain} Mastery</h2>
-                      <p className="text-[10px] text-white/30 uppercase font-black tracking-widest mt-1">Full Curriculum Path</p>
-                    </div>
-                  </div>
-                  <div className="hidden sm:flex items-center gap-8 text-right">
-                    <div>
-                      <p className="text-2xl font-black text-white">0%</p>
-                      <p className="text-[9px] text-white/30 uppercase font-black tracking-widest">Overall Completion</p>
-                    </div>
-                    <div className="w-px h-10 bg-white/5" />
-                    <div>
-                      <p className="text-2xl font-black text-white">{totalLessons}</p>
-                      <p className="text-[9px] text-white/30 uppercase font-black tracking-widest">Total Lessons</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Topics + Lessons */}
-                <div className="space-y-12">
-                  {domain.topics.map((topicGroup) => (
-                    <div key={topicGroup.topic}>
-                      <div className="flex items-center gap-4 mb-6">
-                        <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.3em]">
-                          {topicGroup.topic}
-                        </h3>
-                        <div className="flex-1 h-px bg-white/5" />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                        {topicGroup.lessons.map((lesson) => (
-                          <Link key={lesson.id} href={`/curriculum/${lesson.id}`}>
-                            <Card
-                              className="bg-white/[0.01] border-white/5 hover:border-purple-500/30 hover:bg-purple-500/[0.02] transition-all duration-300 group relative overflow-hidden cursor-pointer h-full"
-                            >
-                              {/* Hover glow */}
-                              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 blur-[50px] -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                              <CardContent className="p-5 flex items-center gap-5">
-                                {/* Completion Indicator */}
-                                <div className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/10 group-hover:border-purple-500/40 group-hover:text-purple-400 transition-all shrink-0">
-                                  {(() => {
-                                    const Icon = getLessonIcon(lesson.title)
-                                    return <Icon className="w-5 h-5" />
-                                  })()}
-                                </div>
-
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="text-sm font-bold text-white group-hover:text-purple-200 transition-colors line-clamp-1">
-                                    {lesson.title}
-                                  </h4>
-                                  <div className="flex items-center gap-3 mt-2">
-                                    <div className="flex items-center gap-3">
-                                      <div className="flex items-center gap-1 text-[9px] text-white/40 font-bold uppercase tracking-tighter">
-                                        <BookOpen className="w-2.5 h-2.5" />
-                                        Notes
-                                      </div>
-                                      <div className="flex items-center gap-1 text-[9px] text-white/40 font-bold uppercase tracking-tighter">
-                                        <HelpCircle className="w-2.5 h-2.5" />
-                                        Quiz
-                                      </div>
-                                      <div className="flex items-center gap-1 text-[9px] text-purple-400/60 font-bold uppercase tracking-tighter">
-                                        <Code2 className="w-2.5 h-2.5" />
-                                        Lab
-                                      </div>
-                                    </div>
-                                    <span className={cn(
-                                      'text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border ml-auto',
-                                      lesson.difficulty === 'beginner' ? 'bg-green-500/5 border-green-500/20 text-green-400' :
-                                      lesson.difficulty === 'intermediate' ? 'bg-yellow-500/5 border-yellow-500/20 text-yellow-400' :
-                                      'bg-red-500/5 border-red-500/20 text-red-400'
-                                    )}>
-                                      {lesson.difficulty}
-                                    </span>
-                                  </div>
-                                </div>
-
-                                <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-purple-400 group-hover:bg-purple-500/20 transition-all shrink-0">
-                                  <ChevronRight className="w-4 h-4" />
-                                </div>
-                              </CardContent>
-                            </Card>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )
-          })}
-        </div>
-
-        {/* Continue Learning CTA */}
-        <section className="pt-10">
-          <Card className="bg-gradient-to-r from-purple-600/20 via-indigo-600/10 to-transparent border-purple-500/20 overflow-hidden rounded-3xl">
-            <CardContent className="p-8 flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-2xl bg-purple-600/20 flex items-center justify-center shrink-0 shadow-xl border border-purple-500/30">
-                  <GraduationCap className="w-8 h-8 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-black text-white">Resume Your Journey</h3>
-                  <p className="text-white/40 mt-1">Pick up where you left off in <span className="text-white/80 font-bold">Module 1: Pandas Basics</span></p>
-                </div>
-              </div>
-              <Link href="/curriculum/ds-mod1-01">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-10 h-14 rounded-2xl shadow-xl shadow-purple-500/20 group transition-all hover:scale-105">
-                  Continue Learning <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href={recommendedPracticeLesson ? `/curriculum/${recommendedPracticeLesson.id}` : '/curriculum'}>
+                <Button className="h-10 rounded-md border border-[#2ea043]/50 bg-[#238636] px-5 text-white hover:bg-[#2ea043]">
+                  Continue Practice
+                  <ArrowRight className="ml-2 size-4" />
                 </Button>
               </Link>
-            </CardContent>
-          </Card>
+              <Link href="/curriculum">
+                <Button variant="outline" className="h-10 rounded-md border-[#30363d] bg-[#161b22] px-5 text-[#e6edf3] hover:bg-[#21262d]">
+                  Browse Curriculum
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="panel-fade ds-panel-elevated p-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Recommended Practice</div>
+                <h2 className="mt-2 text-lg font-semibold text-[#e6edf3]">{practiceChallenge?.title || 'Practice track'}</h2>
+              </div>
+              <PlayCircle className="size-5 text-[#58a6ff]" />
+            </div>
+            <p className="mt-3 text-[13px] leading-6 text-[#8b949e]">
+              {practiceChallenge?.prompt.split('\n')[0].replace('## ', '') || 'Hands-on coding exercises will appear here.'}
+            </p>
+            <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+              <div className="border border-[#30363d] bg-[#0d1117] p-3">
+                <div className="text-lg font-semibold text-[#e6edf3]">{practiceChallenge?.grader_checks.length ?? 0}</div>
+                <div className="mt-1 text-[11px] text-[#8b949e]">Checks</div>
+              </div>
+              <div className="border border-[#30363d] bg-[#0d1117] p-3">
+                <div className="text-lg font-semibold text-[#e6edf3]">Python</div>
+                <div className="mt-1 text-[11px] text-[#8b949e]">Runtime</div>
+              </div>
+              <div className="border border-[#30363d] bg-[#0d1117] p-3">
+                <div className="text-lg font-semibold text-[#e6edf3]">IDE</div>
+                <div className="mt-1 text-[11px] text-[#8b949e]">Workspace</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-4">
+          {[
+            { label: 'Lessons', value: lessons.length, hint: 'Concept modules', icon: BookOpen },
+            { label: 'Labs', value: lessons.filter((lesson) => getChallengeByLessonId(lesson.id)).length, hint: 'Hands-on tasks', icon: Code2 },
+            { label: 'Quizzes', value: lessons.filter((lesson) => getQuizByLessonId(lesson.id)).length, hint: 'Knowledge checks', icon: CheckCircle2 },
+            { label: 'Momentum', value: '5d', hint: 'Current streak', icon: Flame, isStreak: true },
+          ].map((item) => (
+            <div key={item.label} className="panel-fade ds-panel p-5 flex flex-col justify-between h-full">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">{item.label}</div>
+                  <div className="mt-3 text-3xl font-semibold text-[#e6edf3]">{item.value}</div>
+                  <div className="mt-1 text-[12px] text-[#8b949e]">{item.hint}</div>
+                </div>
+                <item.icon className="size-5 text-[#58a6ff]" />
+              </div>
+              {item.isStreak && (
+                <div className="mt-4 pt-3 border-t border-[#30363d] flex items-center justify-between">
+                  {/* 1-week streak chart: 7 squares */}
+                  {/* T, W, T, F, S, S, M (Example) */}
+                  <div className="flex items-center gap-1.5">
+                    {[
+                      { active: true, day: 'T' },
+                      { active: true, day: 'W' },
+                      { active: false, day: 'T' },
+                      { active: true, day: 'F' },
+                      { active: true, day: 'S' },
+                      { active: true, day: 'S' },
+                      { active: true, day: 'M' },
+                    ].map((d, i) => (
+                      <div key={i} className="flex flex-col items-center gap-1.5">
+                        <div
+                          className={`w-4 h-4 rounded-[2px] ${
+                            d.active ? 'bg-[#3fb950] shadow-[0_0_8px_rgba(63,185,80,0.4)]' : 'bg-[#161b22] border border-[#30363d]'
+                          }`}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+
+        <section className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)]">
+          <div className="ds-panel p-6">
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Learning Path</div>
+                <h2 className="mt-2 text-xl font-semibold text-[#e6edf3]">Your modules</h2>
+              </div>
+              <Link href="/curriculum" className="text-[13px] font-medium text-[#58a6ff] hover:text-[#79c0ff]">
+                View all
+              </Link>
+            </div>
+
+            <div className="space-y-4">
+              {moduleSummaries.map((module) => (
+                <div key={module.topic} className="border border-[#30363d] bg-[#161b22] p-4">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                    <div>
+                      <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Module</div>
+                      <h3 className="mt-1 text-base font-semibold text-[#e6edf3]">{module.topic}</h3>
+                      <div className="mt-2 flex flex-wrap gap-2 text-[12px] text-[#8b949e]">
+                        <span>{module.lessonCount} lessons</span>
+                        <span>{module.availableQuizzes} quizzes</span>
+                        <span>{module.availableLabs} labs</span>
+                      </div>
+                    </div>
+                    <Badge variant="outline" className="rounded-md border-[#30363d] bg-[#0d1117] px-2 py-1 text-[11px] text-[#c9d1d9]">
+                      {module.progress}% complete
+                    </Badge>
+                  </div>
+                  <div className="mt-4 h-2 overflow-hidden bg-[#0d1117]">
+                    <div className="progress-bar-fill h-full bg-[#58a6ff]" style={{ width: `${module.progress}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="ds-panel p-5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Daily Check</div>
+                  <h2 className="mt-2 text-lg font-semibold text-[#e6edf3]">Quick question</h2>
+                </div>
+                <LineChart className="size-5 text-[#58a6ff]" />
+              </div>
+              <p className="mt-3 text-[13px] leading-6 text-[#c9d1d9]">{dailyQuestion.question}</p>
+              <div className="mt-4">
+                <Link href="/curriculum/ds-mod2-01">
+                  <Button variant="outline" className="h-9 rounded-md border-[#30363d] bg-[#161b22] text-[#e6edf3] hover:bg-[#21262d]">
+                    Practice with quiz
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="ds-panel-elevated p-5">
+              <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Resume Path</div>
+              <h2 className="mt-2 text-lg font-semibold text-[#e6edf3]">{currentLesson.title}</h2>
+              <p className="mt-2 text-[13px] leading-6 text-[#8b949e]">
+                Return to structured learning, then move into guided practice with runnable code.
+              </p>
+              <div className="mt-5 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-[12px] text-[#8b949e]">
+                  <Trophy className="size-4 text-[#d29922]" />
+                  Mastery path
+                </div>
+                <Link href={`/curriculum/${currentLesson.id}`}>
+                  <Button className="h-9 rounded-none border border-[#30363d] bg-[#0d1117] px-4 text-[#e6edf3] hover:bg-[#21262d]">
+                    Open lesson
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </div>
