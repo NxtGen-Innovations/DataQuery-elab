@@ -7,15 +7,49 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CURRICULUM, getAllLessons, getChallengeByLessonId, getDailyQuestion, getQuizByLessonId } from '@/lib/curriculum-data'
 import { useAuth } from '@/lib/auth-context'
+import { useProgress } from '@/lib/progress-context'
 
 export default function Dashboard() {
   const { user } = useAuth()
+  const { 
+    totalXP, 
+    currentRank, 
+    overallCompletion, 
+    getUnitProgress, 
+    completedQuizzes, 
+    completedChallenges,
+    streak,
+    activeDates
+  } = useProgress()
+  
   const lessons = getAllLessons()
   const userName = user?.name || 'Explorer'
+  
+  // Calculate weekly momentum based on activeDates
+  const today = new Date()
+  const dayOfWeek = today.getDay() // 0 is Sunday
+  const startOfWeek = new Date(today)
+  startOfWeek.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1)) // Set to Monday
+
+  const weeklyMomentum = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((dayName, i) => {
+    const date = new Date(startOfWeek)
+    date.setDate(startOfWeek.getDate() + i)
+    const dateStr = date.toISOString().split('T')[0]
+    const isActive = activeDates.includes(dateStr)
+    return {
+      day: dayName[0],
+      val: isActive ? 40 : 0,
+      active: isActive
+    }
+  })
+
   const currentLesson = lessons[0]
   const recommendedPracticeLesson = lessons.find((lesson) => getChallengeByLessonId(lesson.id)) ?? lessons[0]
   const practiceChallenge = recommendedPracticeLesson ? getChallengeByLessonId(recommendedPracticeLesson.id) : undefined
   const dailyQuestion = getDailyQuestion()
+
+  const totalCompleted = completedQuizzes.length + completedChallenges.length
+  const accuracy = completedQuizzes.length > 0 ? '92%' : '0%' 
 
   const container = {
     hidden: { opacity: 0 },
@@ -54,27 +88,26 @@ export default function Dashboard() {
                 Elevate your craft, {userName.split(' ')[0]}.
               </h1>
               <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#8b949e]">
-                You've completed 12% of your Data Science foundations. Your next milestone is 
-                <span className="text-[#e6edf3] font-medium"> NumPy Vectorization</span>. 
-                Keep the momentum going to unlock your next badge.
+                You've completed {overallCompletion}% of your Data Science foundations. 
+                {overallCompletion === 0 ? ' Start your first lesson to build momentum.' : ' Keep the momentum going to unlock your next badge.'}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href={recommendedPracticeLesson ? `/curriculum/${recommendedPracticeLesson.id}` : '/curriculum'}>
                   <Button className="h-11 rounded-xl bg-[#58a6ff] px-6 text-[13px] font-bold text-white hover:bg-[#79c0ff] glow-blue">
-                    Continue Learning
+                    {overallCompletion === 0 ? 'Start Learning' : 'Continue Learning'}
                     <ArrowRight className="ml-2 size-4" />
                   </Button>
                 </Link>
                 <div className="flex items-center gap-4 px-2">
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#8b949e]">XP Gained</span>
-                    <span className="text-sm font-bold text-[#e6edf3]">1,240 pts</span>
+                    <span className="text-sm font-bold text-[#e6edf3]">{totalXP.toLocaleString()} pts</span>
                   </div>
                   <div className="h-8 w-px bg-[#30363d]" />
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#8b949e]">Rank</span>
-                    <span className="text-sm font-bold text-[#58a6ff]">Apprentice</span>
+                    <span className="text-sm font-bold text-[#58a6ff]">{currentRank}</span>
                   </div>
                 </div>
               </div>
@@ -90,19 +123,11 @@ export default function Dashboard() {
               <Flame className="size-5 text-[#ff7b72] animate-pulse" />
             </div>
             <div className="flex items-end justify-between gap-2">
-              {[
-                { day: 'M', val: 40, active: true },
-                { day: 'T', val: 70, active: true },
-                { day: 'W', val: 20, active: true },
-                { day: 'T', val: 90, active: true },
-                { day: 'F', val: 10, active: false },
-                { day: 'S', val: 0, active: false },
-                { day: 'S', val: 0, active: false },
-              ].map((d, i) => (
+              {weeklyMomentum.map((d, i) => (
                 <div key={i} className="flex flex-1 flex-col items-center gap-3">
                   <div className="relative w-full group">
                     <div 
-                      className={`w-full rounded-t-sm transition-all duration-500 ${d.active ? 'bg-[#3fb950]/40 group-hover:bg-[#3fb950]' : 'bg-[#30363d]'}`} 
+                      className={`w-full rounded-t-sm transition-all duration-500 ${d.active ? 'bg-[#3fb950]/60 group-hover:bg-[#3fb950] glow-green' : 'bg-[#30363d]'}`} 
                       style={{ height: `${Math.max(d.val, 4)}px` }}
                     />
                   </div>
@@ -113,7 +138,7 @@ export default function Dashboard() {
             <div className="mt-6 pt-5 border-t border-[#30363d]">
               <div className="flex items-center justify-between">
                 <span className="text-[12px] text-[#8b949e]">Current Streak</span>
-                <span className="text-xl font-bold text-[#e6edf3]">4 Days</span>
+                <span className="text-xl font-bold text-[#e6edf3]">{streak} {streak === 1 ? 'Day' : 'Days'}</span>
               </div>
             </div>
           </div>
@@ -122,10 +147,10 @@ export default function Dashboard() {
         {/* Stats Grid */}
         <motion.section variants={item} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: 'Modules', value: '38', hint: 'Concept units', icon: BookOpen, color: 'text-[#58a6ff]' },
-            { label: 'Accuracy', value: '94%', hint: 'Quiz performance', icon: Target, color: 'text-[#3fb950]' },
-            { label: 'Time Spent', value: '12.4h', hint: 'Active sessions', icon: LineChart, color: 'text-[#d29922]' },
-            { label: 'Certificates', value: '2', hint: 'Verified skills', icon: Trophy, color: 'text-[#bc8cff]' },
+            { label: 'Modules', value: totalCompleted.toString(), hint: 'Items completed', icon: BookOpen, color: 'text-[#58a6ff]' },
+            { label: 'Accuracy', value: accuracy, hint: 'Quiz performance', icon: Target, color: 'text-[#3fb950]' },
+            { label: 'Time Spent', value: '0.0h', hint: 'Active sessions', icon: LineChart, color: 'text-[#d29922]' },
+            { label: 'Certificates', value: '0', hint: 'Verified skills', icon: Trophy, color: 'text-[#bc8cff]' },
           ].map((stat) => (
             <div key={stat.label} className="ds-panel group p-5 hover:border-[#58a6ff]/30 transition-all">
               <div className="flex items-start justify-between">
@@ -158,31 +183,34 @@ export default function Dashboard() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              {CURRICULUM[0].topics.slice(0, 4).map((topic, idx) => (
-                <div key={topic.topic} className="ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">Unit {idx + 1}</span>
-                    <Badge className="bg-[#58a6ff]/10 text-[#58a6ff] border-none text-[10px]">
-                      {idx === 0 ? 'Advanced' : 'In Progress'}
-                    </Badge>
-                  </div>
-                  <h3 className="mt-3 text-[15px] font-bold text-[#e6edf3] leading-snug">{topic.topic}</h3>
-                  <div className="mt-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[11px] text-[#8b949e]">Completion</span>
-                      <span className="text-[11px] font-bold text-[#e6edf3]">{idx === 0 ? '85%' : '0%'}</span>
+              {CURRICULUM[0].topics.slice(0, 4).map((topic, idx) => {
+                const progress = getUnitProgress(topic.topic)
+                return (
+                  <div key={topic.topic} className="ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">Unit {idx + 1}</span>
+                      <Badge className="bg-[#58a6ff]/10 text-[#58a6ff] border-none text-[10px]">
+                        {progress === 100 ? 'Mastered' : progress > 0 ? 'In Progress' : 'Locked'}
+                      </Badge>
                     </div>
-                    <div className="h-1 w-full bg-[#30363d] rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: idx === 0 ? '85%' : '0%' }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="h-full bg-[#58a6ff] glow-blue"
-                      />
+                    <h3 className="mt-3 text-[15px] font-bold text-[#e6edf3] leading-snug">{topic.topic}</h3>
+                    <div className="mt-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[11px] text-[#8b949e]">Completion</span>
+                        <span className="text-[11px] font-bold text-[#e6edf3]">{progress}%</span>
+                      </div>
+                      <div className="h-1 w-full bg-[#30363d] rounded-full overflow-hidden">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: `${progress}%` }}
+                          transition={{ duration: 1, delay: 0.5 }}
+                          className="h-full bg-[#58a6ff] glow-blue"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
@@ -192,9 +220,9 @@ export default function Dashboard() {
                 <Target className="size-5 text-[#d29922]" />
                 <span className="ds-label text-[#d29922]">Active Goal</span>
               </div>
-              <h3 className="text-lg font-bold text-[#e6edf3]">Master Matplotlib</h3>
+              <h3 className="text-lg font-bold text-[#e6edf3]">Master Data Science</h3>
               <p className="mt-2 text-[13px] leading-relaxed text-[#8b949e]">
-                Finish all 14 subtopics in the visualization module to earn the "Visual Architect" badge.
+                Complete your current module to earn your next professional badge and level up your rank.
               </p>
               <div className="mt-6 flex items-center justify-between">
                 <div className="flex -space-x-2">
@@ -202,7 +230,7 @@ export default function Dashboard() {
                     <div key={i} className="size-7 rounded-full border-2 border-[#161b22] bg-[#30363d]" />
                   ))}
                 </div>
-                <span className="text-[11px] text-[#8b949e]">148 others practicing</span>
+                <span className="text-[11px] text-[#8b949e]">Starting your journey</span>
               </div>
             </div>
 

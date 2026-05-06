@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpen, Brain, ChevronLeft, LayoutDashboard, LogOut, Settings, Sparkles, FileText, CheckCircle2, HelpCircle, Code2, Layers } from 'lucide-react'
+import { BookOpen, Brain, ChevronLeft, LayoutDashboard, LogOut, Settings, Sparkles, FileText, CheckCircle2, HelpCircle, Code2, Layers, ShieldCheck } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/lib/auth-context'
+import { useProgress } from '@/lib/progress-context'
 import { CURRICULUM, getQuizByLessonId, getChallengeByLessonId } from '@/lib/curriculum-data'
 
 const navItems = [
@@ -19,6 +20,7 @@ export function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const { user, isAdmin, logout } = useAuth()
+  const { getUnitProgress, isUnitComplete, isLessonComplete, completedQuizzes, completedChallenges } = useProgress()
 
   const isCurriculumView = pathname.startsWith('/curriculum/') && pathname !== '/curriculum'
   const visibleNavItems = navItems.filter((item) => !item.adminOnly || isAdmin)
@@ -86,24 +88,33 @@ export function Sidebar() {
               className="space-y-8"
             >
               {CURRICULUM[0].topics.map((unit, idx) => {
-                const unitProgress = idx === 0 ? 85 : 0
+                const unitProgress = getUnitProgress(unit.topic)
+                const complete = isUnitComplete(unit.topic)
+                
                 return (
                   <div key={unit.topic} className="space-y-3">
                     <div className="hidden items-center justify-between px-2 xl:flex">
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b949e]">Unit {idx + 1}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b949e]">Unit {idx + 1}</span>
+                        {complete && <ShieldCheck className="size-3 text-[#3fb950]" />}
+                      </div>
                       <div className="flex items-center gap-2">
                         <div className="h-1 w-12 rounded-full bg-[#30363d] overflow-hidden">
-                          <div className="h-full bg-[#58a6ff]" style={{ width: `${unitProgress}%` }} />
+                          <div className={cn("h-full transition-all duration-500", complete ? "bg-[#3fb950]" : "bg-[#58a6ff]")} style={{ width: `${unitProgress}%` }} />
                         </div>
-                        <span className="text-[9px] font-bold text-[#58a6ff]">{unitProgress}%</span>
+                        <span className={cn("text-[9px] font-bold", complete ? "text-[#3fb950]" : "text-[#58a6ff]")}>{unitProgress}%</span>
                       </div>
                     </div>
                     <div className="space-y-1">
                       {unit.lessons.map((lesson) => {
                         const isLessonActive = pathname === `/curriculum/${lesson.id}`
-                        const hasQuiz = getQuizByLessonId(lesson.id)
-                        const hasLab = getChallengeByLessonId(lesson.id)
+                        const lessonDone = isLessonComplete(lesson.id)
+                        const quiz = getQuizByLessonId(lesson.id)
+                        const challenge = getChallengeByLessonId(lesson.id)
                         
+                        const quizDone = quiz ? completedQuizzes.includes(quiz.id) : true
+                        const challengeDone = challenge ? completedChallenges.includes(challenge.id) : true
+
                         return (
                           <Link
                             key={lesson.id}
@@ -115,13 +126,18 @@ export function Sidebar() {
                                 : 'border-transparent text-[#8b949e] hover:bg-[#161b22] hover:text-[#c9d1d9]'
                             )}
                           >
-                            <FileText className={cn('size-3.5 shrink-0', isLessonActive ? 'text-[#58a6ff]' : 'text-current')} />
+                            <div className="relative">
+                              <FileText className={cn('size-3.5 shrink-0', isLessonActive ? 'text-[#58a6ff]' : 'text-current')} />
+                              {lessonDone && (
+                                <CheckCircle2 className="absolute -right-1 -top-1 size-2 text-[#3fb950]" />
+                              )}
+                            </div>
                             <div className="hidden flex-1 min-w-0 xl:block">
-                              <div className="truncate" title={lesson.title}>{lesson.title}</div>
-                              <div className="mt-1 flex gap-1.5 opacity-60">
-                                <FileText className="size-2.5" />
-                                {hasQuiz && <HelpCircle className="size-2.5" />}
-                                {hasLab && <Code2 className="size-2.5 text-[#3fb950]" />}
+                              <div className="truncate text-[13px]" title={lesson.title}>{lesson.title}</div>
+                              <div className="mt-1 flex gap-2 items-center opacity-80">
+                                <FileText className="size-2.5 text-[#58a6ff]" />
+                                {quiz && <HelpCircle className={cn("size-2.5", quizDone ? "text-[#3fb950]" : "text-[#484f58]")} />}
+                                {challenge && <Code2 className={cn("size-2.5", challengeDone ? "text-[#3fb950]" : "text-[#484f58]")} />}
                               </div>
                             </div>
                           </Link>

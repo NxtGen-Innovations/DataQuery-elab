@@ -2,10 +2,13 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { useCachedState } from '@/hooks/use-cached-state'
+import { useProgress } from '@/lib/progress-context'
 import { Quiz } from '@/lib/curriculum-data'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle2, ChevronRight, RotateCcw, Trophy, XCircle, Sparkles, Zap } from 'lucide-react'
+import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -15,11 +18,17 @@ interface Props {
 }
 
 export function QuizPanel({ quiz }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, string>>({})
-  const [submitted, setSubmitted] = useState<Record<string, boolean>>({})
-  const [fillInput, setFillInput] = useState('')
-  const [quizComplete, setQuizComplete] = useState(false)
+  const { markQuizComplete } = useProgress()
+  const [currentIndex, setCurrentIndex] = useCachedState(`quiz-index-${quiz.id}`, 0)
+  const [answers, setAnswers] = useCachedState<Record<string, string>>(`quiz-answers-${quiz.id}`, {})
+  const [submitted, setSubmitted] = useCachedState<Record<string, boolean>>(`quiz-submitted-${quiz.id}`, {})
+  const [quizComplete, setQuizComplete] = useCachedState(`quiz-complete-${quiz.id}`, false)
+
+  useEffect(() => {
+    if (quizComplete) {
+      markQuizComplete(quiz.id)
+    }
+  }, [quizComplete, quiz.id, markQuizComplete])
 
   const question = quiz.questions[currentIndex]
   const isLastQuestion = currentIndex === quiz.questions.length - 1
@@ -35,10 +44,14 @@ export function QuizPanel({ quiz }: Props) {
   }
 
   function handleSubmit() {
-    const answer = question.type === 'fill_blank' ? fillInput.trim().toLowerCase() : answers[question.id]
+    const answer = answers[question.id]
     if (!answer) return
-    setAnswers((prev) => ({ ...prev, [question.id]: answer }))
     setSubmitted((prev) => ({ ...prev, [question.id]: true }))
+    
+    // Automatically mark quiz as complete if this was the last question
+    if (isLastQuestion) {
+      setQuizComplete(true)
+    }
   }
 
   function handleNext() {
@@ -46,7 +59,6 @@ export function QuizPanel({ quiz }: Props) {
       setQuizComplete(true)
     } else {
       setCurrentIndex((index) => index + 1)
-      setFillInput('')
     }
   }
 
@@ -54,7 +66,6 @@ export function QuizPanel({ quiz }: Props) {
     setCurrentIndex(0)
     setAnswers({})
     setSubmitted({})
-    setFillInput('')
     setQuizComplete(false)
   }
 
@@ -156,7 +167,7 @@ export function QuizPanel({ quiz }: Props) {
         >
           <div className="mb-8 flex items-center justify-between gap-4">
             <Badge className="rounded-lg bg-[#161b22] border-[#30363d] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#8b949e]">
-              {question.type === 'fill_blank' ? 'Syntactic Challenge' : 'Logical Inference'}
+              Logical Inference
             </Badge>
             <div className="flex gap-2">
               {quiz.questions.map((q, index) => (
@@ -189,7 +200,7 @@ export function QuizPanel({ quiz }: Props) {
           </div>
 
           <div className="mt-10 space-y-3">
-            {question.type === 'mcq' && question.options ? (
+            {(question.type === 'mcq' || question.type === 'true_false') && question.options ? (
               question.options.map((option, idx) => {
                 const isSelected = answers[question.id] === option
                 const isActuallyCorrect = option === question.correct_answer
@@ -230,16 +241,8 @@ export function QuizPanel({ quiz }: Props) {
                 )
               })
             ) : (
-              <div className="relative">
-                <input
-                  type="text"
-                  value={fillInput}
-                  onChange={(event) => setFillInput(event.target.value)}
-                  disabled={hasAnswered}
-                  placeholder="Analyze and provide input..."
-                  className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-6 py-4 text-[15px] text-[#e6edf3] transition-all focus:border-[#58a6ff]/50 focus:outline-none placeholder:text-[#484f58]"
-                />
-                <Sparkles className="absolute right-5 top-1/2 size-4 -translate-y-1/2 text-[#30363d]" />
+              <div className="rounded-xl border border-[#f85149]/20 bg-[#f85149]/5 p-4 text-center text-[13px] text-[#f85149]">
+                Error: Question options missing. Please contact support.
               </div>
             )}
           </div>

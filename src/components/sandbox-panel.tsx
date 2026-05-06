@@ -1,10 +1,12 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
+import { useCachedState } from '@/hooks/use-cached-state'
+import { useProgress } from '@/lib/progress-context'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Challenge, GraderCheck, Lesson, Quiz } from '@/lib/curriculum-data'
-import { BookOpen, FileText, HelpCircle, Activity, ShieldCheck, Zap } from 'lucide-react'
+import { BookOpen, FileText, HelpCircle, Activity, ShieldCheck, Zap, Download } from 'lucide-react'
 import { Group, Panel, Separator } from 'react-resizable-panels'
 import { QuizPanel } from './quiz-panel'
 import { ActionBar } from './sandbox/action-bar'
@@ -13,6 +15,9 @@ import { IdeTabs, TabsContent } from './sandbox/ide-tabs'
 import { MarkdownContentPanel } from './sandbox/markdown-content-panel'
 import { OutputPanelTabs } from './sandbox/output-panel-tabs'
 import { ExecutionResult, GraderResult, LeftTabValue, OutputTabValue } from './sandbox/types'
+import { useAuth } from '@/lib/auth-context'
+import { generateModuleReport } from '@/lib/pdf-service'
+import { Button } from '@/components/ui/button'
 
 interface Props {
   challenge: Challenge
@@ -40,10 +45,17 @@ def _run_grader_checks(checks_json):
     for check in checks:
         var_expr = check['variable']
         condition = check['condition']
-        expected = check['value']
+        expected = str(check['value'])
         try:
             actual = eval(str(var_expr))
-            if condition == 'gt':
+            passed = False
+            
+            if condition == 'eq':
+                try:
+                    passed = float(actual) == float(expected)
+                except:
+                    passed = str(actual).strip() == expected.strip()
+            elif condition == 'gt':
                 passed = float(actual) > float(expected)
             elif condition == 'lt':
                 passed = float(actual) < float(expected)
@@ -51,14 +63,13 @@ def _run_grader_checks(checks_json):
                 passed = float(actual) >= float(expected)
             elif condition == 'lte':
                 passed = float(actual) <= float(expected)
-            elif condition == 'eq':
-                passed = str(actual) == str(expected) or float(actual) == float(expected)
             elif condition == 'type_check':
-                passed = type(actual).__name__ == str(expected)
+                passed = type(actual).__name__ == expected
             elif condition == 'shape_check':
-                passed = str(actual.shape) == str(expected)
-            else:
-                passed = False
+                # If actual is already a tuple/shape, use it directly, otherwise access .shape
+                current_shape = actual if isinstance(actual, tuple) else getattr(actual, 'shape', None)
+                passed = str(current_shape).replace(' ', '') == expected.replace(' ', '')
+            
             results.append({'passed': passed, 'actual': str(actual), 'error': None})
         except Exception as e:
             results.append({'passed': False, 'actual': None, 'error': str(e)})
@@ -167,7 +178,9 @@ function ResizeHandle({ orientation }: { orientation: 'horizontal' | 'vertical' 
 }
 
 export function SandboxPanel({ challenge, lesson, quiz }: Props) {
-  const [code, setCode] = useState(challenge.starter_code)
+  const { user } = useAuth()
+  const { markChallengeComplete, completedQuizzes } = useProgress()
+  const [code, setCode] = useCachedState(`sandbox-code-${challenge.id}`, challenge.starter_code)
   const [output, setOutput] = useState<ExecutionResult | null>(null)
   const [isRunning, setIsRunning] = useState(false)
   const [pyodideReady, setPyodideReady] = useState(false)
@@ -175,6 +188,24 @@ export function SandboxPanel({ challenge, lesson, quiz }: Props) {
   const [leftTab, setLeftTab] = useState<LeftTabValue>('problem')
   const [outputTab, setOutputTab] = useState<OutputTabValue>('testcases')
   const pyodideRef = useRef<Window['pyodide'] | null>(null)
+
+  const handleGenerateReport = useCallback(async () => {
+    if (!user || !lesson) return
+
+    await generateModuleReport({
+      userName: user.name || 'Student',
+      userEmail: user.email || 'guest@dq.elab',
+      lessonTitle: lesson.title,
+      practiceCode: code,
+      practiceResult: 'All Test Cases Passed'
+    })
+  }, [user, lesson, code])
+
+  useEffect(() => {
+    if (output?.allPassed) {
+      markChallengeComplete(challenge.id)
+    }
+  }, [output?.allPassed, challenge.id, markChallengeComplete])
 
   useEffect(() => {
     let mounted = true
@@ -330,6 +361,15 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
                  <span className="text-[10px] font-bold uppercase tracking-widest">Verified</span>
                </div>
              )}
+             {output?.allPassed && (quiz ? completedQuizzes.includes(quiz.id) : true) && (
+               <Button 
+                 onClick={handleGenerateReport}
+                 className="h-7 rounded-md bg-[#3fb950]/10 px-3 text-[10px] font-bold text-[#3fb950] hover:bg-[#3fb950]/20 border border-[#3fb950]/20 ml-2"
+               >
+                 <Download className="mr-1.5 size-3" />
+                 Download Report
+               </Button>
+             )}
           </div>
         </div>
 
@@ -398,6 +438,51 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
             </Group>
           </Panel>
         </Group>
+
+        <AnimatePresence>
+          {output?.allPassed && (quiz ? completedQuizzes.includes(quiz.id) : true) && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="absolute inset-x-4 bottom-20 z-50"
+            >
+              <div className="ds-panel glass-panel border-[#3fb950]/30 bg-[#0d1117]/90 p-6 shadow-2xl backdrop-blur-md">
+                <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+                  <div className="flex items-center gap-4">
+                    <div className="flex size-12 items-center justify-center rounded-full bg-[#3fb950]/10 text-[#3fb950] glow-green">
+                      <ShieldCheck className="size-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-[#e6edf3]">Module Mastered!</h3>
+                      <p className="max-w-md text-[13px] leading-relaxed text-[#8b949e]">
+                        Excellent work! You've successfully verified all test cases and completed the logic assessment. 
+                        Your official report is ready.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col items-end gap-3">
+                    <Button 
+                      onClick={handleGenerateReport}
+                      className="h-11 rounded-xl bg-[#3fb950] px-6 text-[13px] font-bold text-white hover:bg-[#2ea043] glow-green"
+                    >
+                      <Download className="mr-2 size-4" />
+                      Download Completion Report
+                    </Button>
+                    <div className="flex items-start gap-2 max-w-[280px]">
+                      <Activity className="mt-0.5 size-3 text-[#f85149]" />
+                      <p className="text-[10px] italic leading-tight text-[#f85149]">
+                        Disclaimer: Download immediately. This workspace uses local cache; 
+                        data will be lost if browser history is cleared.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <ActionBar

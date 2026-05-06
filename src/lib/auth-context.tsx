@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react'
+import { useCachedState } from '@/hooks/use-cached-state'
 
 export type UserRole = 'student' | 'admin'
 
@@ -26,19 +27,7 @@ const ADMIN_EMAIL = 'admin@dataquest.com'
 const ADMIN_PASSWORD = 'admin123'
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(null)
-
-  useEffect(() => {
-    const stored = localStorage.getItem('dq-auth-user')
-    if (stored) {
-      const nextUser = JSON.parse(stored) as AuthUser
-      const timeoutId = window.setTimeout(() => {
-        setUser(nextUser)
-      }, 0)
-
-      return () => window.clearTimeout(timeoutId)
-    }
-  }, [])
+  const [user, setUser] = useCachedState<AuthUser | null>('auth-user', null)
 
   const login = useCallback((email: string, password: string): boolean => {
     const isAdmin = email === ADMIN_EMAIL && password === ADMIN_PASSWORD
@@ -47,21 +36,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const newUser: AuthUser = { name, email, role }
     setUser(newUser)
-    localStorage.setItem('dq-auth-user', JSON.stringify(newUser))
     return true
-  }, [])
+  }, [setUser])
 
   const signup = useCallback((name: string, email: string, _password: string) => {
     void _password
     const newUser: AuthUser = { name, email, role: 'student' }
     setUser(newUser)
-    localStorage.setItem('dq-auth-user', JSON.stringify(newUser))
-  }, [])
+  }, [setUser])
 
   const logout = useCallback(() => {
     setUser(null)
-    localStorage.removeItem('dq-auth-user')
-  }, [])
+  }, [setUser])
 
   return (
     <AuthContext.Provider

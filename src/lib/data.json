@@ -401,7 +401,7 @@
         },
         {
           "id": "q2",
-          "type": "true_false",
+          "type": "mcq",
           "question": "Data cleaning usually takes up the majority of a Data Scientist's time.",
           "options": [
             "True",
@@ -432,7 +432,7 @@
         },
         {
           "id": "q2",
-          "type": "true_false",
+          "type": "mcq",
           "question": "NumPy arrays can contain a mix of strings, integers, and booleans in the same array.",
           "options": [
             "True",
@@ -478,6 +478,166 @@
           "correct_answer": "np.arange()"
         }
       ]
+    },
+    {
+      "id": "quiz-ds-mod1-02-facets",
+      "lesson_id": "ds-mod1-02-facets",
+      "title": "Facets of Data Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Which of the following is the best example of unstructured data?",
+          "options": [
+            "A CSV file of temperatures",
+            "An SQL database of user accounts",
+            "A folder of customer service call recordings",
+            "A JSON file from an API"
+          ],
+          "correct_answer": "A folder of customer service call recordings",
+          "explanation": "Audio recordings do not have a predefined, structured format that can be easily queried like a database."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-03-process",
+      "lesson_id": "ds-mod1-03-process",
+      "title": "Data Science Process Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "According to the standard Data Science workflow, which step typically consumes the most time?",
+          "options": [
+            "Modeling",
+            "Data Preparation",
+            "Deployment",
+            "Business Understanding"
+          ],
+          "correct_answer": "Data Preparation",
+          "explanation": "Data cleaning, formatting, and preparation often take up to 80% of a data scientist's time."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-04-create-arrays",
+      "lesson_id": "ds-mod1-04-create-arrays",
+      "title": "Creating Arrays Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Which NumPy function would you use to create a 3x3 matrix filled entirely with ones?",
+          "options": [
+            "np.array(3, 3)",
+            "np.ones((3, 3))",
+            "np.zeros(3, 3)",
+            "np.fill(1, (3,3))"
+          ],
+          "correct_answer": "np.ones((3, 3))",
+          "explanation": "np.ones() generates an array of a given shape filled with the value 1. Note the tuple argument for the shape."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-05-attributes",
+      "lesson_id": "ds-mod1-05-attributes",
+      "title": "Array Attributes Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "If you have a 2D image represented as a NumPy array with 1080 rows and 1920 columns, what will `image.shape` return?",
+          "options": [
+            "(1920, 1080)",
+            "(1080, 1920)",
+            "[1080, 1920]",
+            "1920x1080"
+          ],
+          "correct_answer": "(1080, 1920)",
+          "explanation": "The shape attribute returns a tuple representing the dimensions, typically in (rows, columns) format."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-06-ops",
+      "lesson_id": "ds-mod1-06-ops",
+      "title": "Array Operations Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "If `a = np.array([1, 2, 3])` and `b = np.array([4, 5, 6])`, what is the result of `a * b`?",
+          "options": [
+            "32 (dot product)",
+            "[1, 2, 3, 4, 5, 6]",
+            "[4, 10, 18]",
+            "Error: Arrays cannot be multiplied directly"
+          ],
+          "correct_answer": "[4, 10, 18]",
+          "explanation": "Standard multiplication with '*' on NumPy arrays performs element-wise multiplication (Hadamard product)."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-07-series",
+      "lesson_id": "ds-mod1-07-series",
+      "title": "Pandas Series Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What is the primary difference between a Pandas Series and a 1D NumPy array?",
+          "options": [
+            "A Series cannot hold strings.",
+            "A Series has an explicit, customizable index.",
+            "A Series is strictly for numerical data.",
+            "A NumPy array is slower."
+          ],
+          "correct_answer": "A Series has an explicit, customizable index.",
+          "explanation": "While both are 1D arrays, a Pandas Series provides an explicit index (labels) that can be strings, dates, or custom objects, allowing for more intuitive data alignment."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-08-dfs",
+      "lesson_id": "ds-mod1-08-dfs",
+      "title": "Pandas DataFrames Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "A Pandas DataFrame can best be described as a collection of:",
+          "options": [
+            "NumPy Arrays without indices.",
+            "Dictionaries without keys.",
+            "Pandas Series sharing a common index.",
+            "Multi-dimensional arrays sharing a column."
+          ],
+          "correct_answer": "Pandas Series sharing a common index.",
+          "explanation": "A DataFrame is essentially a 2D table where each column is a Pandas Series, and they all share the same row index."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-09-acquisition",
+      "lesson_id": "ds-mod1-09-acquisition",
+      "title": "Data Acquisition Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Which Python library is commonly used to fetch data from web APIs over HTTP?",
+          "options": [
+            "pandas",
+            "requests",
+            "numpy",
+            "matplotlib"
+          ],
+          "correct_answer": "requests",
+          "explanation": "The 'requests' library is the standard tool in Python for making HTTP requests to fetch data from web APIs."
+        }
+      ]
     }
   ],
   "CHALLENGES": [
@@ -500,7 +660,7 @@
       "id": "ch-ds-mod2-02",
       "lesson_id": "ds-mod2-02",
       "title": "Feature Engineering: Create an Age Column",
-      "prompt": "## Task: Create a Reusable Age Feature\nYou are given a small customer dataset with birth years and signup years.\n\nCreate a new column called `AgeAtSignup` using:\n\n`AgeAtSignup = SignupYear - BirthYear`\n\nThen compute:\n\n1. `avg_age` → the average of the new `AgeAtSignup` column\n2. `senior_count` → the number of customers whose `AgeAtSignup` is at least 40\n\nPrint the transformed dataframe so you can inspect the result.",
+      "prompt": "## Task: Create a Reusable Age Feature\nYou are given a small customer dataset with birth years and signup years.\n\nCreate a new column called `AgeAtSignup` using:\n\n`AgeAtSignup = SignupYear - BirthYear`\n\nThen compute:\n\n1. `avg_age` \u2192 the average of the new `AgeAtSignup` column\n2. `senior_count` \u2192 the number of customers whose `AgeAtSignup` is at least 40\n\nPrint the transformed dataframe so you can inspect the result.",
       "starter_code": "import pandas as pd\n\ncustomers = pd.DataFrame(\n    {\n        \"Customer\": [\"Asha\", \"Dev\", \"Mina\", \"Ravi\", \"Sara\"],\n        \"BirthYear\": [1998, 1985, 1992, 1978, 1988],\n        \"SignupYear\": [2024, 2023, 2024, 2022, 2024],\n    }\n)\n\n# TODO: Create the AgeAtSignup feature\n\n# TODO: Compute the average age at signup\navg_age = None\n\n# TODO: Count customers with age at signup >= 40\nsenior_count = None\n\nprint(customers)\n",
       "grader_checks": [
         {
@@ -656,111 +816,6 @@
           "condition": "eq",
           "value": 0,
           "message": "No missing values allowed"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-04",
-      "lesson_id": "ds-mod1-04",
-      "title": "Case Study: Practical Quick Visualization (Plotly)",
-      "prompt": "## Case Study: Practical Quick Visualization (Plotly)\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-02-facets",
-      "lesson_id": "ds-mod1-02-facets",
-      "title": "Case Study: Practical Facets of Data",
-      "prompt": "## Case Study: Practical Facets of Data\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-03-process",
-      "lesson_id": "ds-mod1-03-process",
-      "title": "Case Study: Practical Data Science Process",
-      "prompt": "## Case Study: Practical Data Science Process\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-05-attributes",
-      "lesson_id": "ds-mod1-05-attributes",
-      "title": "Case Study: Practical NumPy Array Attributes",
-      "prompt": "## Case Study: Practical NumPy Array Attributes\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-06-ops",
-      "lesson_id": "ds-mod1-06-ops",
-      "title": "Case Study: Practical Array Operations",
-      "prompt": "## Case Study: Practical Array Operations\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-07-series",
-      "lesson_id": "ds-mod1-07-series",
-      "title": "Case Study: Practical Pandas Series",
-      "prompt": "## Case Study: Practical Pandas Series\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-09-acquisition",
-      "lesson_id": "ds-mod1-09-acquisition",
-      "title": "Case Study: Practical Data Acquisition & Info Gathering",
-      "prompt": "## Case Study: Practical Data Acquisition & Info Gathering\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
         }
       ]
     },
@@ -1063,6 +1118,112 @@
           "message": "lesson_complete must be True"
         }
       ]
+    },
+    {
+      "id": "ch-ds-mod1-02-facets",
+      "lesson_id": "ds-mod1-02-facets",
+      "title": "Data Typology Classification",
+      "prompt": "## Case Study: Defining Data Types\n\nYou are building a catalog of data assets for your company. You need to classify the incoming data correctly.\n\n### Task\nCreate a variable called `video_data_type` and set it to a string representing the type of data a video file is ('Structured', 'Unstructured', or 'Semi-structured').",
+      "starter_code": "# TODO: Assign the correct data type string to video_data_type\nvideo_data_type = ''\n",
+      "grader_checks": [
+        {
+          "variable": "video_data_type.lower().strip()",
+          "condition": "eq",
+          "value": "unstructured",
+          "message": "Video data is unstructured data."
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-03-process",
+      "lesson_id": "ds-mod1-03-process",
+      "title": "The 80% Rule",
+      "prompt": "## Case Study: Time Allocation\n\nA junior data scientist asks you which part of the Data Science process they will spend most of their time on.\n\n### Task\nCreate a variable called `most_time_consuming_step` and assign it the string name of the step (e.g., 'Modeling', 'Data Preparation', 'Deployment').",
+      "starter_code": "# TODO: Name the most time-consuming step\nmost_time_consuming_step = ''\n",
+      "grader_checks": [
+        {
+          "variable": "most_time_consuming_step.lower().replace(' ', '')",
+          "condition": "eq",
+          "value": "datapreparation",
+          "message": "Data Preparation takes up the majority of time."
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-05-attributes",
+      "lesson_id": "ds-mod1-05-attributes",
+      "title": "Matrix Inspection",
+      "prompt": "## Case Study: Analyzing a Matrix\n\nYou have generated a matrix representing experimental data. You need to programmatically determine its shape and total number of elements.\n\n### Task\n1. Import NumPy.\n2. We have provided a matrix `data_matrix`.\n3. Create a variable `matrix_shape` storing its shape.\n4. Create a variable `total_elements` storing its total size.",
+      "starter_code": "import numpy as np\n\ndata_matrix = np.ones((5, 12))\n\n# TODO: Get the shape and assign it to matrix_shape\n\n\n# TODO: Get the size and assign it to total_elements\n\n",
+      "grader_checks": [
+        {
+          "variable": "matrix_shape",
+          "condition": "shape_check",
+          "value": "(5, 12)"
+        },
+        {
+          "variable": "total_elements",
+          "condition": "eq",
+          "value": 60
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-06-ops",
+      "lesson_id": "ds-mod1-06-ops",
+      "title": "Vectorized Sales Tax Calculation",
+      "prompt": "## Case Study: Retail Tax\n\nYou have an array of product prices in dollars. A state tax of 7% (0.07) needs to be applied to all prices.\n\n### Task\n1. Use NumPy vectorization to multiply the `prices` array by `1.07`.\n2. Store the result in a new array called `prices_with_tax`.",
+      "starter_code": "import numpy as np\n\nprices = np.array([100.0, 50.0, 20.0, 10.0])\n\n# TODO: Apply 7% tax using vectorization\n\n",
+      "grader_checks": [
+        {
+          "variable": "prices_with_tax[0]",
+          "condition": "eq",
+          "value": 107.0
+        },
+        {
+          "variable": "type(prices_with_tax).__name__",
+          "condition": "eq",
+          "value": "ndarray"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-07-series",
+      "lesson_id": "ds-mod1-07-series",
+      "title": "Creating a Temperature Series",
+      "prompt": "## Case Study: Weekly Temperatures\n\nYou want to track temperatures across a week using a Pandas Series with custom index labels for the days.\n\n### Task\n1. Import pandas.\n2. Create a Pandas Series named `weekly_temps` containing the values `[72, 75, 78]`.\n3. Set the index of the Series to `['Mon', 'Tue', 'Wed']`.",
+      "starter_code": "import pandas as pd\n\n# TODO: Create the weekly_temps Series with the custom index\n\n",
+      "grader_checks": [
+        {
+          "variable": "type(weekly_temps).__name__",
+          "condition": "eq",
+          "value": "Series"
+        },
+        {
+          "variable": "weekly_temps['Tue']",
+          "condition": "eq",
+          "value": 75
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-09-acquisition",
+      "lesson_id": "ds-mod1-09-acquisition",
+      "title": "Simulated API Fetch",
+      "prompt": "## Case Study: Fetching JSON Data\n\nWhile we won't make a live network request here, you need to understand how to parse JSON data that an API would return.\n\n### Task\n1. Import the `json` module.\n2. Parse the `api_response_string` into a Python dictionary named `user_data`.\n3. Extract the user's `email` and store it in a variable called `extracted_email`.",
+      "starter_code": "import json\n\napi_response_string = '{\"id\": 101, \"name\": \"Jane Doe\", \"email\": \"jane@example.com\"}'\n\n# TODO: Parse the JSON string into user_data\n\n\n# TODO: Extract the email into extracted_email\n\n",
+      "grader_checks": [
+        {
+          "variable": "type(user_data).__name__",
+          "condition": "eq",
+          "value": "dict"
+        },
+        {
+          "variable": "extracted_email",
+          "condition": "eq",
+          "value": "jane@example.com"
+        }
+      ]
     }
   ],
   "DAILY_PRACTICE_QUESTIONS": [
@@ -1103,7 +1264,7 @@
         "Missing a positive case"
       ],
       "correct_answer": "Incorrectly predicting a negative case as positive",
-      "explanation": "A False Positive occurs when the model predicts positive, but the true label is negative — a \"false alarm.\""
+      "explanation": "A False Positive occurs when the model predicts positive, but the true label is negative \u2014 a \"false alarm.\""
     },
     {
       "id": "dp-4",
@@ -1116,17 +1277,17 @@
         "Power of the test"
       ],
       "correct_answer": "Type I Error",
-      "explanation": "A Type I Error ($\\\\alpha$) is the probability of rejecting $H_0$ when it is actually true — a false positive in hypothesis testing."
+      "explanation": "A Type I Error ($\\\\alpha$) is the probability of rejecting $H_0$ when it is actually true \u2014 a false positive in hypothesis testing."
     },
     {
       "id": "dp-5",
       "type": "mcq",
       "question": "The sigmoid function maps its input to which range?",
       "options": [
-        "(-∞, ∞)",
+        "(-\u221e, \u221e)",
         "(0, 1)",
         "(-1, 1)",
-        "[0, ∞)"
+        "[0, \u221e)"
       ],
       "correct_answer": "(0, 1)",
       "explanation": "The sigmoid function $\\\\sigma(z) = \\\\frac{1}{1 + e^{-z}}$ always outputs a value between 0 and 1, making it ideal for probability estimation."

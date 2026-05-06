@@ -1,11 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Brain, Code2, HelpCircle } from 'lucide-react'
+import { ArrowRight, BookOpen, Brain, Code2, HelpCircle, CheckCircle2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { useProgress } from '@/lib/progress-context'
 import { CURRICULUM, getChallengeByLessonId, getQuizByLessonId } from '@/lib/curriculum-data'
+import { cn } from '@/lib/utils'
 
 export default function CurriculumIndexPage() {
+  const { isLessonComplete, completedQuizzes, completedChallenges } = useProgress()
+
   return (
     <div className="min-h-screen px-5 py-6 md:px-8 xl:px-10">
       <div className="mx-auto max-w-[1600px] space-y-8">
@@ -42,19 +46,46 @@ export default function CurriculumIndexPage() {
 
               <div className="grid gap-3 lg:grid-cols-2">
                 {topic.lessons.map((lesson) => {
-                  const hasQuiz = Boolean(getQuizByLessonId(lesson.id))
-                  const hasLab = Boolean(getChallengeByLessonId(lesson.id))
+                  const quiz = getQuizByLessonId(lesson.id)
+                  const challenge = getChallengeByLessonId(lesson.id)
+                  const lessonDone = isLessonComplete(lesson.id)
+                  
+                  const quizDone = quiz ? completedQuizzes.includes(quiz.id) : true
+                  const challengeDone = challenge ? completedChallenges.includes(challenge.id) : true
 
                   return (
-                    <Link key={lesson.id} href={`/curriculum/${lesson.id}`} className="group border border-[#30363d] bg-[#161b22] p-4 hover:bg-[#0d1117]">
+                    <Link 
+                      key={lesson.id} 
+                      href={`/curriculum/${lesson.id}`} 
+                      className={cn(
+                        "group relative border border-[#30363d] bg-[#161b22] p-4 transition-all hover:bg-[#0d1117]",
+                        lessonDone && "border-[#3fb950]/30 bg-[#3fb950]/5"
+                      )}
+                    >
+                      {lessonDone && (
+                        <div className="absolute -right-2 -top-2 z-10 rounded-full bg-[#3fb950] p-1 text-[#0d1117] shadow-lg">
+                          <CheckCircle2 className="size-3.5" />
+                        </div>
+                      )}
                       <div className="flex items-start justify-between gap-4">
                         <div className="min-w-0">
-                          <div className="mb-2 text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">{lesson.domain}</div>
+                          <div className="mb-2 flex items-center gap-2">
+                            <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">{lesson.domain}</div>
+                            {lessonDone && <CheckCircle2 className="size-3 text-[#3fb950]" />}
+                          </div>
                           <h3 className="truncate text-base font-semibold text-[#e6edf3]">{lesson.title}</h3>
                           <div className="mt-3 flex flex-wrap gap-2 text-[12px] text-[#8b949e]">
-                            <span className="inline-flex items-center gap-1"><BookOpen className="size-3.5" /> Notes</span>
-                            {hasQuiz ? <span className="inline-flex items-center gap-1"><HelpCircle className="size-3.5" /> Quiz</span> : null}
-                            {hasLab ? <span className="inline-flex items-center gap-1 text-[#3fb950]"><Code2 className="size-3.5" /> Practice</span> : null}
+                            <span className="inline-flex items-center gap-1 text-[#58a6ff]"><BookOpen className="size-3.5" /> Notes</span>
+                            {quiz ? (
+                              <span className={cn("inline-flex items-center gap-1", quizDone ? "text-[#3fb950]" : "text-[#8b949e]")}>
+                                <HelpCircle className="size-3.5" /> Quiz
+                              </span>
+                            ) : null}
+                            {challenge ? (
+                              <span className={cn("inline-flex items-center gap-1", challengeDone ? "text-[#3fb950]" : "text-[#8b949e]")}>
+                                <Code2 className="size-3.5" /> Practice
+                              </span>
+                            ) : null}
                           </div>
                         </div>
                         <Badge
