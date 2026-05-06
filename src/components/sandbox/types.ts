@@ -1,7 +1,7 @@
 import { GraderCheck } from '@/lib/curriculum-data'
 
 export type LeftTabValue = 'problem' | 'notes' | 'quiz'
-export type OutputTabValue = 'testcases' | 'console' | 'plots'
+export type OutputTabValue = 'testcases' | 'console' | 'dataframes' | 'plots' | 'errors'
 
 export interface GraderResult {
   check: GraderCheck

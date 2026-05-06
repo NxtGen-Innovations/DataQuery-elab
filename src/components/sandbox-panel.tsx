@@ -69,6 +69,12 @@ import io
 import base64
 import json
 import builtins
+import warnings
+
+# Suppress annoying dependency and deprecation warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", message=".*pyarrow.*")
 
 class _Capture:
     def __init__(self):
@@ -262,11 +268,15 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
       }
 
       if (stderr) {
-        setOutputTab('console')
+        setOutputTab('errors')
       } else if (graderResults.length > 0) {
         setOutputTab('testcases')
       } else if (plots.length > 0) {
         setOutputTab('plots')
+      } else if (tables.length > 0) {
+        setOutputTab('dataframes')
+      } else {
+        setOutputTab('console')
       }
 
       setOutput(nextOutput)

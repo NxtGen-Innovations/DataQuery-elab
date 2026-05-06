@@ -4,13 +4,29 @@
       "domain": "Data Science",
       "topics": [
         {
-          "topic": "Module 1: The Data Toolkit (Python Essentials)",
+          "topic": "Unit 1: Intro to Data Science & Python Foundations",
           "lessons": [
+            {
+              "id": "ds-mod1-00a",
+              "title": "Intro to Data Science",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Introduction to Data Science\n\nData Science is an interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data. It combines mathematics, statistics, programming, and domain expertise to solve complex problems.\n\n**Real-world Analogy**: Think of Data Science like being a detective. A detective looks at clues (data) left at a scene, processes them (data cleaning), analyzes them for patterns (modeling), and finally solves the case (business insights).\n\n### Key Definitions\n- **Data**: Raw facts and statistics collected for reference or analysis.\n- **Algorithm**: A step-by-step procedure for solving a problem.\n- **Insight**: A deep understanding derived from data analysis.\n\n### Important Points\n- Data Science requires a mix of hard skills (coding, math) and soft skills (communication, problem-solving).\n- 80% of a Data Scientist's job is often data cleaning and preparation.\n- Ethics and privacy are critical considerations when handling user data.\n\n### Industry Use Cases\n- **Healthcare**: Predicting patient readmissions or detecting tumors from MRI scans.\n- **E-commerce**: Recommending products based on browsing history.\n- **Finance**: Detecting fraudulent credit card transactions in real-time."
+            },
+            {
+              "id": "ds-mod1-00b",
+              "title": "Intro to NumPy",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Introduction to NumPy\n\nNumPy (Numerical Python) is the foundational package for scientific computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays efficiently.\n\n**Real-world Analogy**: Imagine you have to multiply every number in a giant spreadsheet by 2. Doing this cell by cell (like a standard Python list loop) takes forever. NumPy is like a magical wand that selects the entire sheet and multiplies it instantly (vectorization).\n\n### Key Definitions\n- **Array**: A grid of values, all of the same type, indexed by a tuple of nonnegative integers.\n- **Vectorization**: The process of applying operations to entire arrays instead of looping through individual elements.\n\n### Important Points\n- NumPy arrays are much faster and consume less memory than standard Python lists.\n- Elements in a NumPy array must all be of the same data type.\n- NumPy is the core library upon which Pandas and Scikit-Learn are built.\n\n### Industry Use Cases\n- **Image Processing**: Images are stored as 3D NumPy arrays (Height x Width x RGB channels).\n- **Finance**: Fast mathematical computations on large arrays of stock prices."
+            },
             {
               "id": "ds-mod1-01",
               "title": "Pandas Basics",
               "domain": "Data Science",
-              "topic": "Module 1: The Data Toolkit (Python Essentials)",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
               "content_md": "# Pandas Basics\nLoading CSVs, filtering rows, and selecting columns."
             },
@@ -18,7 +34,7 @@
               "id": "ds-mod1-02",
               "title": "Lab Task: Student Grades Analysis",
               "domain": "Data Science",
-              "topic": "Module 1: The Data Toolkit (Python Essentials)",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
               "content_md": "# Lab Task: Student Grades\nLoad a \"Student Grades\" dataset and find the average marks for a specific department."
             },
@@ -26,7 +42,7 @@
               "id": "ds-mod1-03",
               "title": "Data Cleaning",
               "domain": "Data Science",
-              "topic": "Module 1: The Data Toolkit (Python Essentials)",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
               "content_md": "# Data Cleaning\nHandling missing values (fillna) and removing duplicates."
             },
@@ -34,7 +50,7 @@
               "id": "ds-mod1-04",
               "title": "Quick Visualization (Plotly)",
               "domain": "Data Science",
-              "topic": "Module 1: The Data Toolkit (Python Essentials)",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
               "content_md": "# Quick Visualization\nCreating Bar charts and Scatter plots using Plotly (interactive) instead of Matplotlib."
             },
@@ -42,20 +58,84 @@
               "id": "ds-mod1-05",
               "title": "Lab Task: Correlation Plot",
               "domain": "Data Science",
-              "topic": "Module 1: The Data Toolkit (Python Essentials)",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
               "content_md": "# Lab Task\nCreate a plot showing the correlation between \"Study Hours\" and \"Exam Scores.\""
+            },
+            {
+              "id": "ds-mod1-02-facets",
+              "title": "Facets of Data",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Facets of Data\n\nData comes in many forms. Understanding these facets helps in deciding the right tools for analysis.\n\n### Key Types:\n1. **Structured Data**: Highly organized, tabular (e.g., SQL databases, CSVs).\n2. **Unstructured Data**: No predefined format (e.g., text, images, videos).\n3. **Semi-structured Data**: Has some organizational properties like tags (e.g., JSON, XML).\n\n**Case Study context**: A company processing customer reviews must handle unstructured text data, while dealing with their financial records involves structured data."
+            },
+            {
+              "id": "ds-mod1-03-process",
+              "title": "Data Science Process",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Data Science Process\n\nThe standard workflow, often aligned with CRISP-DM:\n1. **Business Understanding**: What is the problem?\n2. **Data Acquisition**: Gathering data from APIs, databases, or scraping.\n3. **Data Preparation**: Cleaning, handling missing values, standardizing (takes 80% of time).\n4. **Modeling**: Applying ML algorithms.\n5. **Evaluation**: Testing model accuracy.\n6. **Deployment**: Pushing the model to production."
+            },
+            {
+              "id": "ds-mod1-04-create-arrays",
+              "title": "Creating Arrays",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Creating Arrays in NumPy\n\nYou can create arrays from Python lists using `np.array()`, or use built-in functions like:\n- `np.zeros((3,3))` for an array of zeros.\n- `np.ones((2,2))` for an array of ones.\n- `np.arange(0, 10, 2)` to generate a sequence (0, 2, 4, 6, 8)."
+            },
+            {
+              "id": "ds-mod1-05-attributes",
+              "title": "NumPy Array Attributes",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# NumPy Array Attributes\n\nEvery NumPy array has attributes that describe its metadata:\n- `.ndim`: Number of dimensions (1D, 2D, 3D).\n- `.shape`: A tuple indicating the size of each dimension (e.g., `(3, 4)` is 3 rows, 4 columns).\n- `.size`: Total number of elements.\n- `.dtype`: The data type of the elements (e.g., `int64`, `float64`)."
+            },
+            {
+              "id": "ds-mod1-06-ops",
+              "title": "Array Operations",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "intermediate",
+              "content_md": "# Array Operations\n\nNumPy supports element-wise operations through vectorization.\n- `a + b` adds corresponding elements.\n- `a * b` multiplies corresponding elements (Hadamard product).\n- `np.dot(a, b)` performs dot product (matrix multiplication)."
+            },
+            {
+              "id": "ds-mod1-07-series",
+              "title": "Pandas Series",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Pandas Series\n\nA Series is a one-dimensional labeled array capable of holding any data type. Think of it as a single column in an Excel sheet.\nUnlike a NumPy array, a Series has an explicit index (labels for rows) which makes data retrieval easier."
+            },
+            {
+              "id": "ds-mod1-08-dfs",
+              "title": "Pandas DataFrames",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Pandas DataFrames\n\nA DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. It is the primary object in Pandas.\nIt operates like a SQL table or a dict of Series objects."
+            },
+            {
+              "id": "ds-mod1-09-acquisition",
+              "title": "Data Acquisition & Info Gathering",
+              "domain": "Data Science",
+              "topic": "Unit 1: Intro to Data Science & Python Foundations",
+              "difficulty": "beginner",
+              "content_md": "# Data Acquisition\n\nData rarely sits nicely in a CSV. You must know how to pull it from:\n- **APIs**: Using the `requests` library to fetch JSON.\n- **Databases**: Using `SQLAlchemy` or `psycopg2`.\n- **Web Scraping**: Using `BeautifulSoup` or `Scrapy`."
             }
           ]
         },
         {
-          "topic": "Module 2: Exploratory Data Analysis (EDA)",
+          "topic": "Unit 2: Data Handling & Data Wrangling",
           "lessons": [
             {
               "id": "ds-mod2-01",
               "title": "Descriptive Stats",
               "domain": "Data Science",
-              "topic": "Module 2: Exploratory Data Analysis (EDA)",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
               "difficulty": "beginner",
               "content_md": "# Descriptive Stats\nUnderstanding mean, median, and outliers through code, not formulas."
             },
@@ -63,7 +143,7 @@
               "id": "ds-mod2-02",
               "title": "Feature Engineering",
               "domain": "Data Science",
-              "topic": "Module 2: Exploratory Data Analysis (EDA)",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
               "difficulty": "intermediate",
               "content_md": "# Feature Engineering\nCreating new columns (e.g., converting a \"Birth Date\" column into an \"Age\" column)."
             },
@@ -71,7 +151,7 @@
               "id": "ds-mod2-03",
               "title": "Correlation Heatmaps",
               "domain": "Data Science",
-              "topic": "Module 2: Exploratory Data Analysis (EDA)",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
               "difficulty": "intermediate",
               "content_md": "# Correlation\nUnderstanding how two variables move together using Heatmaps."
             },
@@ -79,9 +159,78 @@
               "id": "ds-mod2-04",
               "title": "Lab Task: Titanic Survival Analysis",
               "domain": "Data Science",
-              "topic": "Module 2: Exploratory Data Analysis (EDA)",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
               "difficulty": "intermediate",
               "content_md": "# Lab Task\nUse a Titanic dataset to find out which class of passengers had the highest survival rate."
+            },
+            {
+              "id": "ds-mod2-05-data-handling",
+              "title": "Data Handling & Large Volumes",
+              "domain": "Data Science",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
+              "difficulty": "intermediate",
+              "content_md": "# Handling Large Volumes of Data\n\nWhen dealing with millions of rows, memory management becomes critical. Pandas loads data entirely into RAM. For large files, you must use chunking or alternative libraries like Dask or Polars."
+            },
+            {
+              "id": "ds-mod2-06-wrangling",
+              "title": "Data Wrangling",
+              "domain": "Data Science",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
+              "difficulty": "intermediate",
+              "content_md": "# Data Wrangling\n\nWrangling is the process of cleaning, structuring, and enriching raw data into a desired format for better decision making."
+            },
+            {
+              "id": "ds-mod2-07-combining",
+              "title": "Combining & Merging Datasets",
+              "domain": "Data Science",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
+              "difficulty": "intermediate",
+              "content_md": "# Merging Datasets\n\nSimilar to SQL JOINs, Pandas uses `pd.merge()`. You can merge on indices or specific columns (e.g., `user_id`). `pd.concat()` is used to stack DataFrames vertically or horizontally."
+            },
+            {
+              "id": "ds-mod2-08-cleaning",
+              "title": "Handling Missing Values",
+              "domain": "Data Science",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
+              "difficulty": "intermediate",
+              "content_md": "# Handling Missing Values\n\nMissing data can skew models. Use `df.dropna()` to remove them or `df.fillna()` to impute them (replace with mean/median)."
+            },
+            {
+              "id": "ds-mod2-09-transformation",
+              "title": "Data Transformation",
+              "domain": "Data Science",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
+              "difficulty": "advanced",
+              "content_md": "# Data Transformation & String Manipulation\n\nOften you need to extract parts of a string using Regex (`.str.extract()`) or map categorical values to numerical ones."
+            }
+          ]
+        },
+        {
+          "topic": "Unit 3: Data Visualization using Matplotlib",
+          "lessons": [
+            {
+              "id": "ds-mod3-01-matplotlib",
+              "title": "Intro to Matplotlib",
+              "domain": "Data Science",
+              "topic": "Unit 3: Data Visualization using Matplotlib",
+              "difficulty": "beginner",
+              "content_md": "# Introduction to Matplotlib\n\nMatplotlib is the grandfather of Python plotting libraries. It was created to replicate MATLAB's plotting capabilities in Python. `pyplot` is the main module used."
+            },
+            {
+              "id": "ds-mod3-02-customizing",
+              "title": "Customizing Plots",
+              "domain": "Data Science",
+              "topic": "Unit 3: Data Visualization using Matplotlib",
+              "difficulty": "intermediate",
+              "content_md": "# Customizing Plots\n\nAdding titles, changing colors, and adding labels makes your plots readable.\n`plt.title('Sales')`, `plt.xlabel('Month')`, `plt.legend()`."
+            },
+            {
+              "id": "ds-mod3-03-types",
+              "title": "Types of Plots",
+              "domain": "Data Science",
+              "topic": "Unit 3: Data Visualization using Matplotlib",
+              "difficulty": "intermediate",
+              "content_md": "# Plot Types\n\n- **Scatter Plot**: Show correlation (`plt.scatter()`).\n- **Line Plot**: Show trends over time (`plt.plot()`).\n- **Bar Plot**: Compare categorical data (`plt.bar()`).\n- **Histogram**: Show frequency distribution (`plt.hist()`)."
             }
           ]
         },
@@ -231,6 +380,104 @@
           "explanation": "The median is the middle value in a sorted list of numbers."
         }
       ]
+    },
+    {
+      "id": "quiz-ds-mod1-00a",
+      "lesson_id": "ds-mod1-00a",
+      "title": "Intro to Data Science Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Which of the following best defines Data Science?",
+          "options": [
+            "Building computer hardware.",
+            "Extracting knowledge and insights from data.",
+            "Writing web applications.",
+            "Managing company finances."
+          ],
+          "correct_answer": "Extracting knowledge and insights from data.",
+          "explanation": "Data Science focuses on analyzing data to find meaningful patterns and insights."
+        },
+        {
+          "id": "q2",
+          "type": "true_false",
+          "question": "Data cleaning usually takes up the majority of a Data Scientist's time.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct_answer": "True",
+          "explanation": "It is widely recognized that data cleaning and preparation take up around 80% of the workflow."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-00b",
+      "lesson_id": "ds-mod1-00b",
+      "title": "Intro to NumPy Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What is the primary data structure in NumPy?",
+          "options": [
+            "List",
+            "Dictionary",
+            "ndarray",
+            "DataFrame"
+          ],
+          "correct_answer": "ndarray",
+          "explanation": "NumPy revolves around the N-dimensional array object (ndarray)."
+        },
+        {
+          "id": "q2",
+          "type": "true_false",
+          "question": "NumPy arrays can contain a mix of strings, integers, and booleans in the same array.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correct_answer": "False",
+          "explanation": "Unlike Python lists, NumPy arrays must contain elements of the same data type for performance reasons."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-02",
+      "lesson_id": "ds-mod1-02-facets",
+      "title": "Facets Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What type of data is a CSV file?",
+          "options": [
+            "Structured",
+            "Unstructured",
+            "Semi-structured"
+          ],
+          "correct_answer": "Structured"
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod1-04",
+      "lesson_id": "ds-mod1-04-create-arrays",
+      "title": "Creating Arrays Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Which function generates an array of a specified range?",
+          "options": [
+            "np.arange()",
+            "np.zeros()",
+            "np.linspace()"
+          ],
+          "correct_answer": "np.arange()"
+        }
+      ]
     }
   ],
   "CHALLENGES": [
@@ -283,6 +530,539 @@
       "prompt": "## Task: Correlation Plot\nCreate a scatter plot using Plotly.",
       "starter_code": "import plotly.express as px\nimport pandas as pd\n\n# Sample Data\ndf = pd.DataFrame({'Study Hours': [2, 4, 6, 8], 'Exam Scores': [50, 65, 80, 95]})\n\n# TODO: Create scatter plot\nfig = px.scatter(df, x='Study Hours', y='Exam Scores')\nfig.show()\n",
       "grader_checks": []
+    },
+    {
+      "id": "ch-ds-mod1-00a",
+      "lesson_id": "ds-mod1-00a",
+      "title": "Case Study: The 'Brew Data' Coffee Shop",
+      "prompt": "## Case Study: The 'Brew Data' Coffee Shop\n\nYou have just been hired as a Junior Data Analyst for a new tech-themed coffee shop called **'Brew Data'**. The owner wants to start tracking the shop's daily performance.\n\nBefore they can set up a full database, they want a simple Python script to record the shop's name and its first day's sales.\n\n### Lab Task\n1. Create a variable called `shop_name` and assign it the exact string `'Brew Data'`.\n2. Create another variable called `daily_sales` and assign it the integer `150`.\n3. Print a welcome report that says: `Welcome to Brew Data! Today's sales: 150`",
+      "starter_code": "# TODO: Create variables shop_name and daily_sales\n\n\n# TODO: Print the welcome report\n",
+      "grader_checks": [
+        {
+          "variable": "shop_name",
+          "condition": "eq",
+          "value": "Brew Data",
+          "message": "shop_name must be 'Brew Data'"
+        },
+        {
+          "variable": "daily_sales",
+          "condition": "eq",
+          "value": 150,
+          "message": "daily_sales must be exactly 150"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-00b",
+      "lesson_id": "ds-mod1-00b",
+      "title": "Case Study: Global Logistics Corp",
+      "prompt": "## Case Study: Global Logistics Corp\n\nYou work as a Data Scientist for **Global Logistics Corp**. The company has collected an array of package weights in kilograms from their European warehouse.\n\nHowever, the shipping manifest for the US route requires the weights to be converted into pounds. (Note: 1 kg = 2.20462 lbs).\n\n### Lab Task\nInstead of using a slow Python list loop, use NumPy's vectorization to convert thousands of weights instantly.\n\n1. Import the `numpy` library.\n2. Create a NumPy array called `weights_kg` with the following values: `[10, 25, 40, 50]`.\n3. Using vectorization, create a new array `weights_lbs` by multiplying `weights_kg` by 2.20462.\n4. Calculate the total weight in pounds by summing the array and store it in `total_lbs`.",
+      "starter_code": "import numpy as np\n\n# TODO: Create weights_kg\n\n# TODO: Create weights_lbs\n\n# TODO: Calculate total_lbs by summing weights_lbs\n",
+      "grader_checks": [
+        {
+          "variable": "type(weights_kg).__name__",
+          "condition": "eq",
+          "value": "ndarray",
+          "message": "weights_kg must be a NumPy array"
+        },
+        {
+          "variable": "weights_kg.shape",
+          "condition": "shape_check",
+          "value": "(4,)",
+          "message": "weights_kg should have 4 elements"
+        },
+        {
+          "variable": "total_lbs",
+          "condition": "eq",
+          "value": 275.5775,
+          "message": "total_lbs should be exactly 275.5775"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-04",
+      "lesson_id": "ds-mod1-04-create-arrays",
+      "title": "Case Study: Image Matrix Initialization",
+      "prompt": "## Case Study: Image Processing Startup\n\nYou are working on an image processing algorithm. An image is represented as a matrix of pixels.\n\n### Task\nInitialize an empty 10x10 matrix using NumPy's `zeros()` function to act as a black canvas. Assign it to `black_canvas`.",
+      "starter_code": "import numpy as np\n\n# TODO: Create a 10x10 matrix of zeros\n",
+      "grader_checks": [
+        {
+          "variable": "black_canvas.shape",
+          "condition": "shape_check",
+          "value": "(10, 10)"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-08",
+      "lesson_id": "ds-mod1-08-dfs",
+      "title": "Case Study: HR Employee Roster",
+      "prompt": "## Case Study: HR Department\n\nYou are given lists of employee names and ages. Create a Pandas DataFrame `df` containing columns 'Name' and 'Age'.\n\nNames: ['Alice', 'Bob']\nAges: [25, 30]",
+      "starter_code": "import pandas as pd\n\n# TODO: Create DataFrame df\n",
+      "grader_checks": [
+        {
+          "variable": "df.shape",
+          "condition": "shape_check",
+          "value": "(2, 2)"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-07",
+      "lesson_id": "ds-mod2-07-combining",
+      "title": "Case Study: E-commerce DB Merge",
+      "prompt": "## Case Study: E-commerce Startup\n\nYou have two dataframes: `users` and `orders`. Merge them into a single dataframe `merged_df` using the `user_id` column.",
+      "starter_code": "import pandas as pd\n\nusers = pd.DataFrame({'user_id': [1, 2], 'name': ['Alice', 'Bob']})\norders = pd.DataFrame({'order_id': [101, 102], 'user_id': [1, 2], 'amount': [50, 80]})\n\n# TODO: Create merged_df\n",
+      "grader_checks": [
+        {
+          "variable": "merged_df.shape",
+          "condition": "shape_check",
+          "value": "(2, 4)"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-03",
+      "lesson_id": "ds-mod3-03-types",
+      "title": "Case Study: Startup Growth Line Plot",
+      "prompt": "## Case Study: Startup Growth\n\nYour startup has gained users over 4 months: `[100, 250, 500, 1000]`. Create a line plot using matplotlib to visualize this trajectory.",
+      "starter_code": "import matplotlib.pyplot as plt\n\nmonths = [1, 2, 3, 4]\nusers = [100, 250, 500, 1000]\n\n# TODO: Plot months vs users using plt.plot()\nplt.plot(months, users)\nplt.title('Startup Growth')\nplt.show()\n",
+      "grader_checks": []
+    },
+    {
+      "id": "ch-ds-mod1-01",
+      "lesson_id": "ds-mod1-01",
+      "title": "Case Study: Bookstore Inventory (Pandas)",
+      "prompt": "## Case Study: Bookstore Inventory\n\nYou run a local bookstore. Create a Pandas DataFrame `inventory_df` with columns `Book` and `Stock` containing 3 books of your choice.",
+      "starter_code": "import pandas as pd\n\n# TODO: Create inventory_df\n",
+      "grader_checks": [
+        {
+          "variable": "type(inventory_df).__name__",
+          "condition": "eq",
+          "value": "DataFrame",
+          "message": "Must be a DataFrame"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-03",
+      "lesson_id": "ds-mod1-03",
+      "title": "Case Study: Cleaning Survey Data",
+      "prompt": "## Case Study: Survey Cleanup\n\nYou collected ages from a survey, but some entries are missing (NaN). Use `fillna()` to replace missing values in the Series `ages` with 0, assigning it to `clean_ages`.",
+      "starter_code": "import pandas as pd\nimport numpy as np\n\nages = pd.Series([25, np.nan, 30, np.nan, 22])\n# TODO: Create clean_ages\n",
+      "grader_checks": [
+        {
+          "variable": "clean_ages.isna().sum()",
+          "condition": "eq",
+          "value": 0,
+          "message": "No missing values allowed"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-04",
+      "lesson_id": "ds-mod1-04",
+      "title": "Case Study: Practical Quick Visualization (Plotly)",
+      "prompt": "## Case Study: Practical Quick Visualization (Plotly)\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-02-facets",
+      "lesson_id": "ds-mod1-02-facets",
+      "title": "Case Study: Practical Facets of Data",
+      "prompt": "## Case Study: Practical Facets of Data\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-03-process",
+      "lesson_id": "ds-mod1-03-process",
+      "title": "Case Study: Practical Data Science Process",
+      "prompt": "## Case Study: Practical Data Science Process\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-05-attributes",
+      "lesson_id": "ds-mod1-05-attributes",
+      "title": "Case Study: Practical NumPy Array Attributes",
+      "prompt": "## Case Study: Practical NumPy Array Attributes\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-06-ops",
+      "lesson_id": "ds-mod1-06-ops",
+      "title": "Case Study: Practical Array Operations",
+      "prompt": "## Case Study: Practical Array Operations\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-07-series",
+      "lesson_id": "ds-mod1-07-series",
+      "title": "Case Study: Practical Pandas Series",
+      "prompt": "## Case Study: Practical Pandas Series\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-09-acquisition",
+      "lesson_id": "ds-mod1-09-acquisition",
+      "title": "Case Study: Practical Data Acquisition & Info Gathering",
+      "prompt": "## Case Study: Practical Data Acquisition & Info Gathering\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-01",
+      "lesson_id": "ds-mod2-01",
+      "title": "Case Study: Practical Descriptive Stats",
+      "prompt": "## Case Study: Practical Descriptive Stats\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-03",
+      "lesson_id": "ds-mod2-03",
+      "title": "Case Study: Practical Correlation Heatmaps",
+      "prompt": "## Case Study: Practical Correlation Heatmaps\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-04",
+      "lesson_id": "ds-mod2-04",
+      "title": "Case Study: Practical Lab Task: Titanic Survival Analysis",
+      "prompt": "## Case Study: Practical Lab Task: Titanic Survival Analysis\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-05-data-handling",
+      "lesson_id": "ds-mod2-05-data-handling",
+      "title": "Case Study: Practical Data Handling & Large Volumes",
+      "prompt": "## Case Study: Practical Data Handling & Large Volumes\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-06-wrangling",
+      "lesson_id": "ds-mod2-06-wrangling",
+      "title": "Case Study: Practical Data Wrangling",
+      "prompt": "## Case Study: Practical Data Wrangling\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-08-cleaning",
+      "lesson_id": "ds-mod2-08-cleaning",
+      "title": "Case Study: Practical Handling Missing Values",
+      "prompt": "## Case Study: Practical Handling Missing Values\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod2-09-transformation",
+      "lesson_id": "ds-mod2-09-transformation",
+      "title": "Case Study: Practical Data Transformation",
+      "prompt": "## Case Study: Practical Data Transformation\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-01-matplotlib",
+      "lesson_id": "ds-mod3-01-matplotlib",
+      "title": "Case Study: Practical Intro to Matplotlib",
+      "prompt": "## Case Study: Practical Intro to Matplotlib\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-02-customizing",
+      "lesson_id": "ds-mod3-02-customizing",
+      "title": "Case Study: Practical Customizing Plots",
+      "prompt": "## Case Study: Practical Customizing Plots\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-01",
+      "lesson_id": "ds-mod3-01",
+      "title": "Case Study: Predicting Loan Defaults",
+      "prompt": "## Case Study: Banking App\n\nCreate a variable `model_type` and assign it the string `\"Logistic Regression\"` to confirm the algorithm used for binary yes/no predictions.",
+      "starter_code": "# TODO: Define model_type\n",
+      "grader_checks": [
+        {
+          "variable": "model_type",
+          "condition": "eq",
+          "value": "Logistic Regression",
+          "message": "Define the model correctly"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-02",
+      "lesson_id": "ds-mod3-02",
+      "title": "Case Study: Practical K-Nearest Neighbors (KNN)",
+      "prompt": "## Case Study: Practical K-Nearest Neighbors (KNN)\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-03",
+      "lesson_id": "ds-mod3-03",
+      "title": "Case Study: Practical Model Evaluation",
+      "prompt": "## Case Study: Practical Model Evaluation\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-04",
+      "lesson_id": "ds-mod3-04",
+      "title": "Case Study: Practical Lab Task: Spam Mail Detector",
+      "prompt": "## Case Study: Practical Lab Task: Spam Mail Detector\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod4-01",
+      "lesson_id": "ds-mod4-01",
+      "title": "Case Study: Real Estate Prices",
+      "prompt": "## Case Study: Housing Market\n\nLinear regression predicts continuous values. Create a variable `prediction_type` and set it to `\"Continuous\"`.",
+      "starter_code": "# TODO: Define prediction_type\n",
+      "grader_checks": [
+        {
+          "variable": "prediction_type",
+          "condition": "eq",
+          "value": "Continuous",
+          "message": "Must be Continuous"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod4-02",
+      "lesson_id": "ds-mod4-02",
+      "title": "Case Study: Practical Decision Trees",
+      "prompt": "## Case Study: Practical Decision Trees\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod4-03",
+      "lesson_id": "ds-mod4-03",
+      "title": "Case Study: Practical Random Forest",
+      "prompt": "## Case Study: Practical Random Forest\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod4-04",
+      "lesson_id": "ds-mod4-04",
+      "title": "Case Study: Practical Lab Task: Car Price Prediction",
+      "prompt": "## Case Study: Practical Lab Task: Car Price Prediction\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod5-01",
+      "lesson_id": "ds-mod5-01",
+      "title": "Case Study: Practical Clustering (K-Means)",
+      "prompt": "## Case Study: Practical Clustering (K-Means)\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod5-02",
+      "lesson_id": "ds-mod5-02",
+      "title": "Case Study: Practical The ML Workflow",
+      "prompt": "## Case Study: Practical The ML Workflow\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod5-03",
+      "lesson_id": "ds-mod5-03",
+      "title": "Case Study: Practical Final eLab Project",
+      "prompt": "## Case Study: Practical Final eLab Project\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
+      "starter_code": "# TODO: Set lesson_complete to True\n",
+      "grader_checks": [
+        {
+          "variable": "lesson_complete",
+          "condition": "eq",
+          "value": "True",
+          "message": "lesson_complete must be True"
+        }
+      ]
     }
   ],
   "DAILY_PRACTICE_QUESTIONS": [

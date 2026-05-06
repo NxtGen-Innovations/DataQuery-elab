@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { BarChart3, CheckCircle2, TerminalSquare } from 'lucide-react'
+import { BarChart3, CheckCircle2, TerminalSquare, Table, AlertCircle } from 'lucide-react'
 import { Challenge } from '@/lib/curriculum-data'
 import { DataFrameRenderer } from './dataframe-renderer'
 import { IdeTabs, TabsContent } from './ide-tabs'
@@ -38,12 +38,32 @@ export function OutputPanelTabs({
           icon: <TerminalSquare className="size-3.5" />,
         },
         {
+          value: 'dataframes',
+          label: 'DataFrames',
+          icon: <Table className="size-3.5" />,
+          badge: output?.tables.length ? (
+            <span className="ml-1 border border-[#30363d] px-1.5 py-0.5 text-[11px] text-[#8b949e]">
+              {output.tables.length}
+            </span>
+          ) : undefined,
+        },
+        {
           value: 'plots',
           label: 'Plots',
           icon: <BarChart3 className="size-3.5" />,
           badge: output?.plots.length ? (
             <span className="ml-1 border border-[#30363d] px-1.5 py-0.5 text-[11px] text-[#8b949e]">
               {output.plots.length}
+            </span>
+          ) : undefined,
+        },
+        {
+          value: 'errors',
+          label: 'Errors',
+          icon: <AlertCircle className="size-3.5" />,
+          badge: output?.stderr ? (
+            <span className="ml-1 border border-[#f85149]/30 bg-[#f85149]/10 px-1.5 py-0.5 text-[11px] text-[#f85149]">
+              !
             </span>
           ) : undefined,
         },
@@ -59,24 +79,40 @@ export function OutputPanelTabs({
         ) : null}
         {output ? (
           <div className="space-y-4">
-            {output.tables.map((table, index) => (
-              <DataFrameRenderer key={`${table.title ?? 'table'}-${index}`} table={table} />
-            ))}
             {output.stdout ? (
               <pre className="overflow-x-auto whitespace-pre-wrap font-mono text-[13px] leading-6 text-[#c9d1d9]">
                 {output.stdout}
               </pre>
-            ) : null}
-            {output.stderr ? (
-              <pre className="overflow-x-auto whitespace-pre-wrap font-mono text-[13px] leading-6 text-[#ff7b72]">
-                {output.stderr}
-              </pre>
-            ) : null}
-            {!output.stdout && !output.stderr && output.tables.length === 0 ? (
-              <p className="font-mono text-[13px] text-[#8b949e]">No output.</p>
-            ) : null}
+            ) : (
+              <p className="font-mono text-[13px] text-[#8b949e]">No standard output.</p>
+            )}
           </div>
         ) : null}
+      </TabsContent>
+
+      <TabsContent value="dataframes" className="h-full overflow-y-auto px-4 py-3">
+        {!output?.tables.length ? (
+          <p className="text-[13px] text-[#8b949e]">No DataFrames detected. Print a DataFrame or Series to see it here.</p>
+        ) : (
+          <div className="space-y-6">
+            {output.tables.map((table, index) => (
+              <div key={index} className="space-y-2">
+                {table.title && <h4 className="text-[12px] font-medium text-[#8b949e] uppercase tracking-wider">{table.title}</h4>}
+                <DataFrameRenderer table={table} />
+              </div>
+            ))}
+          </div>
+        )}
+      </TabsContent>
+
+      <TabsContent value="errors" className="h-full overflow-y-auto px-4 py-3">
+        {!output?.stderr ? (
+          <p className="text-[13px] text-[#8b949e]">No errors or warnings.</p>
+        ) : (
+          <pre className="overflow-x-auto whitespace-pre-wrap font-mono text-[13px] leading-6 text-[#ff7b72]">
+            {output.stderr}
+          </pre>
+        )}
       </TabsContent>
 
       <TabsContent value="testcases" className="h-full overflow-y-auto px-4 py-3">
