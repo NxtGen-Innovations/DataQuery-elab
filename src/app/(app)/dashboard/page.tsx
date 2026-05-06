@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Brain, CheckCircle2, Code2, Flame, LineChart, PlayCircle, Trophy } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ArrowRight, BookOpen, Brain, CheckCircle2, Code2, Flame, LineChart, PlayCircle, Trophy, Sparkles, Target } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CURRICULUM, getAllLessons, getChallengeByLessonId, getDailyQuestion, getQuizByLessonId } from '@/lib/curriculum-data'
@@ -16,200 +17,210 @@ export default function Dashboard() {
   const practiceChallenge = recommendedPracticeLesson ? getChallengeByLessonId(recommendedPracticeLesson.id) : undefined
   const dailyQuestion = getDailyQuestion()
 
-  const moduleSummaries = CURRICULUM[0].topics.map((topic, index) => {
-    const lessonCount = topic.lessons.length
-    const availableLabs = topic.lessons.filter((lesson) => getChallengeByLessonId(lesson.id)).length
-    const availableQuizzes = topic.lessons.filter((lesson) => getQuizByLessonId(lesson.id)).length
-    const progress = index === 0 ? 42 : index === 1 ? 18 : 0
-
-    return {
-      topic: topic.topic,
-      lessonCount,
-      availableLabs,
-      availableQuizzes,
-      progress,
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
     }
-  })
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  }
 
   return (
-    <div className="min-h-screen px-5 py-6 md:px-8 xl:px-10">
-      <div className="mx-auto max-w-[1600px] space-y-8">
-        <section className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
-          <div className="panel-fade ds-panel p-6">
-            <div className="mb-3 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#8b949e]">
-              <Brain className="size-3.5 text-[#58a6ff]" />
-              Student Dashboard
-            </div>
-            <h1 className="text-3xl font-semibold text-[#e6edf3] md:text-4xl">Welcome back, {userName}.</h1>
-            <p className="mt-3 max-w-3xl text-[14px] leading-7 text-[#8b949e]">
-              Keep learning in a focused workspace: review the concept, validate understanding with a quiz, and solve a data-science practice problem with runnable Python and test cases.
-            </p>
+    <div className="min-h-screen hero-gradient px-5 py-8 md:px-8 xl:px-12">
+      <motion.div 
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="mx-auto max-w-[1400px] space-y-10"
+      >
+        {/* Hero Section */}
+        <motion.section variants={item} className="grid gap-6 lg:grid-cols-[1fr_380px]">
+          <div className="ds-panel glass-panel relative overflow-hidden p-8 md:p-10">
+            <div className="relative z-10">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-full bg-[#58a6ff]/10 text-[#58a6ff] glow-blue">
+                  <Sparkles className="size-4" />
+                </div>
+                <span className="ds-label">Learning Path Active</span>
+              </div>
+              <h1 className="text-4xl font-bold tracking-tight text-[#e6edf3] md:text-5xl">
+                Elevate your craft, {userName.split(' ')[0]}.
+              </h1>
+              <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#8b949e]">
+                You've completed 12% of your Data Science foundations. Your next milestone is 
+                <span className="text-[#e6edf3] font-medium"> NumPy Vectorization</span>. 
+                Keep the momentum going to unlock your next badge.
+              </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link href={recommendedPracticeLesson ? `/curriculum/${recommendedPracticeLesson.id}` : '/curriculum'}>
-                <Button className="h-10 rounded-md border border-[#2ea043]/50 bg-[#238636] px-5 text-white hover:bg-[#2ea043]">
-                  Continue Practice
-                  <ArrowRight className="ml-2 size-4" />
-                </Button>
-              </Link>
-              <Link href="/curriculum">
-                <Button variant="outline" className="h-10 rounded-md border-[#30363d] bg-[#161b22] px-5 text-[#e6edf3] hover:bg-[#21262d]">
-                  Browse Curriculum
-                </Button>
-              </Link>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link href={recommendedPracticeLesson ? `/curriculum/${recommendedPracticeLesson.id}` : '/curriculum'}>
+                  <Button className="h-11 rounded-xl bg-[#58a6ff] px-6 text-[13px] font-bold text-white hover:bg-[#79c0ff] glow-blue">
+                    Continue Learning
+                    <ArrowRight className="ml-2 size-4" />
+                  </Button>
+                </Link>
+                <div className="flex items-center gap-4 px-2">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#8b949e]">XP Gained</span>
+                    <span className="text-sm font-bold text-[#e6edf3]">1,240 pts</span>
+                  </div>
+                  <div className="h-8 w-px bg-[#30363d]" />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#8b949e]">Rank</span>
+                    <span className="text-sm font-bold text-[#58a6ff]">Apprentice</span>
+                  </div>
+                </div>
+              </div>
             </div>
+            
+            {/* Background Decorative Element */}
+            <div className="absolute -bottom-12 -right-12 size-64 rounded-full bg-[#58a6ff]/5 blur-3xl" />
           </div>
 
-          <div className="panel-fade ds-panel-elevated p-5">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Recommended Practice</div>
-                <h2 className="mt-2 text-lg font-semibold text-[#e6edf3]">{practiceChallenge?.title || 'Practice track'}</h2>
-              </div>
-              <PlayCircle className="size-5 text-[#58a6ff]" />
+          <div className="ds-panel border-[#58a6ff]/20 bg-gradient-to-br from-[#161b22] to-[#0d1117] p-6">
+            <div className="flex items-center justify-between mb-6">
+              <span className="ds-label">Daily Momentum</span>
+              <Flame className="size-5 text-[#ff7b72] animate-pulse" />
             </div>
-            <p className="mt-3 text-[13px] leading-6 text-[#8b949e]">
-              {practiceChallenge?.prompt.split('\n')[0].replace('## ', '') || 'Hands-on coding exercises will appear here.'}
-            </p>
-            <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-              <div className="border border-[#30363d] bg-[#0d1117] p-3">
-                <div className="text-lg font-semibold text-[#e6edf3]">{practiceChallenge?.grader_checks.length ?? 0}</div>
-                <div className="mt-1 text-[11px] text-[#8b949e]">Checks</div>
-              </div>
-              <div className="border border-[#30363d] bg-[#0d1117] p-3">
-                <div className="text-lg font-semibold text-[#e6edf3]">Python</div>
-                <div className="mt-1 text-[11px] text-[#8b949e]">Runtime</div>
-              </div>
-              <div className="border border-[#30363d] bg-[#0d1117] p-3">
-                <div className="text-lg font-semibold text-[#e6edf3]">IDE</div>
-                <div className="mt-1 text-[11px] text-[#8b949e]">Workspace</div>
+            <div className="flex items-end justify-between gap-2">
+              {[
+                { day: 'M', val: 40, active: true },
+                { day: 'T', val: 70, active: true },
+                { day: 'W', val: 20, active: true },
+                { day: 'T', val: 90, active: true },
+                { day: 'F', val: 10, active: false },
+                { day: 'S', val: 0, active: false },
+                { day: 'S', val: 0, active: false },
+              ].map((d, i) => (
+                <div key={i} className="flex flex-1 flex-col items-center gap-3">
+                  <div className="relative w-full group">
+                    <div 
+                      className={`w-full rounded-t-sm transition-all duration-500 ${d.active ? 'bg-[#3fb950]/40 group-hover:bg-[#3fb950]' : 'bg-[#30363d]'}`} 
+                      style={{ height: `${Math.max(d.val, 4)}px` }}
+                    />
+                  </div>
+                  <span className={`text-[10px] font-bold ${d.active ? 'text-[#e6edf3]' : 'text-[#484f58]'}`}>{d.day}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 pt-5 border-t border-[#30363d]">
+              <div className="flex items-center justify-between">
+                <span className="text-[12px] text-[#8b949e]">Current Streak</span>
+                <span className="text-xl font-bold text-[#e6edf3]">4 Days</span>
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="grid gap-4 md:grid-cols-4">
+        {/* Stats Grid */}
+        <motion.section variants={item} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: 'Lessons', value: lessons.length, hint: 'Concept modules', icon: BookOpen },
-            { label: 'Labs', value: lessons.filter((lesson) => getChallengeByLessonId(lesson.id)).length, hint: 'Hands-on tasks', icon: Code2 },
-            { label: 'Quizzes', value: lessons.filter((lesson) => getQuizByLessonId(lesson.id)).length, hint: 'Knowledge checks', icon: CheckCircle2 },
-            { label: 'Momentum', value: '5d', hint: 'Current streak', icon: Flame, isStreak: true },
-          ].map((item) => (
-            <div key={item.label} className="panel-fade ds-panel p-5 flex flex-col justify-between h-full">
+            { label: 'Modules', value: '38', hint: 'Concept units', icon: BookOpen, color: 'text-[#58a6ff]' },
+            { label: 'Accuracy', value: '94%', hint: 'Quiz performance', icon: Target, color: 'text-[#3fb950]' },
+            { label: 'Time Spent', value: '12.4h', hint: 'Active sessions', icon: LineChart, color: 'text-[#d29922]' },
+            { label: 'Certificates', value: '2', hint: 'Verified skills', icon: Trophy, color: 'text-[#bc8cff]' },
+          ].map((stat) => (
+            <div key={stat.label} className="ds-panel group p-5 hover:border-[#58a6ff]/30 transition-all">
               <div className="flex items-start justify-between">
                 <div>
-                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">{item.label}</div>
-                  <div className="mt-3 text-3xl font-semibold text-[#e6edf3]">{item.value}</div>
-                  <div className="mt-1 text-[12px] text-[#8b949e]">{item.hint}</div>
+                  <span className="ds-label">{stat.label}</span>
+                  <div className="mt-3 text-3xl font-bold text-[#e6edf3]">{stat.value}</div>
+                  <div className="mt-1 text-[12px] text-[#8b949e]">{stat.hint}</div>
                 </div>
-                <item.icon className="size-5 text-[#58a6ff]" />
+                <div className={`rounded-lg bg-[#0d1117] p-2.5 border border-[#30363d] group-hover:border-[#58a6ff]/20 transition-colors`}>
+                  <stat.icon className={`size-5 ${stat.color}`} />
+                </div>
               </div>
-              {item.isStreak && (
-                <div className="mt-4 pt-3 border-t border-[#30363d] flex items-center justify-between">
-                  {/* 1-week streak chart: 7 squares */}
-                  {/* T, W, T, F, S, S, M (Example) */}
-                  <div className="flex items-center gap-1.5">
-                    {[
-                      { active: true, day: 'T' },
-                      { active: true, day: 'W' },
-                      { active: false, day: 'T' },
-                      { active: true, day: 'F' },
-                      { active: true, day: 'S' },
-                      { active: true, day: 'S' },
-                      { active: true, day: 'M' },
-                    ].map((d, i) => (
-                      <div key={i} className="flex flex-col items-center gap-1.5">
-                        <div
-                          className={`w-4 h-4 rounded-[2px] ${
-                            d.active ? 'bg-[#3fb950] shadow-[0_0_8px_rgba(63,185,80,0.4)]' : 'bg-[#161b22] border border-[#30363d]'
-                          }`}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           ))}
-        </section>
+        </motion.section>
 
-        <section className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)]">
-          <div className="ds-panel p-6">
-            <div className="mb-5 flex items-center justify-between">
+        {/* Main Content Areas */}
+        <motion.section variants={item} className="grid gap-6 xl:grid-cols-[1fr_400px]">
+          <div className="ds-panel p-8">
+            <div className="mb-8 flex items-center justify-between">
               <div>
-                <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Learning Path</div>
-                <h2 className="mt-2 text-xl font-semibold text-[#e6edf3]">Your modules</h2>
+                <span className="ds-label">Curriculum Track</span>
+                <h2 className="mt-2 text-2xl font-bold text-[#e6edf3]">Skill Progression</h2>
               </div>
-              <Link href="/curriculum" className="text-[13px] font-medium text-[#58a6ff] hover:text-[#79c0ff]">
-                View all
+              <Link href="/curriculum">
+                <Button variant="ghost" className="text-[13px] text-[#58a6ff] hover:bg-[#58a6ff]/10">
+                  Manage Path
+                </Button>
               </Link>
             </div>
 
-            <div className="space-y-4">
-              {moduleSummaries.map((module) => (
-                <div key={module.topic} className="border border-[#30363d] bg-[#161b22] p-4">
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Module</div>
-                      <h3 className="mt-1 text-base font-semibold text-[#e6edf3]">{module.topic}</h3>
-                      <div className="mt-2 flex flex-wrap gap-2 text-[12px] text-[#8b949e]">
-                        <span>{module.lessonCount} lessons</span>
-                        <span>{module.availableQuizzes} quizzes</span>
-                        <span>{module.availableLabs} labs</span>
-                      </div>
-                    </div>
-                    <Badge variant="outline" className="rounded-md border-[#30363d] bg-[#0d1117] px-2 py-1 text-[11px] text-[#c9d1d9]">
-                      {module.progress}% complete
+            <div className="grid gap-4 md:grid-cols-2">
+              {CURRICULUM[0].topics.slice(0, 4).map((topic, idx) => (
+                <div key={topic.topic} className="ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">Unit {idx + 1}</span>
+                    <Badge className="bg-[#58a6ff]/10 text-[#58a6ff] border-none text-[10px]">
+                      {idx === 0 ? 'Advanced' : 'In Progress'}
                     </Badge>
                   </div>
-                  <div className="mt-4 h-2 overflow-hidden bg-[#0d1117]">
-                    <div className="progress-bar-fill h-full bg-[#58a6ff]" style={{ width: `${module.progress}%` }} />
+                  <h3 className="mt-3 text-[15px] font-bold text-[#e6edf3] leading-snug">{topic.topic}</h3>
+                  <div className="mt-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[11px] text-[#8b949e]">Completion</span>
+                      <span className="text-[11px] font-bold text-[#e6edf3]">{idx === 0 ? '85%' : '0%'}</span>
+                    </div>
+                    <div className="h-1 w-full bg-[#30363d] rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: idx === 0 ? '85%' : '0%' }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="h-full bg-[#58a6ff] glow-blue"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="ds-panel p-5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Daily Check</div>
-                  <h2 className="mt-2 text-lg font-semibold text-[#e6edf3]">Quick question</h2>
-                </div>
-                <LineChart className="size-5 text-[#58a6ff]" />
+          <div className="space-y-6">
+            <div className="ds-panel glass-panel border-[#d29922]/20 p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Target className="size-5 text-[#d29922]" />
+                <span className="ds-label text-[#d29922]">Active Goal</span>
               </div>
-              <p className="mt-3 text-[13px] leading-6 text-[#c9d1d9]">{dailyQuestion.question}</p>
-              <div className="mt-4">
-                <Link href="/curriculum/ds-mod2-01">
-                  <Button variant="outline" className="h-9 rounded-md border-[#30363d] bg-[#161b22] text-[#e6edf3] hover:bg-[#21262d]">
-                    Practice with quiz
-                  </Button>
-                </Link>
+              <h3 className="text-lg font-bold text-[#e6edf3]">Master Matplotlib</h3>
+              <p className="mt-2 text-[13px] leading-relaxed text-[#8b949e]">
+                Finish all 14 subtopics in the visualization module to earn the "Visual Architect" badge.
+              </p>
+              <div className="mt-6 flex items-center justify-between">
+                <div className="flex -space-x-2">
+                  {[1,2,3].map(i => (
+                    <div key={i} className="size-7 rounded-full border-2 border-[#161b22] bg-[#30363d]" />
+                  ))}
+                </div>
+                <span className="text-[11px] text-[#8b949e]">148 others practicing</span>
               </div>
             </div>
 
-            <div className="ds-panel-elevated p-5">
-              <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Resume Path</div>
-              <h2 className="mt-2 text-lg font-semibold text-[#e6edf3]">{currentLesson.title}</h2>
-              <p className="mt-2 text-[13px] leading-6 text-[#8b949e]">
-                Return to structured learning, then move into guided practice with runnable code.
-              </p>
-              <div className="mt-5 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[12px] text-[#8b949e]">
-                  <Trophy className="size-4 text-[#d29922]" />
-                  Mastery path
-                </div>
-                <Link href={`/curriculum/${currentLesson.id}`}>
-                  <Button className="h-9 rounded-none border border-[#30363d] bg-[#0d1117] px-4 text-[#e6edf3] hover:bg-[#21262d]">
-                    Open lesson
-                  </Button>
-                </Link>
+            <div className="ds-panel p-6 bg-[#0d1117]">
+              <div className="flex items-center justify-between mb-4">
+                <span className="ds-label">Daily Brainstorm</span>
+                <Brain className="size-4 text-[#58a6ff]" />
               </div>
+              <p className="text-[14px] leading-relaxed text-[#c9d1d9]">
+                {dailyQuestion.question}
+              </p>
+              <Button className="mt-6 w-full h-10 border-[#30363d] bg-transparent text-[12px] font-bold text-[#e6edf3] hover:bg-[#161b22]">
+                Solve Challenge
+              </Button>
             </div>
           </div>
-        </section>
-      </div>
+        </motion.section>
+      </motion.div>
     </div>
   )
 }

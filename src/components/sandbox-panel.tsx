@@ -1,8 +1,10 @@
 'use client'
 
+import { motion, AnimatePresence } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { cn } from '@/lib/utils'
 import { Challenge, GraderCheck, Lesson, Quiz } from '@/lib/curriculum-data'
-import { BookOpen, FileText, HelpCircle } from 'lucide-react'
+import { BookOpen, FileText, HelpCircle, Activity, ShieldCheck, Zap } from 'lucide-react'
 import { Group, Panel, Separator } from 'react-resizable-panels'
 import { QuizPanel } from './quiz-panel'
 import { ActionBar } from './sandbox/action-bar'
@@ -158,9 +160,9 @@ plt.show = _patched_show
 
 function ResizeHandle({ orientation }: { orientation: 'horizontal' | 'vertical' }) {
   return orientation === 'horizontal' ? (
-    <Separator className="relative w-px cursor-col-resize bg-[#30363d] hover:bg-[#2f81f7]" />
+    <Separator className="relative w-px cursor-col-resize bg-[#30363d] transition-colors hover:bg-[#58a6ff]/40" />
   ) : (
-    <Separator className="relative h-px cursor-row-resize bg-[#30363d] hover:bg-[#2f81f7]" />
+    <Separator className="relative h-px cursor-row-resize bg-[#30363d] transition-colors hover:bg-[#58a6ff]/40" />
   )
 }
 
@@ -189,15 +191,15 @@ export function SandboxPanel({ challenge, lesson, quiz }: Props) {
           throw new Error('Pyodide script failed to load after 10s')
         }
 
-        if (mounted) setLoadingStatus('Loading runtime...')
+        if (mounted) setLoadingStatus('Booting Kernel...')
         const pyodide = await window.loadPyodide({
           indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/',
         })
 
-        if (mounted) setLoadingStatus('Loading packages...')
+        if (mounted) setLoadingStatus('Loading Packages...')
         await pyodide.loadPackage('micropip')
 
-        if (mounted) setLoadingStatus('Installing numpy, pandas, matplotlib...')
+        if (mounted) setLoadingStatus('Injecting Dependencies...')
         await pyodide.runPythonAsync(`
 import micropip
 await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
@@ -211,7 +213,7 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
       } catch (error) {
         console.error('Pyodide init error:', error)
         if (mounted) {
-          setLoadingStatus('Failed to load Python')
+          setLoadingStatus('Kernel Fault')
         }
       }
     }
@@ -297,14 +299,38 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
   }, [challenge.grader_checks, code, pyodideReady])
 
   return (
-    <section className="relative h-[calc(100vh-120px)] min-h-[640px] overflow-hidden border border-[#30363d] bg-[#0d1117] font-[system-ui] text-[13px] text-[#c9d1d9]">
+    <section className={cn(
+      "relative h-[calc(100vh-120px)] min-h-[640px] overflow-hidden border border-[#30363d] bg-[#0d1117] transition-all duration-700",
+      output?.allPassed && "border-[#3fb950]/30 shadow-[0_0_40px_-10px_rgba(63,185,80,0.1)]"
+    )}>
       <div className="flex h-full min-h-0 flex-col">
-        <div className="flex h-9 shrink-0 items-center justify-between border-b border-[#30363d] bg-[#161b22] px-4">
-          <div className="flex items-center gap-2">
-            <span className={`h-2 w-2 ${pyodideReady ? 'bg-[#3fb950]' : 'bg-[#d29922]'}`} />
-            <span className="text-[12px] text-[#8b949e]">{pyodideReady ? 'Runtime ready' : loadingStatus}</span>
+        <div className="flex h-10 shrink-0 items-center justify-between border-b border-[#30363d] bg-[#161b22] px-4">
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "flex items-center gap-2 rounded-full border px-2.5 py-0.5 transition-all duration-300",
+              pyodideReady ? "border-[#3fb950]/20 bg-[#3fb950]/5" : "border-[#d29922]/20 bg-[#d29922]/5"
+            )}>
+              <Activity className={cn("size-3", pyodideReady ? "text-[#3fb950]" : "text-[#d29922] animate-pulse")} />
+              <span className={cn("text-[10px] font-bold uppercase tracking-wider", pyodideReady ? "text-[#3fb950]" : "text-[#d29922]")}>
+                {loadingStatus}
+              </span>
+            </div>
+            {isRunning && (
+              <div className="flex items-center gap-2 text-[10px] font-bold text-[#58a6ff]">
+                <Zap className="size-3 animate-bounce" />
+                <span>EXECUTING...</span>
+              </div>
+            )}
           </div>
-          <span className="font-mono text-[12px] text-[#8b949e]">{challenge.id}</span>
+          <div className="flex items-center gap-3">
+             <span className="font-mono text-[11px] text-[#484f58]">{challenge.id}</span>
+             {output?.allPassed && (
+               <div className="flex items-center gap-1.5 text-[#3fb950]">
+                 <ShieldCheck className="size-3.5" />
+                 <span className="text-[10px] font-bold uppercase tracking-widest">Verified</span>
+               </div>
+             )}
+          </div>
         </div>
 
         <Group orientation="horizontal" className="flex-1">
@@ -318,24 +344,35 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
                 ...(quiz ? [{ value: 'quiz' as const, label: 'Quiz', icon: <HelpCircle className="size-3.5" /> }] : []),
               ]}
             >
-              <TabsContent value="problem" className="h-full">
-                <MarkdownContentPanel title={challenge.title} content={challenge.prompt} />
-              </TabsContent>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={leftTab}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.15 }}
+                  className="h-full"
+                >
+                  <TabsContent value="problem" className="h-full">
+                    <MarkdownContentPanel title={challenge.title} content={challenge.prompt} />
+                  </TabsContent>
 
-              {lesson ? (
-                <TabsContent value="notes" className="h-full">
-                  <MarkdownContentPanel content={lesson.content_md} />
-                </TabsContent>
-              ) : null}
+                  {lesson && (
+                    <TabsContent value="notes" className="h-full">
+                      <MarkdownContentPanel content={lesson.content_md} />
+                    </TabsContent>
+                  )}
 
-              {quiz ? (
-                <TabsContent value="quiz" className="h-full overflow-y-auto bg-[#0d1117] px-5 py-4">
-                  <div className="mx-auto max-w-3xl">
-                    <h2 className="mb-4 text-lg font-semibold text-[#e6edf3]">{quiz.title}</h2>
-                    <QuizPanel quiz={quiz} />
-                  </div>
-                </TabsContent>
-              ) : null}
+                  {quiz && (
+                    <TabsContent value="quiz" className="h-full overflow-y-auto bg-[#0d1117] px-5 py-4">
+                      <div className="mx-auto max-w-3xl">
+                        <h2 className="mb-4 text-lg font-semibold text-[#e6edf3]">{quiz.title}</h2>
+                        <QuizPanel quiz={quiz} />
+                      </div>
+                    </TabsContent>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </IdeTabs>
           </Panel>
 
