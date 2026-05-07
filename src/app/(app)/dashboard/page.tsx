@@ -185,25 +185,33 @@ export default function Dashboard() {
             <div className="grid gap-4 md:grid-cols-2">
               {CURRICULUM[0].topics.slice(0, 4).map((topic, idx) => {
                 const progress = getUnitProgress(topic.topic)
+                const isComingSoon = idx >= 3
                 return (
-                  <Link key={topic.topic} href="/curriculum">
-                    <div className="ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors cursor-pointer group">
+                  <Link key={topic.topic} href={isComingSoon ? "#" : `/curriculum#${topic.topic.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <div className={cn(
+                      "ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors group",
+                      !isComingSoon && "cursor-pointer",
+                      isComingSoon && "opacity-60 grayscale cursor-not-allowed"
+                    )}>
                       <div className="flex items-center justify-between">
                         <span className="text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">Unit {idx + 1}</span>
-                        <Badge className="bg-[#58a6ff]/10 text-[#58a6ff] border-none text-[10px]">
-                          {progress === 100 ? 'Mastered' : progress > 0 ? 'In Progress' : 'Locked'}
+                        <Badge className={cn(
+                          "border-none text-[10px]",
+                          isComingSoon ? "bg-[#d29922]/10 text-[#d29922]" : "bg-[#58a6ff]/10 text-[#58a6ff]"
+                        )}>
+                          {isComingSoon ? 'Coming Soon' : progress === 100 ? 'Mastered' : progress > 0 ? 'In Progress' : 'Not Started'}
                         </Badge>
                       </div>
                       <h3 className="mt-3 text-[15px] font-bold text-[#e6edf3] leading-snug group-hover:text-[#58a6ff] transition-colors">{topic.topic}</h3>
                       <div className="mt-6">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-[11px] text-[#8b949e]">Completion</span>
-                          <span className="text-[11px] font-bold text-[#e6edf3]">{progress}%</span>
+                          <span className="text-[11px] font-bold text-[#e6edf3]">{isComingSoon ? '0' : progress}%</span>
                         </div>
                         <div className="h-1 w-full bg-[#30363d] rounded-full overflow-hidden">
                           <motion.div 
                             initial={{ width: 0 }}
-                            animate={{ width: `${progress}%` }}
+                            animate={{ width: `${isComingSoon ? 0 : progress}%` }}
                             transition={{ duration: 1, delay: 0.5 }}
                             className="h-full bg-[#58a6ff] glow-blue"
                           />

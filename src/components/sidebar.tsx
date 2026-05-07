@@ -12,7 +12,6 @@ import { CURRICULUM, getQuizByLessonId, getChallengeByLessonId } from '@/lib/cur
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard', adminOnly: false },
   { icon: BookOpen, label: 'Curriculum', href: '/curriculum', adminOnly: false },
-  { icon: Sparkles, label: 'Practice', href: '/curriculum/ds-mod2-02', adminOnly: false },
   { icon: Brain, label: 'Admin', href: '/admin', adminOnly: true },
 ]
 

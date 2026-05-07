@@ -32,20 +32,28 @@ export default function CurriculumIndexPage() {
         </section>
 
         <section className="space-y-6">
-          {CURRICULUM[0].topics.map((topic) => (
-            <div key={topic.topic} className="ds-panel p-6">
-              <div className="mb-5 flex items-start justify-between gap-4">
-                <div>
-                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Module</div>
-                  <h2 className="mt-2 text-xl font-semibold text-[#e6edf3]">{topic.topic}</h2>
+          {CURRICULUM[0].topics.map((topic, idx) => {
+            const isComingSoon = idx >= 3
+            return (
+              <div key={topic.topic} id={topic.topic.toLowerCase().replace(/\s+/g, '-')} className={cn("ds-panel p-6", isComingSoon && "opacity-75 relative overflow-hidden")}>
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8b949e]">Module</div>
+                    <h2 className="mt-2 text-xl font-semibold text-[#e6edf3]">{topic.topic}</h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {isComingSoon ? (
+                      <Badge className="bg-[#d29922]/10 text-[#d29922] border-[#d29922]/20">Coming Soon</Badge>
+                    ) : (
+                      <Badge variant="outline" className="rounded-md border-[#30363d] bg-[#0d1117] px-2 py-1 text-[11px] text-[#c9d1d9]">
+                        {topic.lessons.length} lessons
+                      </Badge>
+                    )}
+                  </div>
                 </div>
-                <Badge variant="outline" className="rounded-md border-[#30363d] bg-[#0d1117] px-2 py-1 text-[11px] text-[#c9d1d9]">
-                  {topic.lessons.length} lessons
-                </Badge>
-              </div>
 
-              <div className="grid gap-3 lg:grid-cols-2">
-                {topic.lessons.map((lesson) => {
+                <div className={cn("grid gap-3 lg:grid-cols-2", isComingSoon && "pointer-events-none filter grayscale")}>
+                  {topic.lessons.map((lesson) => {
                   const quiz = getQuizByLessonId(lesson.id)
                   const challenge = getChallengeByLessonId(lesson.id)
                   const lessonDone = isLessonComplete(lesson.id)
@@ -99,8 +107,9 @@ export default function CurriculumIndexPage() {
                   )
                 })}
               </div>
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </section>
       </div>
     </div>
