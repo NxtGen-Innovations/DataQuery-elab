@@ -25,15 +25,18 @@ export function useCachedState<T>(
     if (typeof window !== 'undefined') {
       const cachedValue = getFromCache<T>(key)
       if (cachedValue !== null) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setState(cachedValue)
       } else {
         // If no cache, reset to initial state
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setState(typeof initialState === 'function'
           ? (initialState as () => T)()
           : initialState
         )
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key])
 
   // Update cache whenever state changes

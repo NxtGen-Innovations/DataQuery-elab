@@ -19,9 +19,9 @@ const DEFAULT_TTL = 24 * 60 * 60 * 1000; // 24 hours
  * @param data - The data to store.
  * @param ttl - Time to live in milliseconds.
  */
-export const saveToCache = (key: string, data: any, ttl: number = DEFAULT_TTL): void => {
+export const saveToCache = <T>(key: string, data: T, ttl: number = DEFAULT_TTL): void => {
   try {
-    const item: CacheItem<any> = {
+    const item: CacheItem<T> = {
       data,
       timestamp: Date.now(),
       expiry: ttl,
@@ -48,7 +48,7 @@ export const getFromCache = <T>(key: string): T | null => {
     // Check if item is an old-format item (no timestamp)
     if (!item.timestamp) {
       // If it's old format, return as is or treat as data
-      return (item as any) as T;
+      return (item as unknown) as T;
     }
 
     // Check for expiration
@@ -110,7 +110,7 @@ export const clearCache = (): void => {
 /**
  * Optional: sessionStorage helpers if needed for temporary session data.
  */
-export const saveToSession = (key: string, data: any): void => {
+export const saveToSession = <T>(key: string, data: T): void => {
   try {
     sessionStorage.setItem(`${CACHE_PREFIX}${key}`, JSON.stringify(data));
   } catch (error) {

@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useCallback, ReactNode, useMemo } from 'react'
+import { createContext, useContext, useCallback, ReactNode, useMemo, useState, useEffect } from 'react'
 import { useCachedState } from '@/hooks/use-cached-state'
 import { CURRICULUM, getQuizByLessonId, getChallengeByLessonId } from './curriculum-data'
 
@@ -42,15 +42,23 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }, [setCompletedChallenges, updateActivity])
 
   // Streak Calculation
-  const streak = useMemo(() => {
-    if (activeDates.length === 0) return 0
+  const [streak, setStreak] = useState(0)
+
+  useEffect(() => {
+    if (activeDates.length === 0) {
+      setStreak(0)
+      return
+    }
     
     const sortedDates = [...activeDates].sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
     const today = new Date().toISOString().split('T')[0]
     const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0]
     
     // If the most recent active date is not today or yesterday, streak is 0
-    if (sortedDates[0] !== today && sortedDates[0] !== yesterday) return 0
+    if (sortedDates[0] !== today && sortedDates[0] !== yesterday) {
+      setStreak(0)
+      return
+    }
     
     let count = 1
     for (let i = 0; i < sortedDates.length - 1; i++) {
@@ -64,7 +72,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         break
       }
     }
-    return count
+    setStreak(count)
   }, [activeDates])
 
   // XP and Rank Logic

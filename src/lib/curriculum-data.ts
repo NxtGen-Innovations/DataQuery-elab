@@ -43,10 +43,10 @@ export interface GraderCheck {
 
 import data from './data.json';
 
-export const CURRICULUM: { domain: string; topics: { topic: string; lessons: Lesson[] }[] }[] = data.CURRICULUM as any;
-export const QUIZZES: Quiz[] = data.QUIZZES as any;
-export const CHALLENGES: Challenge[] = data.CHALLENGES as any;
-export const DAILY_PRACTICE_QUESTIONS: QuizQuestion[] = data.DAILY_PRACTICE_QUESTIONS as any;
+export const CURRICULUM: { domain: string; topics: { topic: string; lessons: Lesson[] }[] }[] = data.CURRICULUM as unknown as { domain: string; topics: { topic: string; lessons: Lesson[] }[] }[];
+export const QUIZZES: Quiz[] = data.QUIZZES as unknown as Quiz[];
+export const CHALLENGES: Challenge[] = data.CHALLENGES as unknown as Challenge[];
+export const DAILY_PRACTICE_QUESTIONS: QuizQuestion[] = data.DAILY_PRACTICE_QUESTIONS as unknown as QuizQuestion[];
 
 export function getAllLessons(): Lesson[] {
   return CURRICULUM.flatMap(domain => domain.topics.flatMap(t => t.lessons))

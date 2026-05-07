@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { CURRICULUM, getAllLessons, getChallengeByLessonId, getDailyQuestion, getQuizByLessonId } from '@/lib/curriculum-data'
 import { useAuth } from '@/lib/auth-context'
 import { useProgress } from '@/lib/progress-context'
+import { cn } from '@/lib/utils'
 
 export default function Dashboard() {
   const { user } = useAuth()
