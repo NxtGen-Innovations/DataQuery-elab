@@ -18,6 +18,7 @@ import { ExecutionResult, GraderResult, LeftTabValue, OutputTabValue } from './s
 import { useAuth } from '@/lib/auth-context'
 import { generateModuleReport } from '@/lib/pdf-service'
 import { Button } from '@/components/ui/button'
+import { FeedbackModal } from './feedback-modal'
 
 interface Props {
   challenge: Challenge
@@ -189,6 +190,10 @@ export function SandboxPanel({ challenge, lesson, quiz }: Props) {
   const [leftTab, setLeftTab] = useState<LeftTabValue>('problem')
   const [outputTab, setOutputTab] = useState<OutputTabValue>('testcases')
   const pyodideRef = useRef<Window['pyodide'] | null>(null)
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false)
+
+  // The ID of the very last challenge in Unit 3 (Lesson 3.4)
+  const FINAL_CHALLENGE_ID = 'ch-ds-mod3-q4'
 
   const handleGenerateReport = useCallback(async () => {
     if (!user || !lesson) return
@@ -205,8 +210,14 @@ export function SandboxPanel({ challenge, lesson, quiz }: Props) {
   useEffect(() => {
     if (output?.allPassed) {
       markChallengeComplete(challenge.id)
+      // Show feedback modal if this is the final Unit 3 challenge
+      if (challenge.id === FINAL_CHALLENGE_ID) {
+        // Small delay so the success animation plays first
+        const timer = setTimeout(() => setShowFeedbackModal(true), 1500)
+        return () => clearTimeout(timer)
+      }
     }
-  }, [output?.allPassed, challenge.id, markChallengeComplete])
+  }, [output?.allPassed, challenge.id, markChallengeComplete, FINAL_CHALLENGE_ID])
 
   useEffect(() => {
     let mounted = true
@@ -493,6 +504,13 @@ await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn'])
         hasResults={Boolean(output?.graderResults?.length)}
         onRun={runCode}
         onSubmit={runCode}
+      />
+
+      <FeedbackModal
+        isOpen={showFeedbackModal}
+        onClose={() => setShowFeedbackModal(false)}
+        userName={user?.name || 'Student'}
+        userEmail={user?.email || 'guest@dq.elab'}
       />
     </section>
   )
