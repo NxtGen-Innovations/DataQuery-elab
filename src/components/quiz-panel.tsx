@@ -282,7 +282,7 @@ export function QuizPanel({ quiz }: Props) {
             {!hasAnswered ? (
               <Button
                 onClick={handleSubmit}
-                disabled={question.type === 'fill_blank' ? !fillInput.trim() : !answers[question.id]}
+                disabled={!answers[question.id]}
                 className="h-11 rounded-xl bg-[#58a6ff] px-8 text-[13px] font-bold text-white hover:bg-[#79c0ff] glow-blue disabled:opacity-50"
               >
                 Validate Logic
