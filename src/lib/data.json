@@ -8,123 +8,35 @@
           "lessons": [
             {
               "id": "ds-mod1-00a",
-              "title": "Intro to Data Science",
+              "title": "1.1 Intro to Data Science & Python",
               "domain": "Data Science",
               "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
-              "content_md": "# Introduction to Data Science\n\nData Science is an interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data. It combines mathematics, statistics, programming, and domain expertise to solve complex problems.\n\n**Real-world Analogy**: Think of Data Science like being a detective. A detective looks at clues (data) left at a scene, processes them (data cleaning), analyzes them for patterns (modeling), and finally solves the case (business insights).\n\n### Key Definitions\n- **Data**: Raw facts and statistics collected for reference or analysis.\n- **Algorithm**: A step-by-step procedure for solving a problem.\n- **Insight**: A deep understanding derived from data analysis.\n\n### Important Points\n- Data Science requires a mix of hard skills (coding, math) and soft skills (communication, problem-solving).\n- 80% of a Data Scientist's job is often data cleaning and preparation.\n- Ethics and privacy are critical considerations when handling user data.\n\n### Industry Use Cases\n- **Healthcare**: Predicting patient readmissions or detecting tumors from MRI scans.\n- **E-commerce**: Recommending products based on browsing history.\n- **Finance**: Detecting fraudulent credit card transactions in real-time."
+              "content_md": "# Introduction to Data Science & Python\n\nData Science is an interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data.\n\n**Real-world Analogy**: Think of a Data Scientist as a detective. A detective collects clues (data), processes them (cleaning), looks for patterns (analysis), and finally solves the case (insights). Python is the detective's toolkit.\n\n### Why Python for Data Science?\n| Feature | Benefit |\n|---|---|\n| Simple syntax | Easy to learn, reads like English |\n| Rich ecosystem | NumPy, Pandas, Matplotlib, Scikit-Learn |\n| Community | Millions of tutorials, StackOverflow answers |\n| Industry standard | Used by Google, Netflix, NASA, banks |\n\n### The Data Science Lifecycle (CRISP-DM)\n1. **Business Understanding** — What problem are we solving?\n2. **Data Acquisition** — Gather data from APIs, databases, CSVs\n3. **Data Preparation** — Clean, handle missing values, standardize (takes ~80% of time!)\n4. **Exploratory Analysis** — Visualize patterns, find correlations\n5. **Modeling** — Apply ML algorithms\n6. **Evaluation & Deployment** — Test accuracy, push to production\n\n### Types of Data\n| Type | Description | Example |\n|---|---|---|\n| **Structured** | Organized in rows/columns | SQL databases, CSVs, Excel |\n| **Unstructured** | No predefined format | Images, videos, tweets, audio |\n| **Semi-structured** | Has tags but not tabular | JSON, XML, HTML |\n\n### Python Variables & Types\n```python\nshop_name = \"Brew Data\"      # str\ndaily_sales = 150             # int\navg_rating = 4.7              # float\nis_open = True                # bool\n```\n\n### Key Principle\n> \"80% of a Data Scientist's time is spent cleaning data. The remaining 20% is spent complaining about cleaning data.\"\n\n### Industry Use Cases\n- **Healthcare**: Predicting patient readmissions from hospital records.\n- **E-commerce**: Amazon's recommendation engine (\"Customers also bought...\").\n- **Finance**: Real-time fraud detection on credit card transactions.\n- **Sports**: Player performance analytics and injury prediction."
             },
             {
               "id": "ds-mod1-00b",
-              "title": "Intro to NumPy",
+              "title": "1.2 NumPy Foundations",
               "domain": "Data Science",
               "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
-              "content_md": "# Introduction to NumPy\n\nNumPy (Numerical Python) is the foundational package for scientific computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays efficiently.\n\n**Real-world Analogy**: Imagine you have to multiply every number in a giant spreadsheet by 2. Doing this cell by cell (like a standard Python list loop) takes forever. NumPy is like a magical wand that selects the entire sheet and multiplies it instantly (vectorization).\n\n### Key Definitions\n- **Array**: A grid of values, all of the same type, indexed by a tuple of nonnegative integers.\n- **Vectorization**: The process of applying operations to entire arrays instead of looping through individual elements.\n\n### Important Points\n- NumPy arrays are much faster and consume less memory than standard Python lists.\n- Elements in a NumPy array must all be of the same data type.\n- NumPy is the core library upon which Pandas and Scikit-Learn are built.\n\n### Industry Use Cases\n- **Image Processing**: Images are stored as 3D NumPy arrays (Height x Width x RGB channels).\n- **Finance**: Fast mathematical computations on large arrays of stock prices."
-            },
-            {
-              "id": "ds-mod1-01",
-              "title": "Pandas Basics",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Pandas Basics\nLoading CSVs, filtering rows, and selecting columns."
-            },
-            {
-              "id": "ds-mod1-02",
-              "title": "Lab Task: Student Grades Analysis",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Lab Task: Student Grades\nLoad a \"Student Grades\" dataset and find the average marks for a specific department."
-            },
-            {
-              "id": "ds-mod1-03",
-              "title": "Data Cleaning",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Data Cleaning\nHandling missing values (fillna) and removing duplicates."
-            },
-            {
-              "id": "ds-mod1-04",
-              "title": "Quick Visualization (Plotly)",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Quick Visualization\nCreating Bar charts and Scatter plots using Plotly (interactive) instead of Matplotlib."
-            },
-            {
-              "id": "ds-mod1-05",
-              "title": "Lab Task: Correlation Plot",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Lab Task\nCreate a plot showing the correlation between \"Study Hours\" and \"Exam Scores.\""
-            },
-            {
-              "id": "ds-mod1-02-facets",
-              "title": "Facets of Data",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Facets of Data\n\nData comes in many forms. Understanding these facets helps in deciding the right tools for analysis.\n\n### Key Types:\n1. **Structured Data**: Highly organized, tabular (e.g., SQL databases, CSVs).\n2. **Unstructured Data**: No predefined format (e.g., text, images, videos).\n3. **Semi-structured Data**: Has some organizational properties like tags (e.g., JSON, XML).\n\n**Case Study context**: A company processing customer reviews must handle unstructured text data, while dealing with their financial records involves structured data."
-            },
-            {
-              "id": "ds-mod1-03-process",
-              "title": "Data Science Process",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Data Science Process\n\nThe standard workflow, often aligned with CRISP-DM:\n1. **Business Understanding**: What is the problem?\n2. **Data Acquisition**: Gathering data from APIs, databases, or scraping.\n3. **Data Preparation**: Cleaning, handling missing values, standardizing (takes 80% of time).\n4. **Modeling**: Applying ML algorithms.\n5. **Evaluation**: Testing model accuracy.\n6. **Deployment**: Pushing the model to production."
-            },
-            {
-              "id": "ds-mod1-04-create-arrays",
-              "title": "Creating Arrays",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Creating Arrays in NumPy\n\nYou can create arrays from Python lists using `np.array()`, or use built-in functions like:\n- `np.zeros((3,3))` for an array of zeros.\n- `np.ones((2,2))` for an array of ones.\n- `np.arange(0, 10, 2)` to generate a sequence (0, 2, 4, 6, 8)."
-            },
-            {
-              "id": "ds-mod1-05-attributes",
-              "title": "NumPy Array Attributes",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# NumPy Array Attributes\n\nEvery NumPy array has attributes that describe its metadata:\n- `.ndim`: Number of dimensions (1D, 2D, 3D).\n- `.shape`: A tuple indicating the size of each dimension (e.g., `(3, 4)` is 3 rows, 4 columns).\n- `.size`: Total number of elements.\n- `.dtype`: The data type of the elements (e.g., `int64`, `float64`)."
-            },
-            {
-              "id": "ds-mod1-06-ops",
-              "title": "Array Operations",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "intermediate",
-              "content_md": "# Array Operations\n\nNumPy supports element-wise operations through vectorization.\n- `a + b` adds corresponding elements.\n- `a * b` multiplies corresponding elements (Hadamard product).\n- `np.dot(a, b)` performs dot product (matrix multiplication)."
-            },
-            {
-              "id": "ds-mod1-07-series",
-              "title": "Pandas Series",
-              "domain": "Data Science",
-              "topic": "Unit 1: Intro to Data Science & Python Foundations",
-              "difficulty": "beginner",
-              "content_md": "# Pandas Series\n\nA Series is a one-dimensional labeled array capable of holding any data type. Think of it as a single column in an Excel sheet.\nUnlike a NumPy array, a Series has an explicit index (labels for rows) which makes data retrieval easier."
+              "content_md": "# NumPy — Numerical Python\n\nNumPy is the foundational library for scientific computing in Python. It provides fast, memory-efficient arrays and mathematical operations that work on entire arrays at once (vectorization).\n\n**Real-world Analogy**: Imagine multiplying every price in a 10,000-row spreadsheet by 1.1 (10% tax). With a Python list, you'd loop through each cell one-by-one. NumPy selects the entire column and multiplies it instantly — like a magic wand.\n\n### Why NumPy Over Python Lists?\n| Feature | Python List | NumPy Array |\n|---|---|---|\n| Speed | Slow (loop-based) | Fast (vectorized C code) |\n| Memory | ~28 bytes per element | ~8 bytes per element |\n| Operations | Manual loops needed | Element-wise built-in |\n| Data types | Can mix types | Homogeneous (one type) |\n\n### Creating Arrays\n```python\nimport numpy as np\n\na = np.array([10, 25, 40, 50])         # From a list\nzeros = np.zeros((3, 3))                # 3x3 matrix of 0s\nones = np.ones((2, 4))                  # 2x4 matrix of 1s\nseq = np.arange(0, 10, 2)              # [0, 2, 4, 6, 8]\n```\n\n### Array Attributes\n| Attribute | What It Returns | Example |\n|---|---|---|\n| `.shape` | Dimensions as tuple | `(3, 4)` = 3 rows, 4 cols |\n| `.ndim` | Number of dimensions | `2` for a matrix |\n| `.size` | Total element count | `12` for a 3×4 array |\n| `.dtype` | Data type | `int64`, `float64` |\n\n### Vectorized Operations\n```python\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\n\na + b       # [5, 7, 9]   — element-wise add\na * b       # [4, 10, 18] — element-wise multiply\na * 2.20462 # [2.2, 4.4, 6.6] — scalar broadcast\nnp.dot(a,b) # 32 — dot product (matrix multiplication)\n```\n\n### Useful Functions\n| Function | Purpose |\n|---|---|\n| `np.sum(a)` | Sum all elements |\n| `np.mean(a)` | Average |\n| `np.max(a)` / `np.min(a)` | Maximum / Minimum |\n| `np.sqrt(a)` | Square root of each element |\n\n### Industry Use Cases\n- **Image Processing**: Images are stored as 3D NumPy arrays (Height × Width × RGB).\n- **Finance**: Vectorized computation on millions of stock prices.\n- **Machine Learning**: All ML libraries (Scikit-Learn, TensorFlow) use NumPy arrays internally."
             },
             {
               "id": "ds-mod1-08-dfs",
-              "title": "Pandas DataFrames",
+              "title": "1.3 Pandas Series & DataFrames",
               "domain": "Data Science",
               "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
-              "content_md": "# Pandas DataFrames\n\nA DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. It is the primary object in Pandas.\nIt operates like a SQL table or a dict of Series objects."
+              "content_md": "# Pandas — Series & DataFrames\n\nPandas is the go-to library for data manipulation and analysis. It provides two core data structures: **Series** (1D) and **DataFrame** (2D).\n\n**Real-world Analogy**: A Series is like a single column in an Excel sheet (e.g., a list of temperatures). A DataFrame is the entire Excel sheet with rows and multiple columns.\n\n### Series — 1D Labeled Array\n```python\nimport pandas as pd\n\ntemps = pd.Series([22, 25, 28], index=['Mon', 'Tue', 'Wed'])\nprint(temps['Tue'])  # 25\n```\n\n### Series vs NumPy Array\n| Feature | NumPy Array | Pandas Series |\n|---|---|---|\n| Index | Numeric only (0, 1, 2...) | Custom labels ('Mon', 'Tue'...) |\n| Data types | Single type | Single type + NaN support |\n| Alignment | By position | By label (auto-aligns) |\n\n### DataFrame — 2D Table\n```python\ndf = pd.DataFrame({\n    'Name': ['Alice', 'Bob', 'Charlie'],\n    'Age': [25, 30, 35],\n    'City': ['Chennai', 'Mumbai', 'Delhi']\n})\n```\n\n### Essential DataFrame Operations\n| Operation | Code | What It Does |\n|---|---|---|\n| View first N rows | `df.head(5)` | Quick preview |\n| Shape | `df.shape` | (rows, columns) tuple |\n| Column types | `df.dtypes` | Data type of each column |\n| Summary stats | `df.describe()` | Count, mean, std, min, max |\n| Select column | `df['Name']` | Returns a Series |\n| Filter rows | `df[df['Age'] > 28]` | Boolean filtering |\n| Sort | `df.sort_values('Age')` | Sort by column |\n\n### Creating DataFrames From Different Sources\n```python\n# From dictionary\ndf = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})\n\n# From CSV file\ndf = pd.read_csv('data.csv')\n\n# From list of lists\ndf = pd.DataFrame([[1, 'a'], [2, 'b']], columns=['Num', 'Letter'])\n```\n\n### Data Acquisition Methods\n| Source | Tool | Example |\n|---|---|---|\n| CSV / Excel | `pd.read_csv()` | `pd.read_csv('sales.csv')` |\n| Web API | `requests` library | Fetch JSON from REST APIs |\n| Database | `SQLAlchemy` | Connect to MySQL, PostgreSQL |\n| Web Scraping | `BeautifulSoup` | Extract data from HTML pages |\n\n### Industry Use Cases\n- **HR**: Employee rosters stored as DataFrames for salary analysis.\n- **Retail**: Loading sales CSVs and filtering by region/product.\n- **Research**: Reading experimental data and computing summary statistics."
             },
             {
-              "id": "ds-mod1-09-acquisition",
-              "title": "Data Acquisition & Info Gathering",
+              "id": "ds-mod1-03",
+              "title": "1.4 Data Cleaning Basics",
               "domain": "Data Science",
               "topic": "Unit 1: Intro to Data Science & Python Foundations",
               "difficulty": "beginner",
-              "content_md": "# Data Acquisition\n\nData rarely sits nicely in a CSV. You must know how to pull it from:\n- **APIs**: Using the `requests` library to fetch JSON.\n- **Databases**: Using `SQLAlchemy` or `psycopg2`.\n- **Web Scraping**: Using `BeautifulSoup` or `Scrapy`."
+              "content_md": "# Data Cleaning Basics\n\nReal-world data is messy. Missing values, duplicates, and inconsistent formatting are the norm. Data cleaning is the process of fixing these issues before analysis.\n\n**Real-world Analogy**: You receive a box of handwritten survey forms. Some are half-filled, some have duplicate entries, and some have illegible handwriting. Before you can analyze the responses, you must clean and standardize every form.\n\n### The \"80% Rule\"\n> Data scientists spend approximately 80% of their time cleaning and preparing data, and only 20% on actual analysis or modeling.\n\n### Common Data Quality Issues\n| Problem | Example | Pandas Fix |\n|---|---|---|\n| Missing values | NaN in age column | `fillna()` or `dropna()` |\n| Duplicates | Same row appears twice | `drop_duplicates()` |\n| Wrong data type | Age stored as string \"25\" | `astype(int)` |\n| Inconsistent text | \"CS\", \"cs\", \"Comp Sci\" | `str.lower()`, `replace()` |\n| Outliers | Age = 999 | Filter with boolean indexing |\n\n### Handling Missing Values\n```python\n# Check for missing values\ndf.isnull().sum()\n\n# Drop rows with any NaN\ndf_clean = df.dropna()\n\n# Fill NaN with a specific value\ndf['grade'].fillna(df['grade'].mean(), inplace=True)\n```\n\n### Removing Duplicates\n```python\n# Check for duplicates\ndf.duplicated().sum()\n\n# Remove duplicates\ndf = df.drop_duplicates()\n\n# Remove duplicates based on specific column\ndf = df.drop_duplicates(subset=['student_id'])\n```\n\n### Filtering & Boolean Indexing\n```python\n# Filter CS department students\ncs_students = df[df['Department'] == 'CS']\n\n# Multiple conditions (use & for AND, | for OR)\ntop_cs = df[(df['Department'] == 'CS') & (df['Grade'] > 80)]\n```\n\n### Quick Summary Functions\n| Function | Returns |\n|---|---|\n| `df.describe()` | Count, mean, std, min, Q1, median, Q3, max |\n| `df['col'].mean()` | Average of column |\n| `df['col'].median()` | Middle value |\n| `df['col'].value_counts()` | Frequency of each unique value |\n\n### Industry Use Cases\n- **Education**: Cleaning student records — filling missing grades, removing duplicate enrollments.\n- **E-commerce**: Standardizing product names across different sellers.\n- **Healthcare**: Removing impossible values (e.g., negative blood pressure)."
             }
           ]
         },
@@ -132,76 +44,36 @@
           "topic": "Unit 2: Data Handling & Data Wrangling",
           "lessons": [
             {
-              "id": "ds-mod2-01",
-              "title": "Descriptive Stats",
-              "domain": "Data Science",
-              "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "beginner",
-              "content_md": "# Descriptive Stats\nUnderstanding mean, median, and outliers through code, not formulas."
-            },
-            {
-              "id": "ds-mod2-02",
-              "title": "Feature Engineering",
+              "id": "ds-mod2-08-cleaning",
+              "title": "2.1 Hospital Patient Records",
               "domain": "Data Science",
               "topic": "Unit 2: Data Handling & Data Wrangling",
               "difficulty": "intermediate",
-              "content_md": "# Feature Engineering\nCreating new columns (e.g., converting a \"Birth Date\" column into an \"Age\" column)."
-            },
-            {
-              "id": "ds-mod2-03",
-              "title": "Correlation Heatmaps",
-              "domain": "Data Science",
-              "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "intermediate",
-              "content_md": "# Correlation\nUnderstanding how two variables move together using Heatmaps."
-            },
-            {
-              "id": "ds-mod2-04",
-              "title": "Lab Task: Titanic Survival Analysis",
-              "domain": "Data Science",
-              "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "intermediate",
-              "content_md": "# Lab Task\nUse a Titanic dataset to find out which class of passengers had the highest survival rate."
-            },
-            {
-              "id": "ds-mod2-05-data-handling",
-              "title": "Data Handling & Large Volumes",
-              "domain": "Data Science",
-              "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "intermediate",
-              "content_md": "# Handling Large Volumes of Data\n\nWhen dealing with millions of rows, memory management becomes critical. Pandas loads data entirely into RAM. For large files, you must use chunking or alternative libraries like Dask or Polars."
-            },
-            {
-              "id": "ds-mod2-06-wrangling",
-              "title": "Data Wrangling",
-              "domain": "Data Science",
-              "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "intermediate",
-              "content_md": "# Data Wrangling\n\nWrangling is the process of cleaning, structuring, and enriching raw data into a desired format for better decision making."
+              "content_md": "# Data Cleaning & Handling Missing Values\n\nMissing data is one of the most common problems in real-world datasets. Before any analysis or modeling can begin, you must identify and handle these gaps.\n\n**Real-world Analogy**: Imagine filling out a hospital admission form. Some patients skip the \"Emergency Contact\" field, others forget their blood type. The hospital can't just throw away the entire form — they must decide: ask the patient later (impute), or proceed without it (drop).\n\n### Why Data Goes Missing\n- **MCAR** (Missing Completely At Random): No pattern — e.g., a sensor randomly fails.\n- **MAR** (Missing At Random): Missingness depends on another observed variable.\n- **MNAR** (Missing Not At Random): The value itself is the reason it's missing (e.g., high-income people skip salary fields).\n\n### Essential Pandas Methods\n\n| Method | What It Does | Example |\n|---|---|---|\n| `df.isnull()` | Returns True/False mask for every cell | `df.isnull().sum()` counts NaNs per column |\n| `df.dropna()` | Removes rows with any NaN | `df.dropna(subset=['age'])` targets specific cols |\n| `df.fillna(value)` | Replaces NaN with a value | `df['age'].fillna(df['age'].median())` |\n| `df.info()` | Shows non-null counts and dtypes | Quick health check for your dataset |\n\n### Choosing the Right Strategy\n\n| Scenario | Best Strategy | Why |\n|---|---|---|\n| < 5% data missing | `dropna()` | Minimal information loss |\n| Numerical column, no outliers | `fillna(mean)` | Preserves distribution center |\n| Numerical column, has outliers | `fillna(median)` | Median is robust to outliers |\n| Categorical column | `fillna(mode)` | Most frequent value is safest |\n\n### Code Walkthrough\n```python\nimport pandas as pd\n\ndf = pd.DataFrame({'age': [25, None, 35], 'bp': [120, 130, None]})\n\n# Check missing values\nprint(df.isnull().sum())\n\n# Fill age with median\ndf['age'] = df['age'].fillna(df['age'].median())\n\n# Drop rows where bp is missing\ndf = df.dropna(subset=['bp'])\n```\n\n### Industry Use Cases\n- **Healthcare**: Patient records with missing lab results — dropping them could lose critical cases.\n- **Banking**: Loan applications with missing income — imputing with median prevents bias.\n- **IoT**: Sensor data with gaps due to connectivity loss — forward-fill (`ffill`) is common."
             },
             {
               "id": "ds-mod2-07-combining",
-              "title": "Combining & Merging Datasets",
+              "title": "2.2 Online Store Orders",
               "domain": "Data Science",
               "topic": "Unit 2: Data Handling & Data Wrangling",
               "difficulty": "intermediate",
-              "content_md": "# Merging Datasets\n\nSimilar to SQL JOINs, Pandas uses `pd.merge()`. You can merge on indices or specific columns (e.g., `user_id`). `pd.concat()` is used to stack DataFrames vertically or horizontally."
-            },
-            {
-              "id": "ds-mod2-08-cleaning",
-              "title": "Handling Missing Values",
-              "domain": "Data Science",
-              "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "intermediate",
-              "content_md": "# Handling Missing Values\n\nMissing data can skew models. Use `df.dropna()` to remove them or `df.fillna()` to impute them (replace with mean/median)."
+              "content_md": "# Merging & Combining Datasets\n\nIn real-world projects, data almost never lives in a single table. Customer info is in one database, their orders in another, shipping details in a third. Merging brings them together.\n\n**Real-world Analogy**: Think of it like a school. The \"Students\" register has names and roll numbers. The \"Marks\" register has roll numbers and scores. To create a report card, you *merge* them on roll number.\n\n### Types of Joins\n\n| Join Type | Keeps | SQL Equivalent |\n|---|---|---|\n| **Inner** | Only rows with matching keys in BOTH tables | `INNER JOIN` |\n| **Left** | All rows from left + matched from right (NaN if no match) | `LEFT JOIN` |\n| **Right** | All rows from right + matched from left | `RIGHT JOIN` |\n| **Outer** | Everything from both (NaN where no match) | `FULL OUTER JOIN` |\n\n### Pandas Merge Syntax\n```python\nmerged = pd.merge(left_df, right_df, on='key_column', how='inner')\n```\n\n### GroupBy & Aggregation\n\nAfter merging, you often need to summarize. `groupby()` splits data into groups, then applies an aggregation function.\n\n```python\n# Total spending per customer\ndf.groupby('customer_id')['amount'].sum()\n\n# Multiple aggregations\ndf.groupby('customer_id')['amount'].agg(['sum', 'mean', 'count'])\n```\n\n### pd.concat vs pd.merge\n| Function | Use Case |\n|---|---|\n| `pd.merge()` | Combine on a shared key column (like SQL JOIN) |\n| `pd.concat()` | Stack DataFrames vertically (append rows) or horizontally |\n\n### Industry Use Cases\n- **E-commerce**: Merging user profiles with order history to analyze spending patterns.\n- **HR Analytics**: Joining employee table with department table to calculate average salary per team.\n- **Supply Chain**: Combining shipment data with warehouse inventory for stock reconciliation."
             },
             {
               "id": "ds-mod2-09-transformation",
-              "title": "Data Transformation",
+              "title": "2.3 Employee Payroll",
               "domain": "Data Science",
               "topic": "Unit 2: Data Handling & Data Wrangling",
-              "difficulty": "advanced",
-              "content_md": "# Data Transformation & String Manipulation\n\nOften you need to extract parts of a string using Regex (`.str.extract()`) or map categorical values to numerical ones."
+              "difficulty": "intermediate",
+              "content_md": "# Data Transformation & String Operations\n\nRaw data from forms, spreadsheets, and APIs is often messy. Salaries stored as \"$45,000\" (a string, not a number), names in random case (\"john DOE\"), dates in inconsistent formats. Transformation cleans this into usable form.\n\n**Real-world Analogy**: You receive a box of handwritten letters. Before you can sort them alphabetically, you need to first read each one, standardize the handwriting into typed text, and fix any spelling errors. That's data transformation.\n\n### String Methods in Pandas\n\n| Method | What It Does | Example |\n|---|---|---|\n| `.str.lower()` | Converts to lowercase | `'HELLO'` → `'hello'` |\n| `.str.upper()` | Converts to uppercase | `'hello'` → `'HELLO'` |\n| `.str.title()` | Title Case | `'john doe'` → `'John Doe'` |\n| `.str.strip()` | Removes leading/trailing whitespace | `' hello '` → `'hello'` |\n| `.str.replace(old, new)` | Replaces substrings | Remove `$` and `,` from salary |\n| `.str.contains(pattern)` | Boolean mask for substring match | Filter rows containing \"Manager\" |\n\n### Type Conversion Pipeline\n```python\n# Salary: \"$45,000\" → 45000\ndf['salary'] = df['salary'].str.replace('$', '', regex=False)\ndf['salary'] = df['salary'].str.replace(',', '', regex=False)\ndf['salary'] = df['salary'].astype(int)\n```\n\n### The apply() + lambda Pattern\nFor custom row-level transformations that don't have a built-in method:\n```python\n# Categorize salary\ndf['tier'] = df['salary'].apply(lambda x: 'Senior' if x > 50000 else 'Junior')\n```\n\n### Industry Use Cases\n- **Finance**: Cleaning currency symbols and formatting from transaction data before analysis.\n- **HR**: Standardizing employee names and department codes across merged databases.\n- **Retail**: Normalizing product names (\"iPhone 15\", \"IPHONE15\", \"Apple iPhone 15\") for accurate grouping."
+            },
+            {
+              "id": "ds-mod2-06-wrangling",
+              "title": "2.4 Student Marks",
+              "domain": "Data Science",
+              "topic": "Unit 2: Data Handling & Data Wrangling",
+              "difficulty": "intermediate",
+              "content_md": "# Reshaping & Summarizing Data\n\nData often comes in a \"long\" format (one observation per row) but reports need it in \"wide\" format (subjects as columns). Reshaping is the bridge.\n\n**Real-world Analogy**: Your marks are stored like a diary — one entry per subject per student. But the report card needs a single row per student with all subjects side by side. Pivoting does this automatically.\n\n### Long vs Wide Format\n\n**Long format** (how databases store it):\n| Student | Subject | Score |\n|---|---|---|\n| Alice | Math | 85 |\n| Alice | Science | 90 |\n| Bob | Math | 78 |\n| Bob | Science | 88 |\n\n**Wide format** (how reports show it):\n| Student | Math | Science |\n|---|---|---|\n| Alice | 85 | 90 |\n| Bob | 78 | 88 |\n\n### pivot_table() Syntax\n```python\npivot_df = pd.pivot_table(\n    df,\n    index='student',     # Rows\n    columns='subject',   # New columns\n    values='score',      # Values to fill\n    aggfunc='mean'       # Aggregation (default: mean)\n)\n```\n\n### Key Aggregation Functions\n\n| Function | Use |\n|---|---|\n| `mean` | Average (default) |\n| `sum` | Total |\n| `count` | Number of entries |\n| `max` / `min` | Extremes |\n\n### Sorting Results\n```python\n# Sort by Math scores, highest first\npivot_df.sort_values('Math', ascending=False)\n```\n\n### Industry Use Cases\n- **Education**: Generating student report cards from exam databases.\n- **Sales**: Pivoting monthly sales data to see revenue by product and region.\n- **Healthcare**: Summarizing patient visit counts by department and month."
             }
           ]
         },
@@ -209,28 +81,36 @@
           "topic": "Unit 3: Data Visualization using Matplotlib",
           "lessons": [
             {
-              "id": "ds-mod3-01-matplotlib",
-              "title": "Intro to Matplotlib",
+              "id": "ds-mod3-02-customizing",
+              "title": "3.1 Monthly Sales Report",
               "domain": "Data Science",
               "topic": "Unit 3: Data Visualization using Matplotlib",
               "difficulty": "beginner",
-              "content_md": "# Introduction to Matplotlib\n\nMatplotlib is the grandfather of Python plotting libraries. It was created to replicate MATLAB's plotting capabilities in Python. `pyplot` is the main module used."
-            },
-            {
-              "id": "ds-mod3-02-customizing",
-              "title": "Customizing Plots",
-              "domain": "Data Science",
-              "topic": "Unit 3: Data Visualization using Matplotlib",
-              "difficulty": "intermediate",
-              "content_md": "# Customizing Plots\n\nAdding titles, changing colors, and adding labels makes your plots readable.\n`plt.title('Sales')`, `plt.xlabel('Month')`, `plt.legend()`."
+              "content_md": "# Line & Bar Plots with Matplotlib\n\nLine plots show trends over time. Bar plots compare categorical values. Together, they cover 80% of business reporting needs.\n\n**Real-world Analogy**: A line plot is like tracking your daily step count on a fitness app — you see the trend over days. A bar plot is like comparing your monthly electricity bills — discrete categories side by side.\n\n### Line Plot\n```python\nplt.plot(x, y, color='blue', marker='o', linestyle='--')\nplt.title('Sales Trend')\nplt.xlabel('Month')\nplt.ylabel('Revenue ($)')\nplt.grid(True)\nplt.show()\n```\n\n### Bar Plot\n```python\nplt.bar(categories, values, color='teal')\nplt.title('Category Comparison')\nplt.show()\n```\n\n### Essential Customization\n\n| Function | Purpose | Example |\n|---|---|---|\n| `plt.title()` | Chart title | `plt.title('Q1 Sales')` |\n| `plt.xlabel()` / `plt.ylabel()` | Axis labels | `plt.xlabel('Month')` |\n| `plt.grid(True)` | Background grid | Improves readability |\n| `plt.legend()` | Legend for multiple series | `plt.legend(['2024', '2025'])` |\n| `plt.xticks(rotation=45)` | Rotate x-axis labels | Prevents overlap |\n\n### Industry Use Cases\n- **Finance**: Monthly revenue trend lines for board presentations.\n- **Marketing**: Bar charts comparing campaign performance across channels.\n- **Operations**: Daily order volume trends to plan staffing."
             },
             {
               "id": "ds-mod3-03-types",
-              "title": "Types of Plots",
+              "title": "3.2 Student Score Distribution",
               "domain": "Data Science",
               "topic": "Unit 3: Data Visualization using Matplotlib",
               "difficulty": "intermediate",
-              "content_md": "# Plot Types\n\n- **Scatter Plot**: Show correlation (`plt.scatter()`).\n- **Line Plot**: Show trends over time (`plt.plot()`).\n- **Bar Plot**: Compare categorical data (`plt.bar()`).\n- **Histogram**: Show frequency distribution (`plt.hist()`)."
+              "content_md": "# Histograms & Box Plots\n\nWhen you need to understand the *shape* of your data — not just the average — distribution plots are essential.\n\n**Real-world Analogy**: Imagine 100 students took an exam. The average is 70. But are most students clustered around 70? Or are there two groups — one around 50 and one around 90? A histogram reveals this hidden pattern.\n\n### Histogram\nShows frequency distribution — how many data points fall in each range (bin).\n```python\nplt.hist(scores, bins=15, color='steelblue', edgecolor='black')\nplt.title('Score Distribution')\nplt.xlabel('Score')\nplt.ylabel('Frequency')\nplt.show()\n```\n\n### Box Plot (Box-and-Whisker)\nShows median, quartiles (Q1, Q3), and outliers in one compact visual.\n```python\nplt.boxplot(scores, vert=True)\nplt.title('Score Spread')\nplt.show()\n```\n\n### Reading a Box Plot\n| Component | Meaning |\n|---|---|\n| Center line | Median (50th percentile) |\n| Box edges | Q1 (25th) to Q3 (75th) — the IQR |\n| Whiskers | 1.5 × IQR from box edges |\n| Dots beyond whiskers | **Outliers** |\n\n### When to Use What\n| Question | Plot |\n|---|---|\n| \"What's the shape of the distribution?\" | Histogram |\n| \"Are there outliers?\" | Box Plot |\n| \"Is the data skewed?\" | Both |\n\n### Key NumPy Function\n```python\n# Generate 100 scores from a normal distribution\nnp.random.seed(42)\nscores = np.random.normal(mean=70, std=15, size=100)\n```"
+            },
+            {
+              "id": "ds-mod3-03-subplots",
+              "title": "3.3 City Temperature Analysis",
+              "domain": "Data Science",
+              "topic": "Unit 3: Data Visualization using Matplotlib",
+              "difficulty": "intermediate",
+              "content_md": "# Multiple Subplots\n\nWhen comparing two or more datasets visually, putting them side-by-side in subplots makes patterns immediately obvious.\n\n**Real-world Analogy**: Imagine comparing two X-ray scans of a patient — left lung vs right lung. You'd place them side by side, not overlay them. Subplots do the same for data.\n\n### Creating Subplots\n```python\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\n\naxes[0].plot(x, y1, color='tomato')\naxes[0].set_title('City A')\n\naxes[1].plot(x, y2, color='dodgerblue')\naxes[1].set_title('City B')\n\nplt.suptitle('Temperature Comparison')\nplt.tight_layout()\nplt.show()\n```\n\n### Key Parameters\n\n| Parameter | Purpose |\n|---|---|\n| `plt.subplots(nrows, ncols)` | Grid layout (rows × columns) |\n| `figsize=(width, height)` | Figure size in inches |\n| `axes[i]` | Access individual subplot |\n| `plt.suptitle()` | Super-title above all subplots |\n| `plt.tight_layout()` | Auto-fix spacing to prevent overlap |\n\n### Common Layouts\n| Layout | Code |\n|---|---|\n| 2 side-by-side | `plt.subplots(1, 2)` |\n| 2 stacked | `plt.subplots(2, 1)` |\n| 2×2 grid | `plt.subplots(2, 2)` |\n\n### Industry Use Cases\n- **Weather**: Comparing temperature trends across cities.\n- **A/B Testing**: Side-by-side conversion rate plots for control vs experiment.\n- **Finance**: Stock price comparison across companies."
+            },
+            {
+              "id": "ds-mod3-03-scatter",
+              "title": "3.4 Product Sales Scatter & Correlation",
+              "domain": "Data Science",
+              "topic": "Unit 3: Data Visualization using Matplotlib",
+              "difficulty": "intermediate",
+              "content_md": "# Scatter Plots & Trend Lines\n\nScatter plots reveal relationships between two continuous variables. Adding a trend line quantifies that relationship mathematically.\n\n**Real-world Analogy**: Plot every student's study hours (x) vs their exam score (y). If the dots trend upward, more study = better scores. The trend line gives you the exact formula: \"Each extra hour adds ~5 points.\"\n\n### Scatter Plot\n```python\nplt.scatter(x, y, color='purple', alpha=0.7)\nplt.title('Ad Spend vs Sales')\nplt.xlabel('Ad Spend ($)')\nplt.ylabel('Sales ($)')\nplt.show()\n```\n\n### Adding a Trend Line with np.polyfit\n```python\nm, b = np.polyfit(x, y, 1)  # degree=1 → linear fit\nplt.plot(x, m*x + b, color='red', linestyle='--')\n```\n\n- **m** = slope (how much y changes per unit of x)\n- **b** = intercept (y-value when x = 0)\n\n### Interpreting Scatter Patterns\n\n| Pattern | Correlation | Example |\n|---|---|---|\n| Dots trend ↗ upward | **Positive** | More ads → more sales |\n| Dots trend ↘ downward | **Negative** | Higher price → fewer buyers |\n| Random cloud | **None** | Shoe size vs exam score |\n\n### Correlation Coefficient (r)\n| Range | Strength |\n|---|---|\n| 0.8 to 1.0 | Strong positive |\n| 0.5 to 0.8 | Moderate positive |\n| -0.5 to 0.5 | Weak or none |\n| -0.8 to -1.0 | Strong negative |\n\n### Industry Use Cases\n- **Marketing**: Measuring the ROI of ad spend against revenue.\n- **Real Estate**: Price vs square footage with trend line for valuation.\n- **Healthcare**: Dose vs response curves in clinical trials."
             }
           ]
         },
@@ -342,42 +222,370 @@
   ],
   "QUIZZES": [
     {
-      "id": "quiz-ds-mod1-01",
-      "lesson_id": "ds-mod1-01",
-      "title": "Pandas Basics Quiz",
+      "id": "quiz-ds-mod2-08-cleaning",
+      "lesson_id": "ds-mod2-08-cleaning",
+      "title": "Data Cleaning & Missing Values Quiz",
       "questions": [
         {
           "id": "q1",
           "type": "mcq",
-          "question": "Which Pandas function is used to load a CSV file?",
+          "question": "You have a DataFrame with 1000 rows and the 'salary' column has 12 missing values. What is the best approach?",
           "options": [
-            "read_csv()",
-            "load_csv()",
-            "open_csv()",
-            "fetch_csv()"
+            "Drop the entire 'salary' column",
+            "Drop the 12 rows with missing salary",
+            "Fill missing values with 0",
+            "Delete the entire DataFrame and re-collect data"
           ],
-          "correct_answer": "read_csv()",
-          "explanation": "The standard function to read CSV files in Pandas is pd.read_csv()."
+          "correct_answer": "Drop the 12 rows with missing salary",
+          "explanation": "With only ~1.2% missing data, dropping those rows is safe and preserves the integrity of the salary column without introducing artificial values like 0."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "What does `df.isnull().sum()` return?",
+          "options": [
+            "Total rows in the DataFrame",
+            "Count of missing values per column",
+            "True if the entire DataFrame has nulls",
+            "The sum of all numerical values"
+          ],
+          "correct_answer": "Count of missing values per column",
+          "explanation": "df.isnull() creates a True/False mask, and .sum() counts the True values (missing) in each column."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "Why is the median preferred over the mean for imputing missing values in a column with outliers?",
+          "options": [
+            "Median is faster to compute",
+            "Median is always larger than mean",
+            "Median is not affected by extreme values",
+            "Median only works with integers"
+          ],
+          "correct_answer": "Median is not affected by extreme values",
+          "explanation": "The mean gets pulled toward outliers (e.g., one salary of $10M would skew the average), while the median stays at the true middle of the distribution."
         }
       ]
     },
     {
-      "id": "quiz-ds-mod2-01",
-      "lesson_id": "ds-mod2-01",
-      "title": "Descriptive Stats Quiz",
+      "id": "quiz-ds-mod2-07-combining",
+      "lesson_id": "ds-mod2-07-combining",
+      "title": "Merging Datasets Quiz",
       "questions": [
         {
           "id": "q1",
           "type": "mcq",
-          "question": "What does the median represent in a dataset?",
+          "question": "You merge a 'customers' table (3 rows) with an 'orders' table (5 rows) using an inner join on 'customer_id'. Customer ID 4 appears in orders but not in customers. How many rows will the result have?",
           "options": [
-            "The average value",
-            "The middle value when sorted",
-            "The most frequent value",
-            "The range of values"
+            "8 rows",
+            "5 rows",
+            "3 rows",
+            "It depends on how many orders match existing customers"
           ],
-          "correct_answer": "The middle value when sorted",
-          "explanation": "The median is the middle value in a sorted list of numbers."
+          "correct_answer": "It depends on how many orders match existing customers",
+          "explanation": "An inner join only keeps rows where the key exists in BOTH tables. Orders from customer_id=4 are dropped because that customer doesn't exist in the customers table."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "What is the difference between `pd.merge()` and `pd.concat()`?",
+          "options": [
+            "They are identical",
+            "merge() joins on a key column, concat() stacks DataFrames",
+            "concat() is for SQL databases only",
+            "merge() only works with NumPy arrays"
+          ],
+          "correct_answer": "merge() joins on a key column, concat() stacks DataFrames",
+          "explanation": "pd.merge() combines DataFrames horizontally using a shared key (like SQL JOIN), while pd.concat() stacks them vertically (appending rows) or horizontally."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "After merging two tables, you want to find the total amount spent by each customer. Which method do you use?",
+          "options": [
+            "df.sort_values('amount')",
+            "df.pivot_table()",
+            "df.groupby('customer_id')['amount'].sum()",
+            "df.merge('amount')"
+          ],
+          "correct_answer": "df.groupby('customer_id')['amount'].sum()",
+          "explanation": "groupby() splits the data by customer_id, then .sum() calculates the total amount for each group — this is the standard aggregation pattern."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod2-09-transformation",
+      "lesson_id": "ds-mod2-09-transformation",
+      "title": "Data Transformation Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "The salary column contains values like '$45,000'. What is the correct order of operations to convert it to an integer?",
+          "options": [
+            "astype(int) → str.replace('$','') → str.replace(',','')",
+            "str.replace('$','') → str.replace(',','') → astype(int)",
+            "fillna(0) → astype(int) → str.replace('$','')",
+            "str.title() → astype(int)"
+          ],
+          "correct_answer": "str.replace('$','') → str.replace(',','') → astype(int)",
+          "explanation": "You must first remove all non-numeric characters ($ and commas), then convert the clean string '45000' to an integer. Trying astype(int) before cleaning will throw an error."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "What does `df['name'].str.title()` do to the value 'JANE SMITH'?",
+          "options": [
+            "'jane smith'",
+            "'Jane Smith'",
+            "'JANE SMITH' (no change)",
+            "'Jane smith'"
+          ],
+          "correct_answer": "'Jane Smith'",
+          "explanation": "str.title() capitalizes the first letter of every word and lowercases the rest, so 'JANE SMITH' becomes 'Jane Smith'."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "When should you use `apply(lambda x: ...)` instead of built-in string methods?",
+          "options": [
+            "Always — it's faster",
+            "When you need custom row-level logic that has no built-in method",
+            "Only for numerical columns",
+            "Never — lambda functions are deprecated"
+          ],
+          "correct_answer": "When you need custom row-level logic that has no built-in method",
+          "explanation": "apply() with lambda is for custom transformations (e.g., categorizing values into tiers). For standard operations like case conversion, use built-in .str methods which are optimized."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod2-06-wrangling",
+      "lesson_id": "ds-mod2-06-wrangling",
+      "title": "Reshaping & Summarizing Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "You have a DataFrame with columns: student, subject, score. You want each student as a row and each subject as a column. Which function do you use?",
+          "options": [
+            "pd.merge()",
+            "pd.concat()",
+            "pd.pivot_table()",
+            "df.groupby()"
+          ],
+          "correct_answer": "pd.pivot_table()",
+          "explanation": "pivot_table() reshapes 'long' format data (one row per observation) into 'wide' format (subjects become columns), exactly what's needed for report card generation."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "In `pd.pivot_table(df, index='student', columns='subject', values='score')`, what does the `index` parameter define?",
+          "options": [
+            "The column to use as new column headers",
+            "The values to aggregate",
+            "The rows of the resulting pivot table",
+            "The aggregation function"
+          ],
+          "correct_answer": "The rows of the resulting pivot table",
+          "explanation": "The index parameter defines what becomes the row labels in the pivoted result. Each unique value in the index column becomes one row."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "If a student has two Math scores (85 and 95) and you use pivot_table with aggfunc='mean', what will appear in the Math column?",
+          "options": [
+            "85",
+            "95",
+            "90",
+            "Error: duplicate entries"
+          ],
+          "correct_answer": "90",
+          "explanation": "When there are duplicate entries, pivot_table applies the aggregation function. With aggfunc='mean', it calculates (85 + 95) / 2 = 90."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod3-02-customizing",
+      "lesson_id": "ds-mod3-02-customizing",
+      "title": "Line & Bar Plots Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Which matplotlib function creates a line plot?",
+          "options": [
+            "plt.bar()",
+            "plt.scatter()",
+            "plt.plot()",
+            "plt.hist()"
+          ],
+          "correct_answer": "plt.plot()",
+          "explanation": "plt.plot() creates a line chart by connecting data points. plt.bar() creates bars, plt.scatter() creates dots, and plt.hist() creates histograms."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "You created a plot but the labels are overlapping. Which function helps add spacing automatically?",
+          "options": [
+            "plt.grid(True)",
+            "plt.tight_layout()",
+            "plt.legend()",
+            "plt.savefig()"
+          ],
+          "correct_answer": "plt.tight_layout()",
+          "explanation": "tight_layout() automatically adjusts subplot parameters so that labels, titles, and axes don't overlap."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "What happens if you call plt.show() before plt.title()?",
+          "options": [
+            "The title appears normally",
+            "The title won't appear on the plot",
+            "Python throws an error",
+            "The plot appears twice"
+          ],
+          "correct_answer": "The title won't appear on the plot",
+          "explanation": "plt.show() renders and displays the current figure. Any customization added after show() won't appear because the figure has already been drawn."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod3-03-types",
+      "lesson_id": "ds-mod3-03-types",
+      "title": "Histograms & Box Plots Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What does the 'bins' parameter in plt.hist() control?",
+          "options": [
+            "The color of bars",
+            "How many intervals the data is divided into",
+            "The height of the tallest bar",
+            "The data type of the input"
+          ],
+          "correct_answer": "How many intervals the data is divided into",
+          "explanation": "Bins determine the number of ranges. More bins = finer resolution of the distribution, fewer bins = smoother but less detailed view."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "In a box plot, what do the dots beyond the whiskers represent?",
+          "options": [
+            "Missing values",
+            "The mean",
+            "Outliers",
+            "Standard deviation"
+          ],
+          "correct_answer": "Outliers",
+          "explanation": "Points beyond 1.5 × IQR from the box edges are considered outliers — unusually high or low values that may warrant investigation."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "np.random.normal(70, 15, 100) generates 100 values. What does the '15' represent?",
+          "options": [
+            "The mean",
+            "The sample size",
+            "The standard deviation",
+            "The seed value"
+          ],
+          "correct_answer": "The standard deviation",
+          "explanation": "The function signature is normal(mean, std, size). So 70 is the center, 15 is the spread (standard deviation), and 100 is how many values to generate."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod3-03-subplots",
+      "lesson_id": "ds-mod3-03-subplots",
+      "title": "Multiple Subplots Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What does `plt.subplots(1, 2)` create?",
+          "options": [
+            "2 rows, 1 column of plots",
+            "1 row, 2 columns of plots",
+            "A single plot with 2 lines",
+            "A 2x2 grid of plots"
+          ],
+          "correct_answer": "1 row, 2 columns of plots",
+          "explanation": "The first argument is rows, the second is columns. So (1, 2) means 1 row with 2 side-by-side subplots."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "How do you set the title for the second subplot in a 1×2 grid?",
+          "options": [
+            "plt.title('Title')",
+            "axes[1].set_title('Title')",
+            "axes[2].set_title('Title')",
+            "fig.set_title('Title')"
+          ],
+          "correct_answer": "axes[1].set_title('Title')",
+          "explanation": "Subplots are 0-indexed. axes[0] is the first, axes[1] is the second. Use set_title() on individual axes, not plt.title() which applies to the current active plot."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "What is the purpose of plt.suptitle()?",
+          "options": [
+            "Sets the title of a single subplot",
+            "Sets a super-title above ALL subplots",
+            "Replaces plt.title()",
+            "Changes the font of all titles"
+          ],
+          "correct_answer": "Sets a super-title above ALL subplots",
+          "explanation": "suptitle() (short for 'super title') adds a main heading that spans the entire figure, above all individual subplot titles."
+        }
+      ]
+    },
+    {
+      "id": "quiz-ds-mod3-03-scatter",
+      "lesson_id": "ds-mod3-03-scatter",
+      "title": "Scatter Plots & Correlation Quiz",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What does `np.polyfit(x, y, 1)` return?",
+          "options": [
+            "A scatter plot",
+            "The correlation coefficient",
+            "The slope (m) and intercept (b) of the best-fit line",
+            "A polynomial equation object"
+          ],
+          "correct_answer": "The slope (m) and intercept (b) of the best-fit line",
+          "explanation": "With degree=1, polyfit performs linear regression and returns [m, b] where y = mx + b is the line of best fit."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "A scatter plot shows points trending downward from left to right. What type of correlation is this?",
+          "options": [
+            "Positive correlation",
+            "No correlation",
+            "Negative correlation",
+            "Perfect correlation"
+          ],
+          "correct_answer": "Negative correlation",
+          "explanation": "A downward trend means as x increases, y decreases — this is a negative correlation (e.g., higher price → fewer units sold)."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "If the slope (m) from polyfit is 1.25, what does this mean?",
+          "options": [
+            "The data has 1.25 outliers",
+            "For every $1 increase in x, y increases by $1.25",
+            "The correlation is 1.25",
+            "25% of the data is missing"
+          ],
+          "correct_answer": "For every $1 increase in x, y increases by $1.25",
+          "explanation": "The slope represents the rate of change. m=1.25 means each unit increase in x (e.g., ad spend) corresponds to a 1.25 unit increase in y (e.g., sales)."
         }
       ]
     },
@@ -389,125 +597,7 @@
         {
           "id": "q1",
           "type": "mcq",
-          "question": "Which of the following best defines Data Science?",
-          "options": [
-            "Building computer hardware.",
-            "Extracting knowledge and insights from data.",
-            "Writing web applications.",
-            "Managing company finances."
-          ],
-          "correct_answer": "Extracting knowledge and insights from data.",
-          "explanation": "Data Science focuses on analyzing data to find meaningful patterns and insights."
-        },
-        {
-          "id": "q2",
-          "type": "mcq",
-          "question": "Data cleaning usually takes up the majority of a Data Scientist's time.",
-          "options": [
-            "True",
-            "False"
-          ],
-          "correct_answer": "True",
-          "explanation": "It is widely recognized that data cleaning and preparation take up around 80% of the workflow."
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-00b",
-      "lesson_id": "ds-mod1-00b",
-      "title": "Intro to NumPy Quiz",
-      "questions": [
-        {
-          "id": "q1",
-          "type": "mcq",
-          "question": "What is the primary data structure in NumPy?",
-          "options": [
-            "List",
-            "Dictionary",
-            "ndarray",
-            "DataFrame"
-          ],
-          "correct_answer": "ndarray",
-          "explanation": "NumPy revolves around the N-dimensional array object (ndarray)."
-        },
-        {
-          "id": "q2",
-          "type": "mcq",
-          "question": "NumPy arrays can contain a mix of strings, integers, and booleans in the same array.",
-          "options": [
-            "True",
-            "False"
-          ],
-          "correct_answer": "False",
-          "explanation": "Unlike Python lists, NumPy arrays must contain elements of the same data type for performance reasons."
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-02",
-      "lesson_id": "ds-mod1-02-facets",
-      "title": "Facets Quiz",
-      "questions": [
-        {
-          "id": "q1",
-          "type": "mcq",
-          "question": "What type of data is a CSV file?",
-          "options": [
-            "Structured",
-            "Unstructured",
-            "Semi-structured"
-          ],
-          "correct_answer": "Structured"
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-04",
-      "lesson_id": "ds-mod1-04-create-arrays",
-      "title": "Creating Arrays Quiz",
-      "questions": [
-        {
-          "id": "q1",
-          "type": "mcq",
-          "question": "Which function generates an array of a specified range?",
-          "options": [
-            "np.arange()",
-            "np.zeros()",
-            "np.linspace()"
-          ],
-          "correct_answer": "np.arange()"
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-02-facets",
-      "lesson_id": "ds-mod1-02-facets",
-      "title": "Facets of Data Quiz",
-      "questions": [
-        {
-          "id": "q1",
-          "type": "mcq",
-          "question": "Which of the following is the best example of unstructured data?",
-          "options": [
-            "A CSV file of temperatures",
-            "An SQL database of user accounts",
-            "A folder of customer service call recordings",
-            "A JSON file from an API"
-          ],
-          "correct_answer": "A folder of customer service call recordings",
-          "explanation": "Audio recordings do not have a predefined, structured format that can be easily queried like a database."
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-03-process",
-      "lesson_id": "ds-mod1-03-process",
-      "title": "Data Science Process Quiz",
-      "questions": [
-        {
-          "id": "q1",
-          "type": "mcq",
-          "question": "According to the standard Data Science workflow, which step typically consumes the most time?",
+          "question": "According to the CRISP-DM lifecycle, which phase typically consumes ~80% of a data scientist's time?",
           "options": [
             "Modeling",
             "Data Preparation",
@@ -515,505 +605,176 @@
             "Business Understanding"
           ],
           "correct_answer": "Data Preparation",
-          "explanation": "Data cleaning, formatting, and preparation often take up to 80% of a data scientist's time."
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-04-create-arrays",
-      "lesson_id": "ds-mod1-04-create-arrays",
-      "title": "Creating Arrays Quiz",
-      "questions": [
+          "explanation": "Data cleaning, formatting, handling missing values, and standardizing data typically takes up about 80% of the total project time."
+        },
         {
-          "id": "q1",
+          "id": "q2",
           "type": "mcq",
-          "question": "Which NumPy function would you use to create a 3x3 matrix filled entirely with ones?",
+          "question": "A folder of customer service call recordings is an example of which data type?",
           "options": [
-            "np.array(3, 3)",
-            "np.ones((3, 3))",
-            "np.zeros(3, 3)",
-            "np.fill(1, (3,3))"
+            "Structured data",
+            "Semi-structured data",
+            "Unstructured data",
+            "Tabular data"
           ],
-          "correct_answer": "np.ones((3, 3))",
-          "explanation": "np.ones() generates an array of a given shape filled with the value 1. Note the tuple argument for the shape."
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-05-attributes",
-      "lesson_id": "ds-mod1-05-attributes",
-      "title": "Array Attributes Quiz",
-      "questions": [
+          "correct_answer": "Unstructured data",
+          "explanation": "Audio recordings have no predefined row/column format. They cannot be queried like a database without first being processed (transcribed)."
+        },
         {
-          "id": "q1",
+          "id": "q3",
           "type": "mcq",
-          "question": "If you have a 2D image represented as a NumPy array with 1080 rows and 1920 columns, what will `image.shape` return?",
+          "question": "Which Python data type would you use to store a product price like 49.99?",
           "options": [
-            "(1920, 1080)",
-            "(1080, 1920)",
-            "[1080, 1920]",
-            "1920x1080"
+            "str",
+            "int",
+            "float",
+            "bool"
           ],
-          "correct_answer": "(1080, 1920)",
-          "explanation": "The shape attribute returns a tuple representing the dimensions, typically in (rows, columns) format."
+          "correct_answer": "float",
+          "explanation": "Prices with decimal points are stored as floats. An int would truncate 49.99 to 49, and a str would prevent mathematical operations."
         }
       ]
     },
     {
-      "id": "quiz-ds-mod1-06-ops",
-      "lesson_id": "ds-mod1-06-ops",
-      "title": "Array Operations Quiz",
+      "id": "quiz-ds-mod1-00b",
+      "lesson_id": "ds-mod1-00b",
+      "title": "NumPy Foundations Quiz",
       "questions": [
         {
           "id": "q1",
           "type": "mcq",
-          "question": "If `a = np.array([1, 2, 3])` and `b = np.array([4, 5, 6])`, what is the result of `a * b`?",
+          "question": "If `a = np.array([1, 2, 3])` and `b = np.array([4, 5, 6])`, what does `a * b` return?",
           "options": [
-            "32 (dot product)",
             "[1, 2, 3, 4, 5, 6]",
             "[4, 10, 18]",
-            "Error: Arrays cannot be multiplied directly"
+            "32",
+            "Error"
           ],
           "correct_answer": "[4, 10, 18]",
-          "explanation": "Standard multiplication with '*' on NumPy arrays performs element-wise multiplication (Hadamard product)."
-        }
-      ]
-    },
-    {
-      "id": "quiz-ds-mod1-07-series",
-      "lesson_id": "ds-mod1-07-series",
-      "title": "Pandas Series Quiz",
-      "questions": [
+          "explanation": "The * operator on NumPy arrays performs element-wise multiplication: 1×4=4, 2×5=10, 3×6=18. This is NOT the dot product."
+        },
         {
-          "id": "q1",
+          "id": "q2",
           "type": "mcq",
-          "question": "What is the primary difference between a Pandas Series and a 1D NumPy array?",
+          "question": "What does `np.zeros((3, 4)).shape` return?",
           "options": [
-            "A Series cannot hold strings.",
-            "A Series has an explicit, customizable index.",
-            "A Series is strictly for numerical data.",
-            "A NumPy array is slower."
+            "(4, 3)",
+            "(3, 4)",
+            "[3, 4]",
+            "12"
           ],
-          "correct_answer": "A Series has an explicit, customizable index.",
-          "explanation": "While both are 1D arrays, a Pandas Series provides an explicit index (labels) that can be strings, dates, or custom objects, allowing for more intuitive data alignment."
+          "correct_answer": "(3, 4)",
+          "explanation": "np.zeros((3,4)) creates a 3-row, 4-column matrix. The .shape attribute returns the dimensions as a tuple: (3, 4)."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "Why are NumPy arrays faster than Python lists for numerical operations?",
+          "options": [
+            "NumPy uses a different version of Python",
+            "NumPy arrays use vectorized operations in compiled C code",
+            "Python lists don't support multiplication",
+            "NumPy compresses data automatically"
+          ],
+          "correct_answer": "NumPy arrays use vectorized operations in compiled C code",
+          "explanation": "NumPy operations are implemented in optimized C code and operate on the entire array at once (vectorization), avoiding Python's slow for-loop overhead."
         }
       ]
     },
     {
       "id": "quiz-ds-mod1-08-dfs",
       "lesson_id": "ds-mod1-08-dfs",
-      "title": "Pandas DataFrames Quiz",
+      "title": "Pandas Series & DataFrames Quiz",
       "questions": [
         {
           "id": "q1",
           "type": "mcq",
-          "question": "A Pandas DataFrame can best be described as a collection of:",
+          "question": "What is the primary difference between a Pandas Series and a 1D NumPy array?",
           "options": [
-            "NumPy Arrays without indices.",
-            "Dictionaries without keys.",
-            "Pandas Series sharing a common index.",
-            "Multi-dimensional arrays sharing a column."
+            "A Series cannot hold strings",
+            "A Series has an explicit, customizable index",
+            "A Series is strictly for numerical data",
+            "A NumPy array is slower"
           ],
-          "correct_answer": "Pandas Series sharing a common index.",
-          "explanation": "A DataFrame is essentially a 2D table where each column is a Pandas Series, and they all share the same row index."
+          "correct_answer": "A Series has an explicit, customizable index",
+          "explanation": "While both are 1D, a Pandas Series has labeled indices (like 'Mon', 'Tue') that allow intuitive data retrieval, unlike NumPy's numeric-only indexing."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "Which function would you use to see the first 5 rows of a DataFrame?",
+          "options": [
+            "df.info()",
+            "df.describe()",
+            "df.head()",
+            "df.shape"
+          ],
+          "correct_answer": "df.head()",
+          "explanation": "df.head() returns the first 5 rows by default (or df.head(N) for N rows). df.describe() gives statistics, df.info() gives column types."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "What does `df[df['Age'] > 30]` return?",
+          "options": [
+            "A single value",
+            "True or False",
+            "A filtered DataFrame with only rows where Age > 30",
+            "An error"
+          ],
+          "correct_answer": "A filtered DataFrame with only rows where Age > 30",
+          "explanation": "This is boolean indexing. df['Age'] > 30 creates a True/False mask, and df[mask] filters to keep only rows where the condition is True."
         }
       ]
     },
     {
-      "id": "quiz-ds-mod1-09-acquisition",
-      "lesson_id": "ds-mod1-09-acquisition",
-      "title": "Data Acquisition Quiz",
+      "id": "quiz-ds-mod1-03",
+      "lesson_id": "ds-mod1-03",
+      "title": "Data Cleaning Basics Quiz",
       "questions": [
         {
           "id": "q1",
           "type": "mcq",
-          "question": "Which Python library is commonly used to fetch data from web APIs over HTTP?",
+          "question": "You have a DataFrame with 1000 rows and 3 duplicate rows. What does `df.drop_duplicates()` return?",
           "options": [
-            "pandas",
-            "requests",
-            "numpy",
-            "matplotlib"
+            "1003 rows",
+            "997 rows",
+            "1000 rows",
+            "3 rows"
           ],
-          "correct_answer": "requests",
-          "explanation": "The 'requests' library is the standard tool in Python for making HTTP requests to fetch data from web APIs."
+          "correct_answer": "997 rows",
+          "explanation": "drop_duplicates() removes the duplicate rows, keeping the first occurrence. 1000 - 3 duplicates = 997 unique rows."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "What does `df['Grade'].fillna(df['Grade'].mean())` do?",
+          "options": [
+            "Deletes all rows with missing grades",
+            "Replaces missing grades with the average of existing grades",
+            "Sets all grades to the mean",
+            "Returns True/False for each row"
+          ],
+          "correct_answer": "Replaces missing grades with the average of existing grades",
+          "explanation": "fillna() replaces NaN values with the specified value. Here, it fills missing grades with the mean of non-missing grades — a common imputation strategy."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "To filter a DataFrame for rows where Department is 'CS' AND Grade is above 80, which syntax is correct?",
+          "options": [
+            "df[df['Department'] == 'CS' and df['Grade'] > 80]",
+            "df[(df['Department'] == 'CS') & (df['Grade'] > 80)]",
+            "df.filter('CS', 80)",
+            "df.query(Department='CS', Grade>80)"
+          ],
+          "correct_answer": "df[(df['Department'] == 'CS') & (df['Grade'] > 80)]",
+          "explanation": "In Pandas, use & (not 'and') for combining conditions, and wrap each condition in parentheses. The Python keyword 'and' doesn't work with Series."
         }
       ]
     }
   ],
   "CHALLENGES": [
-    {
-      "id": "ch-ds-mod1-02",
-      "lesson_id": "ds-mod1-02",
-      "title": "Student Grades Analysis",
-      "prompt": "## Task: Find Average Marks\nLoad the student grades data and calculate the average.",
-      "starter_code": "import pandas as pd\nimport numpy as np\n\n# Sample Data\ndata = {'Department': ['CS', 'CS', 'Math', 'Math'], 'Grade': [85, 90, 78, 82]}\ndf = pd.DataFrame(data)\n\n# TODO: Calculate average for CS department\navg_cs = df[df['Department'] == 'CS']['Grade'].mean()\nprint(f\"Average CS Grade: {avg_cs}\")\n",
-      "grader_checks": [
-        {
-          "variable": "avg_cs",
-          "condition": "eq",
-          "value": 87.5,
-          "message": "Average grade for CS should be 87.5"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-02",
-      "lesson_id": "ds-mod2-02",
-      "title": "Feature Engineering: Create an Age Column",
-      "prompt": "## Task: Create a Reusable Age Feature\nYou are given a small customer dataset with birth years and signup years.\n\nCreate a new column called `AgeAtSignup` using:\n\n`AgeAtSignup = SignupYear - BirthYear`\n\nThen compute:\n\n1. `avg_age` \u2192 the average of the new `AgeAtSignup` column\n2. `senior_count` \u2192 the number of customers whose `AgeAtSignup` is at least 40\n\nPrint the transformed dataframe so you can inspect the result.",
-      "starter_code": "import pandas as pd\n\ncustomers = pd.DataFrame(\n    {\n        \"Customer\": [\"Asha\", \"Dev\", \"Mina\", \"Ravi\", \"Sara\"],\n        \"BirthYear\": [1998, 1985, 1992, 1978, 1988],\n        \"SignupYear\": [2024, 2023, 2024, 2022, 2024],\n    }\n)\n\n# TODO: Create the AgeAtSignup feature\n\n# TODO: Compute the average age at signup\navg_age = None\n\n# TODO: Count customers with age at signup >= 40\nsenior_count = None\n\nprint(customers)\n",
-      "grader_checks": [
-        {
-          "variable": "avg_age",
-          "condition": "eq",
-          "value": 35.6,
-          "message": "Average AgeAtSignup should be 35.6"
-        },
-        {
-          "variable": "senior_count",
-          "condition": "eq",
-          "value": 2,
-          "message": "There should be 2 customers with AgeAtSignup >= 40"
-        },
-        {
-          "variable": "customers['AgeAtSignup'].tolist()",
-          "condition": "eq",
-          "value": "[26, 38, 32, 44, 36]",
-          "message": "AgeAtSignup should be created correctly for every row"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-05",
-      "lesson_id": "ds-mod1-05",
-      "title": "Correlation Plot",
-      "prompt": "## Task: Correlation Plot\nCreate a scatter plot using Plotly.",
-      "starter_code": "import plotly.express as px\nimport pandas as pd\n\n# Sample Data\ndf = pd.DataFrame({'Study Hours': [2, 4, 6, 8], 'Exam Scores': [50, 65, 80, 95]})\n\n# TODO: Create scatter plot\nfig = px.scatter(df, x='Study Hours', y='Exam Scores')\nfig.show()\n",
-      "grader_checks": []
-    },
-    {
-      "id": "ch-ds-mod1-00a",
-      "lesson_id": "ds-mod1-00a",
-      "title": "Case Study: The 'Brew Data' Coffee Shop",
-      "prompt": "## Case Study: The 'Brew Data' Coffee Shop\n\nYou have just been hired as a Junior Data Analyst for a new tech-themed coffee shop called **'Brew Data'**. The owner wants to start tracking the shop's daily performance.\n\nBefore they can set up a full database, they want a simple Python script to record the shop's name and its first day's sales.\n\n### Lab Task\n1. Create a variable called `shop_name` and assign it the exact string `'Brew Data'`.\n2. Create another variable called `daily_sales` and assign it the integer `150`.\n3. Print a welcome report that says: `Welcome to Brew Data! Today's sales: 150`",
-      "starter_code": "# TODO: Create variables shop_name and daily_sales\n\n\n# TODO: Print the welcome report\n",
-      "grader_checks": [
-        {
-          "variable": "shop_name",
-          "condition": "eq",
-          "value": "Brew Data",
-          "message": "shop_name must be 'Brew Data'"
-        },
-        {
-          "variable": "daily_sales",
-          "condition": "eq",
-          "value": 150,
-          "message": "daily_sales must be exactly 150"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-00b",
-      "lesson_id": "ds-mod1-00b",
-      "title": "Case Study: Global Logistics Corp",
-      "prompt": "## Case Study: Global Logistics Corp\n\nYou work as a Data Scientist for **Global Logistics Corp**. The company has collected an array of package weights in kilograms from their European warehouse.\n\nHowever, the shipping manifest for the US route requires the weights to be converted into pounds. (Note: 1 kg = 2.20462 lbs).\n\n### Lab Task\nInstead of using a slow Python list loop, use NumPy's vectorization to convert thousands of weights instantly.\n\n1. Import the `numpy` library.\n2. Create a NumPy array called `weights_kg` with the following values: `[10, 25, 40, 50]`.\n3. Using vectorization, create a new array `weights_lbs` by multiplying `weights_kg` by 2.20462.\n4. Calculate the total weight in pounds by summing the array and store it in `total_lbs`.",
-      "starter_code": "import numpy as np\n\n# TODO: Create weights_kg\n\n# TODO: Create weights_lbs\n\n# TODO: Calculate total_lbs by summing weights_lbs\n",
-      "grader_checks": [
-        {
-          "variable": "type(weights_kg).__name__",
-          "condition": "eq",
-          "value": "ndarray",
-          "message": "weights_kg must be a NumPy array"
-        },
-        {
-          "variable": "weights_kg.shape",
-          "condition": "shape_check",
-          "value": "(4,)",
-          "message": "weights_kg should have 4 elements"
-        },
-        {
-          "variable": "total_lbs",
-          "condition": "eq",
-          "value": 275.5775,
-          "message": "total_lbs should be exactly 275.5775"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-04",
-      "lesson_id": "ds-mod1-04-create-arrays",
-      "title": "Case Study: Image Matrix Initialization",
-      "prompt": "## Case Study: Image Processing Startup\n\nYou are working on an image processing algorithm. An image is represented as a matrix of pixels.\n\n### Task\nInitialize an empty 10x10 matrix using NumPy's `zeros()` function to act as a black canvas. Assign it to `black_canvas`.",
-      "starter_code": "import numpy as np\n\n# TODO: Create a 10x10 matrix of zeros\n",
-      "grader_checks": [
-        {
-          "variable": "black_canvas.shape",
-          "condition": "shape_check",
-          "value": "(10, 10)"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-08",
-      "lesson_id": "ds-mod1-08-dfs",
-      "title": "Case Study: HR Employee Roster",
-      "prompt": "## Case Study: HR Department\n\nYou are given lists of employee names and ages. Create a Pandas DataFrame `df` containing columns 'Name' and 'Age'.\n\nNames: ['Alice', 'Bob']\nAges: [25, 30]",
-      "starter_code": "import pandas as pd\n\n# TODO: Create DataFrame df\n",
-      "grader_checks": [
-        {
-          "variable": "df.shape",
-          "condition": "shape_check",
-          "value": "(2, 2)"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-07",
-      "lesson_id": "ds-mod2-07-combining",
-      "title": "Case Study: E-commerce DB Merge",
-      "prompt": "## Case Study: E-commerce Startup\n\nYou have two dataframes: `users` and `orders`. Merge them into a single dataframe `merged_df` using the `user_id` column.",
-      "starter_code": "import pandas as pd\n\nusers = pd.DataFrame({'user_id': [1, 2], 'name': ['Alice', 'Bob']})\norders = pd.DataFrame({'order_id': [101, 102], 'user_id': [1, 2], 'amount': [50, 80]})\n\n# TODO: Create merged_df\n",
-      "grader_checks": [
-        {
-          "variable": "merged_df.shape",
-          "condition": "shape_check",
-          "value": "(2, 4)"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-03",
-      "lesson_id": "ds-mod3-03-types",
-      "title": "Case Study: Startup Growth Line Plot",
-      "prompt": "## Case Study: Startup Growth\n\nYour startup has gained users over 4 months: `[100, 250, 500, 1000]`. Create a line plot using matplotlib to visualize this trajectory.",
-      "starter_code": "import matplotlib.pyplot as plt\n\nmonths = [1, 2, 3, 4]\nusers = [100, 250, 500, 1000]\n\n# TODO: Plot months vs users using plt.plot()\nplt.plot(months, users)\nplt.title('Startup Growth')\nplt.show()\n",
-      "grader_checks": []
-    },
-    {
-      "id": "ch-ds-mod1-01",
-      "lesson_id": "ds-mod1-01",
-      "title": "Case Study: Bookstore Inventory (Pandas)",
-      "prompt": "## Case Study: Bookstore Inventory\n\nYou run a local bookstore. Create a Pandas DataFrame `inventory_df` with columns `Book` and `Stock` containing 3 books of your choice.",
-      "starter_code": "import pandas as pd\n\n# TODO: Create inventory_df\n",
-      "grader_checks": [
-        {
-          "variable": "type(inventory_df).__name__",
-          "condition": "eq",
-          "value": "DataFrame",
-          "message": "Must be a DataFrame"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-03",
-      "lesson_id": "ds-mod1-03",
-      "title": "Case Study: Cleaning Survey Data",
-      "prompt": "## Case Study: Survey Cleanup\n\nYou collected ages from a survey, but some entries are missing (NaN). Use `fillna()` to replace missing values in the Series `ages` with 0, assigning it to `clean_ages`.",
-      "starter_code": "import pandas as pd\nimport numpy as np\n\nages = pd.Series([25, np.nan, 30, np.nan, 22])\n# TODO: Create clean_ages\n",
-      "grader_checks": [
-        {
-          "variable": "clean_ages.isna().sum()",
-          "condition": "eq",
-          "value": 0,
-          "message": "No missing values allowed"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-01",
-      "lesson_id": "ds-mod2-01",
-      "title": "Case Study: Practical Descriptive Stats",
-      "prompt": "## Case Study: Practical Descriptive Stats\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-03",
-      "lesson_id": "ds-mod2-03",
-      "title": "Case Study: Practical Correlation Heatmaps",
-      "prompt": "## Case Study: Practical Correlation Heatmaps\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-04",
-      "lesson_id": "ds-mod2-04",
-      "title": "Case Study: Practical Lab Task: Titanic Survival Analysis",
-      "prompt": "## Case Study: Practical Lab Task: Titanic Survival Analysis\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-05-data-handling",
-      "lesson_id": "ds-mod2-05-data-handling",
-      "title": "Case Study: Practical Data Handling & Large Volumes",
-      "prompt": "## Case Study: Practical Data Handling & Large Volumes\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-06-wrangling",
-      "lesson_id": "ds-mod2-06-wrangling",
-      "title": "Case Study: Practical Data Wrangling",
-      "prompt": "## Case Study: Practical Data Wrangling\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-08-cleaning",
-      "lesson_id": "ds-mod2-08-cleaning",
-      "title": "Case Study: Practical Handling Missing Values",
-      "prompt": "## Case Study: Practical Handling Missing Values\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod2-09-transformation",
-      "lesson_id": "ds-mod2-09-transformation",
-      "title": "Case Study: Practical Data Transformation",
-      "prompt": "## Case Study: Practical Data Transformation\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-01-matplotlib",
-      "lesson_id": "ds-mod3-01-matplotlib",
-      "title": "Case Study: Practical Intro to Matplotlib",
-      "prompt": "## Case Study: Practical Intro to Matplotlib\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-02-customizing",
-      "lesson_id": "ds-mod3-02-customizing",
-      "title": "Case Study: Practical Customizing Plots",
-      "prompt": "## Case Study: Practical Customizing Plots\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-01",
-      "lesson_id": "ds-mod3-01",
-      "title": "Case Study: Predicting Loan Defaults",
-      "prompt": "## Case Study: Banking App\n\nCreate a variable `model_type` and assign it the string `\"Logistic Regression\"` to confirm the algorithm used for binary yes/no predictions.",
-      "starter_code": "# TODO: Define model_type\n",
-      "grader_checks": [
-        {
-          "variable": "model_type",
-          "condition": "eq",
-          "value": "Logistic Regression",
-          "message": "Define the model correctly"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-02",
-      "lesson_id": "ds-mod3-02",
-      "title": "Case Study: Practical K-Nearest Neighbors (KNN)",
-      "prompt": "## Case Study: Practical K-Nearest Neighbors (KNN)\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-03",
-      "lesson_id": "ds-mod3-03",
-      "title": "Case Study: Practical Model Evaluation",
-      "prompt": "## Case Study: Practical Model Evaluation\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod3-04",
-      "lesson_id": "ds-mod3-04",
-      "title": "Case Study: Practical Lab Task: Spam Mail Detector",
-      "prompt": "## Case Study: Practical Lab Task: Spam Mail Detector\n\nApply the concepts learned in this lesson.\n\n### Task\nCreate a variable called `lesson_complete` and set it to `True`.",
-      "starter_code": "# TODO: Set lesson_complete to True\n",
-      "grader_checks": [
-        {
-          "variable": "lesson_complete",
-          "condition": "eq",
-          "value": "True",
-          "message": "lesson_complete must be True"
-        }
-      ]
-    },
     {
       "id": "ch-ds-mod4-01",
       "lesson_id": "ds-mod4-01",
@@ -1120,108 +881,251 @@
       ]
     },
     {
-      "id": "ch-ds-mod1-02-facets",
-      "lesson_id": "ds-mod1-02-facets",
-      "title": "Data Typology Classification",
-      "prompt": "## Case Study: Defining Data Types\n\nYou are building a catalog of data assets for your company. You need to classify the incoming data correctly.\n\n### Task\nCreate a variable called `video_data_type` and set it to a string representing the type of data a video file is ('Structured', 'Unstructured', or 'Semi-structured').",
-      "starter_code": "# TODO: Assign the correct data type string to video_data_type\nvideo_data_type = ''\n",
+      "id": "ch-ds-mod2-q1",
+      "lesson_id": "ds-mod2-08-cleaning",
+      "title": "Hospital Patient Records",
+      "prompt": "## eLab Case Study 2.1: Hospital Patient Records\n\n### Scenario\nYou are a data analyst at **City General Hospital**. The hospital recently digitized its patient intake forms, but the data entry process was manual — leading to missing values in critical fields like age and blood pressure.\n\nBefore any medical analysis can begin, you must clean this dataset.\n\n### Dataset\n| patient_id | age | blood_pressure |\n|---|---|---|\n| 101 | 45 | 120 |\n| 102 | 50 | NaN |\n| 103 | NaN | 130 |\n| 104 | 60 | 140 |\n| 105 | 65 | 125 |\n\n### Your Tasks\n1. Calculate the **median** of the `age` column (ignoring NaN) and store it in `median_age`.\n2. Fill the missing `age` values with this median.\n3. Drop any rows where `blood_pressure` is missing.\n4. Save the final cleaned DataFrame as `cleaned_patients`.\n\n### Expected Output\n- `median_age` = 55.0\n- `cleaned_patients` should have **4 rows** and **3 columns** with zero missing values.",
+      "starter_code": "import pandas as pd\n\npatients = pd.DataFrame({\n    'patient_id': [101, 102, 103, 104, 105],\n    'age': [45, 50, None, 60, 65],\n    'blood_pressure': [120, None, 130, 140, 125]\n})\n\n# Step 1: Calculate the median age\nmedian_age = None\n\n# Step 2: Fill the missing age values with the median\n\n# Step 3: Drop rows where blood_pressure is missing and save as cleaned_patients\ncleaned_patients = None\n\n",
       "grader_checks": [
         {
-          "variable": "video_data_type.lower().strip()",
+          "variable": "median_age",
           "condition": "eq",
-          "value": "unstructured",
-          "message": "Video data is unstructured data."
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-03-process",
-      "lesson_id": "ds-mod1-03-process",
-      "title": "The 80% Rule",
-      "prompt": "## Case Study: Time Allocation\n\nA junior data scientist asks you which part of the Data Science process they will spend most of their time on.\n\n### Task\nCreate a variable called `most_time_consuming_step` and assign it the string name of the step (e.g., 'Modeling', 'Data Preparation', 'Deployment').",
-      "starter_code": "# TODO: Name the most time-consuming step\nmost_time_consuming_step = ''\n",
-      "grader_checks": [
+          "value": 55,
+          "message": "Median age should be 55.0"
+        },
         {
-          "variable": "most_time_consuming_step.lower().replace(' ', '')",
-          "condition": "eq",
-          "value": "datapreparation",
-          "message": "Data Preparation takes up the majority of time."
-        }
-      ]
-    },
-    {
-      "id": "ch-ds-mod1-05-attributes",
-      "lesson_id": "ds-mod1-05-attributes",
-      "title": "Matrix Inspection",
-      "prompt": "## Case Study: Analyzing a Matrix\n\nYou have generated a matrix representing experimental data. You need to programmatically determine its shape and total number of elements.\n\n### Task\n1. Import NumPy.\n2. We have provided a matrix `data_matrix`.\n3. Create a variable `matrix_shape` storing its shape.\n4. Create a variable `total_elements` storing its total size.",
-      "starter_code": "import numpy as np\n\ndata_matrix = np.ones((5, 12))\n\n# TODO: Get the shape and assign it to matrix_shape\n\n\n# TODO: Get the size and assign it to total_elements\n\n",
-      "grader_checks": [
-        {
-          "variable": "matrix_shape",
+          "variable": "cleaned_patients.shape",
           "condition": "shape_check",
-          "value": "(5, 12)"
+          "value": "(4, 3)",
+          "message": "cleaned_patients should have 4 rows and 3 columns after dropping nulls"
         },
         {
-          "variable": "total_elements",
+          "variable": "cleaned_patients['age'].isnull().sum()",
           "condition": "eq",
-          "value": 60
+          "value": 0,
+          "message": "There should be no missing values in age"
         }
       ]
     },
     {
-      "id": "ch-ds-mod1-06-ops",
-      "lesson_id": "ds-mod1-06-ops",
-      "title": "Vectorized Sales Tax Calculation",
-      "prompt": "## Case Study: Retail Tax\n\nYou have an array of product prices in dollars. A state tax of 7% (0.07) needs to be applied to all prices.\n\n### Task\n1. Use NumPy vectorization to multiply the `prices` array by `1.07`.\n2. Store the result in a new array called `prices_with_tax`.",
-      "starter_code": "import numpy as np\n\nprices = np.array([100.0, 50.0, 20.0, 10.0])\n\n# TODO: Apply 7% tax using vectorization\n\n",
+      "id": "ch-ds-mod2-q2",
+      "lesson_id": "ds-mod2-07-combining",
+      "title": "Online Store Orders",
+      "prompt": "## eLab Case Study 2.2: Online Store Orders\n\n### Scenario\nYou work at **QuickCart**, a growing e-commerce startup. The customer data and order data are stored in separate databases. Management wants a report showing the **total spending per customer**.\n\n### Datasets\n\n**Customers Table**\n| customer_id | name |\n|---|---|\n| 1 | Alice |\n| 2 | Bob |\n| 3 | Charlie |\n\n**Orders Table**\n| order_id | customer_id | amount |\n|---|---|---|\n| 1001 | 1 | 250 |\n| 1002 | 1 | 150 |\n| 1003 | 2 | 300 |\n| 1004 | 4 | 400 |\n\n> **Note**: Customer ID 4 exists in orders but NOT in customers. Customer ID 3 has zero orders.\n\n### Your Tasks\n1. Perform an **inner join** on `customers` and `orders` using `customer_id`. Save as `merged_df`.\n2. Use `groupby()` to calculate the **sum of amount** per customer. Save as `total_spent`.\n\n### Expected Output\n- `merged_df` should have **3 rows** (customer 4's order is excluded, customer 3 has no orders).\n- Total spent across all valid customers = **700**.",
+      "starter_code": "import pandas as pd\n\ncustomers = pd.DataFrame({\n    'customer_id': [1, 2, 3],\n    'name': ['Alice', 'Bob', 'Charlie']\n})\norders = pd.DataFrame({\n    'order_id': [1001, 1002, 1003, 1004],\n    'customer_id': [1, 1, 2, 4],\n    'amount': [250, 150, 300, 400]\n})\n\n# Step 1: Merge customers and orders using an inner join\nmerged_df = None\n\n# Step 2: Group by customer_id and sum the amount\ntotal_spent = None\n\n",
       "grader_checks": [
         {
-          "variable": "prices_with_tax[0]",
-          "condition": "eq",
-          "value": 107.0
+          "variable": "merged_df.shape",
+          "condition": "shape_check",
+          "value": "(3, 4)",
+          "message": "merged_df should only include matched rows (inner join)"
         },
         {
-          "variable": "type(prices_with_tax).__name__",
+          "variable": "total_spent.sum()",
           "condition": "eq",
-          "value": "ndarray"
+          "value": 700,
+          "message": "Total spent across all valid customers should be 700"
         }
       ]
     },
     {
-      "id": "ch-ds-mod1-07-series",
-      "lesson_id": "ds-mod1-07-series",
-      "title": "Creating a Temperature Series",
-      "prompt": "## Case Study: Weekly Temperatures\n\nYou want to track temperatures across a week using a Pandas Series with custom index labels for the days.\n\n### Task\n1. Import pandas.\n2. Create a Pandas Series named `weekly_temps` containing the values `[72, 75, 78]`.\n3. Set the index of the Series to `['Mon', 'Tue', 'Wed']`.",
-      "starter_code": "import pandas as pd\n\n# TODO: Create the weekly_temps Series with the custom index\n\n",
+      "id": "ch-ds-mod2-q3",
+      "lesson_id": "ds-mod2-09-transformation",
+      "title": "Employee Payroll",
+      "prompt": "## eLab Case Study 2.3: Employee Payroll\n\n### Scenario\nThe HR department at **TechNova Inc.** has exported their payroll data from an old system. Unfortunately, salaries are stored as formatted strings with dollar signs and commas, and employee names have inconsistent capitalization.\n\nYou need to clean this data before it can be loaded into the new payroll system.\n\n### Dataset\n| emp_id | name | salary |\n|---|---|---|\n| 1 | john doe | $45,000 |\n| 2 | JANE SMITH | $55,000 |\n| 3 | bob | $40,000 |\n\n### Your Tasks\n1. Clean the `salary` column: remove `$` and `,`, then convert to **integer** type.\n2. Convert the `name` column to **Title Case** (e.g., \"john doe\" → \"John Doe\").\n\n### Expected Output\n- Salary column dtype should be `int64`.\n- Sum of all salaries = **140,000**.\n- First name should be **\"John Doe\"**.",
+      "starter_code": "import pandas as pd\n\npayroll = pd.DataFrame({\n    'emp_id': [1, 2, 3],\n    'name': ['john doe', 'JANE SMITH', 'bob'],\n    'salary': ['$45,000', '$55,000', '$40,000']\n})\n\n# Step 1: Clean the salary column — remove '$' and ',' then convert to integer\n\n# Step 2: Convert the name column to Title Case\n\n",
       "grader_checks": [
         {
-          "variable": "type(weekly_temps).__name__",
+          "variable": "payroll['salary'].dtype.name",
           "condition": "eq",
-          "value": "Series"
+          "value": "int64",
+          "message": "Salary column must be of type integer"
         },
         {
-          "variable": "weekly_temps['Tue']",
+          "variable": "payroll['salary'].sum()",
           "condition": "eq",
-          "value": 75
+          "value": 140000,
+          "message": "The sum of all salaries should be 140,000"
+        },
+        {
+          "variable": "payroll['name'][0]",
+          "condition": "eq",
+          "value": "John Doe",
+          "message": "Names must be in Title Case"
         }
       ]
     },
     {
-      "id": "ch-ds-mod1-09-acquisition",
-      "lesson_id": "ds-mod1-09-acquisition",
-      "title": "Simulated API Fetch",
-      "prompt": "## Case Study: Fetching JSON Data\n\nWhile we won't make a live network request here, you need to understand how to parse JSON data that an API would return.\n\n### Task\n1. Import the `json` module.\n2. Parse the `api_response_string` into a Python dictionary named `user_data`.\n3. Extract the user's `email` and store it in a variable called `extracted_email`.",
-      "starter_code": "import json\n\napi_response_string = '{\"id\": 101, \"name\": \"Jane Doe\", \"email\": \"jane@example.com\"}'\n\n# TODO: Parse the JSON string into user_data\n\n\n# TODO: Extract the email into extracted_email\n\n",
+      "id": "ch-ds-mod2-q4",
+      "lesson_id": "ds-mod2-06-wrangling",
+      "title": "Student Marks",
+      "prompt": "## eLab Case Study 2.4: Student Marks\n\n### Scenario\nA school teacher at **Greenfield Academy** has recorded student marks in a log-style format — each row represents one student's score in one subject. The principal needs a **report card view** where each student is a single row with subjects as columns.\n\n### Dataset (Long Format)\n| student | subject | score |\n|---|---|---|\n| Alice | Math | 85 |\n| Alice | Science | 90 |\n| Bob | Math | 78 |\n| Bob | Science | 88 |\n\n### Your Task\n1. Use `pd.pivot_table()` to reshape the data into wide format.\n2. Set `index='student'`, `columns='subject'`, `values='score'`.\n3. Save the result as `pivot_df`.\n\n### Expected Output (Wide Format)\n| student | Math | Science |\n|---|---|---|\n| Alice | 85 | 90 |\n| Bob | 78 | 88 |\n\n- Shape: **(2, 2)** — 2 students × 2 subjects.",
+      "starter_code": "import pandas as pd\n\nmarks = pd.DataFrame({\n    'student': ['Alice', 'Alice', 'Bob', 'Bob'],\n    'subject': ['Math', 'Science', 'Math', 'Science'],\n    'score': [85, 90, 78, 88]\n})\n\n# Step 1: Create a pivot table from the marks dataframe\npivot_df = None\n\n",
       "grader_checks": [
         {
-          "variable": "type(user_data).__name__",
-          "condition": "eq",
-          "value": "dict"
+          "variable": "pivot_df.shape",
+          "condition": "shape_check",
+          "value": "(2, 2)",
+          "message": "Pivot table should have 2 students (rows) and 2 subjects (columns)"
         },
         {
-          "variable": "extracted_email",
+          "variable": "pivot_df.loc['Alice', 'Math']",
           "condition": "eq",
-          "value": "jane@example.com"
+          "value": 85,
+          "message": "Alice's Math score must be 85 in the pivot table"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod3-q1",
+      "lesson_id": "ds-mod3-02-customizing",
+      "title": "Monthly Sales Report",
+      "prompt": "## eLab Case Study 3.1: Monthly Sales Report\n\n### Scenario\nYou are the data analyst at **BrightMart**, a retail chain. The CEO has asked for a visual report of Q1 sales performance to present at the next board meeting.\n\n### Dataset\n| Month | Sales ($) |\n|---|---|\n| Jan | 1,500 |\n| Feb | 2,000 |\n| Mar | 1,800 |\n| Apr | 2,200 |\n\n### Your Tasks\n1. Create a **line plot** with months on the x-axis and sales on the y-axis.\n2. Add the title **\"Q1 Sales\"**.\n3. Label the x-axis as **\"Month\"** and y-axis as **\"Sales ($)\"**.\n4. Enable the **grid** for better readability.\n5. Call `plt.show()` to render the plot.\n\n### Expected Output\nA clean line chart showing the sales trend across 4 months with proper labels and grid.",
+      "starter_code": "import matplotlib.pyplot as plt\n\nmonths = ['Jan', 'Feb', 'Mar', 'Apr']\nsales = [1500, 2000, 1800, 2200]\n\n# Create a line plot, add title, labels, grid, and display it\n\n",
+      "grader_checks": []
+    },
+    {
+      "id": "ch-ds-mod3-q2",
+      "lesson_id": "ds-mod3-03-types",
+      "title": "Student Score Distribution",
+      "prompt": "## eLab Case Study 3.2: Student Score Distribution\n\n### Scenario\nThe examination board at **National Academy** wants to understand the spread of standardized test scores. Are most students clustered around the passing mark, or is there a wide spread? Are there any extreme outliers?\n\n### Dataset\n100 scores generated from a normal distribution: mean = 70, std = 15.\n\n### Your Tasks\n1. Create a **histogram** using `plt.hist()` with **15 bins**.\n2. Add the title **\"Score Distribution\"**.\n3. Call `plt.show()` to display the chart.\n\n### Expected Output\nA histogram showing the bell-curve distribution of student scores. Most scores should cluster around 70.",
+      "starter_code": "import matplotlib.pyplot as plt\nimport numpy as np\n\nnp.random.seed(42)\nscores = np.random.normal(70, 15, 100)\n\n# Create a histogram with 15 bins, add a title, and display it\n\n",
+      "grader_checks": []
+    },
+    {
+      "id": "ch-ds-mod3-q3",
+      "lesson_id": "ds-mod3-03-subplots",
+      "title": "City Temperature Analysis",
+      "prompt": "## eLab Case Study 3.3: City Temperature Analysis\n\n### Scenario\nThe meteorological department wants to compare the daily temperatures of **City A** and **City B** over a week. The best way to compare is a side-by-side subplot layout.\n\n### Datasets\n| Day | City A (°C) | City B (°C) |\n|---|---|---|\n| 1 | 22 | 18 |\n| 2 | 24 | 19 |\n| 3 | 23 | 20 |\n| 4 | 25 | 18 |\n| 5 | 27 | 17 |\n| 6 | 28 | 19 |\n| 7 | 26 | 21 |\n\n### Your Tasks\n1. Create a figure with **1 row and 2 columns** using `plt.subplots(1, 2, figsize=(10, 4))`.\n2. Plot City A temperatures on the **left subplot** (`axes[0]`).\n3. Plot City B temperatures on the **right subplot** (`axes[1]`).\n4. Add a **suptitle** \"Temperature Comparison\".\n5. Use `plt.tight_layout()` and `plt.show()`.\n\n### Expected Output\nTwo side-by-side line charts comparing the weekly temperature trends of both cities.",
+      "starter_code": "import matplotlib.pyplot as plt\nimport numpy as np\n\ndays = np.arange(1, 8)\ncity_a = [22, 24, 23, 25, 27, 28, 26]\ncity_b = [18, 19, 20, 18, 17, 19, 21]\n\n# Create subplots, plot both cities, add suptitle, and display\n\n",
+      "grader_checks": []
+    },
+    {
+      "id": "ch-ds-mod3-q4",
+      "lesson_id": "ds-mod3-03-scatter",
+      "title": "Product Sales Scatter & Correlation",
+      "prompt": "## eLab Case Study 3.4: Product Sales Scatter & Correlation\n\n### Scenario\nThe marketing team at **AdVantage Corp** has been running campaigns with varying budgets. They want to know: **does spending more on ads actually lead to higher sales?**\n\n### Dataset\n| Ad Spend ($) | Sales ($) |\n|---|---|\n| 100 | 150 |\n| 200 | 250 |\n| 300 | 400 |\n| 400 | 500 |\n| 500 | 650 |\n\n### Your Tasks\n1. Create a **scatter plot** of ad spend (x) vs sales (y).\n2. Calculate the **trend line** using `np.polyfit(ad_spend, sales, 1)` to get slope (`m`) and intercept (`b`).\n3. Plot the trend line over the scatter plot.\n4. Call `plt.show()`.\n\n### Expected Output\n- A scatter plot with a red trend line overlaid.\n- Slope (`m`) ≈ **1.25** — meaning every $1 in ad spend generates $1.25 in sales.",
+      "starter_code": "import matplotlib.pyplot as plt\nimport numpy as np\n\nad_spend = np.array([100, 200, 300, 400, 500])\nsales = np.array([150, 250, 400, 500, 650])\n\n# Create a scatter plot, calculate and plot the trend line, then display\n\n",
+      "grader_checks": [
+        {
+          "variable": "round(m, 2)",
+          "condition": "eq",
+          "value": 1.25,
+          "message": "Slope of the trend line should be approximately 1.25"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-q1",
+      "lesson_id": "ds-mod1-00a",
+      "title": "The 'Brew Data' Coffee Shop",
+      "prompt": "## eLab Case Study 1.1: The 'Brew Data' Coffee Shop\n\n### Scenario\nYou have just been hired as a Junior Data Analyst for a new tech-themed coffee shop called **\"Brew Data\"**. The owner wants to start tracking the shop's daily performance using Python.\n\nBefore setting up a database, they need a simple script to record basic shop metrics.\n\n### Your Tasks\n1. Create a variable called `shop_name` and assign it the exact string `'Brew Data'`.\n2. Create a variable called `daily_sales` and assign it the integer `150`.\n3. Create a variable called `avg_rating` and assign it the float `4.7`.\n4. Calculate `weekly_sales` by multiplying `daily_sales` by 7.\n\n### Expected Output\n- `shop_name` = `'Brew Data'`\n- `daily_sales` = `150`\n- `weekly_sales` = `1050`",
+      "starter_code": "# Step 1: Create the shop_name variable\nshop_name = None\n\n# Step 2: Create the daily_sales variable\ndaily_sales = None\n\n# Step 3: Create the avg_rating variable\navg_rating = None\n\n# Step 4: Calculate weekly_sales (daily_sales * 7)\nweekly_sales = None\n\n",
+      "grader_checks": [
+        {
+          "variable": "shop_name",
+          "condition": "eq",
+          "value": "Brew Data",
+          "message": "shop_name must be 'Brew Data'"
+        },
+        {
+          "variable": "daily_sales",
+          "condition": "eq",
+          "value": 150,
+          "message": "daily_sales must be exactly 150"
+        },
+        {
+          "variable": "weekly_sales",
+          "condition": "eq",
+          "value": 1050,
+          "message": "weekly_sales should be daily_sales × 7 = 1050"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-q2",
+      "lesson_id": "ds-mod1-00b",
+      "title": "Global Logistics Corp",
+      "prompt": "## eLab Case Study 1.2: Global Logistics Corp\n\n### Scenario\nYou work as a Data Scientist for **Global Logistics Corp**. The company has collected package weights in kilograms from their European warehouse. The US shipping manifest requires pounds.\n\n**Conversion**: 1 kg = 2.20462 lbs\n\n### Dataset\nWeights (kg): `[10, 25, 40, 50]`\n\n### Your Tasks\n1. Create a NumPy array called `weights_kg` with the values above.\n2. Using **vectorization** (not a loop!), create `weights_lbs` by multiplying by 2.20462.\n3. Calculate `total_lbs` by summing `weights_lbs`.\n4. Find the `heaviest_kg` using `np.max()`.\n\n### Expected Output\n- `weights_kg` should be a NumPy array with shape `(4,)`\n- `total_lbs` = **275.5775**\n- `heaviest_kg` = **50**",
+      "starter_code": "import numpy as np\n\n# Step 1: Create weights_kg as a NumPy array\nweights_kg = None\n\n# Step 2: Convert to pounds using vectorization\nweights_lbs = None\n\n# Step 3: Calculate total weight in pounds\ntotal_lbs = None\n\n# Step 4: Find the heaviest package in kg\nheaviest_kg = None\n\n",
+      "grader_checks": [
+        {
+          "variable": "type(weights_kg).__name__",
+          "condition": "eq",
+          "value": "ndarray",
+          "message": "weights_kg must be a NumPy array"
+        },
+        {
+          "variable": "weights_kg.shape",
+          "condition": "shape_check",
+          "value": "(4,)",
+          "message": "weights_kg should have 4 elements"
+        },
+        {
+          "variable": "total_lbs",
+          "condition": "eq",
+          "value": 275.5775,
+          "message": "total_lbs should be 275.5775"
+        },
+        {
+          "variable": "heaviest_kg",
+          "condition": "eq",
+          "value": 50,
+          "message": "heaviest_kg should be 50"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-q3",
+      "lesson_id": "ds-mod1-08-dfs",
+      "title": "HR Employee Roster",
+      "prompt": "## eLab Case Study 1.3: HR Employee Roster\n\n### Scenario\nThe HR department at **NovaTech Solutions** needs to create a digital employee roster. They've given you the raw data and want it organized into a Pandas DataFrame for easy querying.\n\n### Dataset\n| Name | Age | Department |\n|---|---|---|\n| Alice | 25 | Engineering |\n| Bob | 30 | Marketing |\n| Charlie | 35 | Engineering |\n| Diana | 28 | HR |\n\n### Your Tasks\n1. Create a DataFrame called `roster` with the data above.\n2. Calculate `avg_age` — the average age of all employees.\n3. Filter the DataFrame to get only Engineering employees. Save as `engineers`.\n4. Find `engineer_count` — the number of engineers.\n\n### Expected Output\n- `roster` shape: **(4, 3)**\n- `avg_age` = **29.5**\n- `engineer_count` = **2**",
+      "starter_code": "import pandas as pd\n\n# Step 1: Create the roster DataFrame\nroster = None\n\n# Step 2: Calculate the average age\navg_age = None\n\n# Step 3: Filter for Engineering department only\nengineers = None\n\n# Step 4: Count the number of engineers\nengineer_count = None\n\n",
+      "grader_checks": [
+        {
+          "variable": "roster.shape",
+          "condition": "shape_check",
+          "value": "(4, 3)",
+          "message": "Roster should have 4 rows and 3 columns"
+        },
+        {
+          "variable": "avg_age",
+          "condition": "eq",
+          "value": 29.5,
+          "message": "Average age should be 29.5"
+        },
+        {
+          "variable": "engineer_count",
+          "condition": "eq",
+          "value": 2,
+          "message": "There should be 2 engineers"
+        }
+      ]
+    },
+    {
+      "id": "ch-ds-mod1-q4",
+      "lesson_id": "ds-mod1-03",
+      "title": "Student Grades Cleanup",
+      "prompt": "## eLab Case Study 1.4: Student Grades Cleanup\n\n### Scenario\nA university registrar at **SRM University** has exported student grades data, but it contains missing values and duplicate entries. Before the semester report can be generated, you must clean this dataset.\n\n### Dataset\n| Student | Department | Grade |\n|---|---|---|\n| Alice | CS | 85 |\n| Bob | CS | NaN |\n| Charlie | Math | 78 |\n| Alice | CS | 85 |\n| Diana | Math | 92 |\n| Eve | CS | NaN |\n\n### Your Tasks\n1. Create the DataFrame `grades` with the data above (use `None` for missing grades).\n2. Remove duplicate rows. Save as `grades`.\n3. Fill missing Grade values with the **mean** of existing grades. Store the mean in `mean_grade`.\n4. Filter to get only CS department students. Calculate their average grade as `avg_cs`.\n\n### Expected Output\n- After removing duplicates: **5 rows**\n- `mean_grade` = **85.0** (mean of 85, 78, 92)\n- `avg_cs` should reflect the CS students' average after filling NaN with mean.",
+      "starter_code": "import pandas as pd\n\n# Step 1: Create the grades DataFrame\ngrades = pd.DataFrame({\n    'Student': ['Alice', 'Bob', 'Charlie', 'Alice', 'Diana', 'Eve'],\n    'Department': ['CS', 'CS', 'Math', 'CS', 'Math', 'CS'],\n    'Grade': [85, None, 78, 85, 92, None]\n})\n\n# Step 2: Remove duplicate rows\n\n# Step 3: Calculate mean_grade and fill missing values\nmean_grade = None\n\n# Step 4: Filter CS students and calculate avg_cs\navg_cs = None\n\n",
+      "grader_checks": [
+        {
+          "variable": "grades.shape[0]",
+          "condition": "eq",
+          "value": 5,
+          "message": "After removing duplicates, there should be 5 rows"
+        },
+        {
+          "variable": "mean_grade",
+          "condition": "eq",
+          "value": 85,
+          "message": "Mean of existing grades (85, 78, 92) should be 85.0"
+        },
+        {
+          "variable": "grades['Grade'].isnull().sum()",
+          "condition": "eq",
+          "value": 0,
+          "message": "No missing grades should remain after filling"
         }
       ]
     }
@@ -1264,7 +1168,7 @@
         "Missing a positive case"
       ],
       "correct_answer": "Incorrectly predicting a negative case as positive",
-      "explanation": "A False Positive occurs when the model predicts positive, but the true label is negative \u2014 a \"false alarm.\""
+      "explanation": "A False Positive occurs when the model predicts positive, but the true label is negative — a \"false alarm.\""
     },
     {
       "id": "dp-4",
@@ -1277,17 +1181,17 @@
         "Power of the test"
       ],
       "correct_answer": "Type I Error",
-      "explanation": "A Type I Error ($\\\\alpha$) is the probability of rejecting $H_0$ when it is actually true \u2014 a false positive in hypothesis testing."
+      "explanation": "A Type I Error ($\\\\alpha$) is the probability of rejecting $H_0$ when it is actually true — a false positive in hypothesis testing."
     },
     {
       "id": "dp-5",
       "type": "mcq",
       "question": "The sigmoid function maps its input to which range?",
       "options": [
-        "(-\u221e, \u221e)",
+        "(-∞, ∞)",
         "(0, 1)",
         "(-1, 1)",
-        "[0, \u221e)"
+        "[0, ∞)"
       ],
       "correct_answer": "(0, 1)",
       "explanation": "The sigmoid function $\\\\sigma(z) = \\\\frac{1}{1 + e^{-z}}$ always outputs a value between 0 and 1, making it ideal for probability estimation."
