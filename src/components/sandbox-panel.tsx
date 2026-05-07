@@ -136,7 +136,8 @@ def _capture_table(value):
         return True
     return False
 
-_original_print = builtins.print
+if not hasattr(builtins, '_original_print'):
+    builtins._original_print = builtins.print
 
 def _patched_print(*args, **kwargs):
     rendered_args = []
@@ -146,9 +147,9 @@ def _patched_print(*args, **kwargs):
     kwargs = dict(kwargs)
     kwargs['file'] = _stdout_capture
     if rendered_args:
-        _original_print(*rendered_args, **kwargs)
+        builtins._original_print(*rendered_args, **kwargs)
     elif not args:
-        _original_print(file=_stdout_capture)
+        builtins._original_print(file=_stdout_capture)
 
 builtins.print = _patched_print
 

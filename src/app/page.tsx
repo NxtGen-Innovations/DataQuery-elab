@@ -133,19 +133,66 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="border-t border-[#30363d] bg-[#0d1117] py-12">
+      <footer className="border-t border-[#30363d] bg-[#0d1117] py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="flex items-center gap-4">
-              <img src="/srm-logo.png" alt="SRM Logo" className="size-12 object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all" />
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#8b949e]">SRM Institute of</div>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#8b949e]">Science & Technology</div>
+          <div className="flex flex-col gap-12 md:flex-row md:justify-between">
+            <div className="flex max-w-sm flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <img src="/srm-logo.png" alt="SRM Logo" className="size-12 object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all" />
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-widest text-[#8b949e]">SRM Institute of</div>
+                  <div className="text-xs font-bold uppercase tracking-widest text-[#8b949e]">Science & Technology</div>
+                </div>
+              </div>
+              <p className="text-[13px] leading-relaxed text-[#8b949e]">
+                DataQuest eLab is a decentralized, browser-based learning workspace built to accelerate academic excellence in data science.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-5 md:min-w-[340px]">
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-[#30363d]"></div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#58a6ff]">Built By</div>
+                <div className="h-px flex-1 bg-[#30363d]"></div>
+              </div>
+              
+              <div className="grid gap-3">
+                <div className="group flex items-center justify-between gap-4 rounded-lg border border-[#30363d] bg-[#161b22] px-4 py-3 transition-all hover:border-[#58a6ff]/40 hover:bg-[#161b22]/80">
+                  <div className="flex flex-col whitespace-nowrap">
+                    <span className="text-[13px] font-semibold text-[#e6edf3] transition-colors group-hover:text-[#58a6ff]">Jansi R</span>
+                    <span className="text-[11px] text-[#8b949e]">Faculty</span>
+                  </div>
+                  <div className="rounded border border-[#30363d] bg-[#0d1117] px-2 py-1 text-right text-[10px] font-medium text-[#8b949e]">
+                    Department of Electronics
+                  </div>
+                </div>
+
+                <div className="group flex items-center justify-between gap-4 rounded-lg border border-[#30363d] bg-[#161b22] px-4 py-3 transition-all hover:border-[#58a6ff]/40 hover:bg-[#161b22]/80">
+                  <div className="flex flex-col whitespace-nowrap">
+                    <span className="text-[13px] font-semibold text-[#e6edf3] transition-colors group-hover:text-[#58a6ff]">Haarish</span>
+                    <span className="text-[11px] text-[#8b949e]">Student</span>
+                  </div>
+                  <div className="rounded border border-[#30363d] bg-[#0d1117] px-2 py-1 text-right text-[10px] font-medium text-[#8b949e]">
+                    Department of Electronics
+                  </div>
+                </div>
+
+                <div className="group flex items-center justify-between gap-4 rounded-lg border border-[#30363d] bg-[#161b22] px-4 py-3 transition-all hover:border-[#58a6ff]/40 hover:bg-[#161b22]/80">
+                  <div className="flex flex-col whitespace-nowrap">
+                    <span className="text-[13px] font-semibold text-[#e6edf3] transition-colors group-hover:text-[#58a6ff]">Guru Prasaath</span>
+                    <span className="text-[11px] text-[#8b949e]">Student</span>
+                  </div>
+                  <div className="rounded border border-[#30363d] bg-[#0d1117] px-2 py-1 text-right text-[10px] font-medium text-[#8b949e]">
+                    Department of Computer Science
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="text-[12px] text-[#8b949e]">
-              &copy; {new Date().getFullYear()} DataQuest eLab. Built for academic excellence.
-            </div>
+          </div>
+
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#30363d] pt-6 text-[12px] text-[#8b949e] md:flex-row">
+            <div>&copy; {new Date().getFullYear()} DataQuest eLab.</div>
+            <div>Department of Electronics &amp; Department of Computer Science</div>
           </div>
         </div>
       </footer>
