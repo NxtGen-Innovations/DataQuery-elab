@@ -29,7 +29,7 @@ type ActiveSection = 'notes' | 'quiz' | 'lab'
 
 export function LessonView({ lesson, quiz, challenge }: Props) {
   const { isAdmin } = useAuth()
-  const [activeSection, setActiveSection] = useState<ActiveSection>(challenge ? 'lab' : 'notes')
+  const [activeSection, setActiveSection] = useState<ActiveSection>('notes')
   const diff = difficultyConfig[lesson.difficulty]
 
   const [isEditing, setIsEditing] = useState(false)
@@ -57,7 +57,7 @@ export function LessonView({ lesson, quiz, challenge }: Props) {
     })
     setQuizQuestions(quiz?.questions || [])
     setGraderChecks(challenge?.grader_checks || [])
-    setActiveSection(challenge ? 'lab' : 'notes')
+    setActiveSection('notes')
   }, [lesson, challenge, quiz])
 
   const handleSave = async () => {

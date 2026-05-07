@@ -186,65 +186,83 @@ export default function Dashboard() {
               {CURRICULUM[0].topics.slice(0, 4).map((topic, idx) => {
                 const progress = getUnitProgress(topic.topic)
                 return (
-                  <div key={topic.topic} className="ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">Unit {idx + 1}</span>
-                      <Badge className="bg-[#58a6ff]/10 text-[#58a6ff] border-none text-[10px]">
-                        {progress === 100 ? 'Mastered' : progress > 0 ? 'In Progress' : 'Locked'}
-                      </Badge>
-                    </div>
-                    <h3 className="mt-3 text-[15px] font-bold text-[#e6edf3] leading-snug">{topic.topic}</h3>
-                    <div className="mt-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[11px] text-[#8b949e]">Completion</span>
-                        <span className="text-[11px] font-bold text-[#e6edf3]">{progress}%</span>
+                  <Link key={topic.topic} href="/curriculum">
+                    <div className="ds-panel border-transparent bg-[#161b22]/50 p-5 hover:bg-[#161b22] transition-colors cursor-pointer group">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">Unit {idx + 1}</span>
+                        <Badge className="bg-[#58a6ff]/10 text-[#58a6ff] border-none text-[10px]">
+                          {progress === 100 ? 'Mastered' : progress > 0 ? 'In Progress' : 'Locked'}
+                        </Badge>
                       </div>
-                      <div className="h-1 w-full bg-[#30363d] rounded-full overflow-hidden">
-                        <motion.div 
-                          initial={{ width: 0 }}
-                          animate={{ width: `${progress}%` }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                          className="h-full bg-[#58a6ff] glow-blue"
-                        />
+                      <h3 className="mt-3 text-[15px] font-bold text-[#e6edf3] leading-snug group-hover:text-[#58a6ff] transition-colors">{topic.topic}</h3>
+                      <div className="mt-6">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[11px] text-[#8b949e]">Completion</span>
+                          <span className="text-[11px] font-bold text-[#e6edf3]">{progress}%</span>
+                        </div>
+                        <div className="h-1 w-full bg-[#30363d] rounded-full overflow-hidden">
+                          <motion.div 
+                            initial={{ width: 0 }}
+                            animate={{ width: `${progress}%` }}
+                            transition={{ duration: 1, delay: 0.5 }}
+                            className="h-full bg-[#58a6ff] glow-blue"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 )
               })}
             </div>
           </div>
 
           <div className="space-y-6">
-            <div className="ds-panel glass-panel border-[#d29922]/20 p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <Target className="size-5 text-[#d29922]" />
-                <span className="ds-label text-[#d29922]">Active Goal</span>
-              </div>
-              <h3 className="text-lg font-bold text-[#e6edf3]">Master Data Science</h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-[#8b949e]">
-                Complete your current module to earn your next professional badge and level up your rank.
-              </p>
-              <div className="mt-6 flex items-center justify-between">
-                <div className="flex -space-x-2">
-                  {[1,2,3].map(i => (
-                    <div key={i} className="size-7 rounded-full border-2 border-[#161b22] bg-[#30363d]" />
-                  ))}
+            <Link href={recommendedPracticeLesson ? `/curriculum/${recommendedPracticeLesson.id}` : '/curriculum'}>
+              <div className="ds-panel glass-panel border-[#d29922]/20 p-6 hover:border-[#d29922]/40 transition-all cursor-pointer group">
+                <div className="flex items-center gap-3 mb-4">
+                  <Target className="size-5 text-[#d29922]" />
+                  <span className="ds-label text-[#d29922]">Active Goal</span>
                 </div>
-                <span className="text-[11px] text-[#8b949e]">Starting your journey</span>
+                <h3 className="text-lg font-bold text-[#e6edf3] group-hover:text-[#d29922] transition-colors">
+                  {overallCompletion === 100 ? 'Course Mastered' : recommendedPracticeLesson.title}
+                </h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-[#8b949e]">
+                  {overallCompletion === 100 
+                    ? "Congratulations! You've completed the entire curriculum. Keep practicing to maintain your rank."
+                    : "Complete this module to earn your next professional badge and level up your rank."}
+                </p>
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="h-1.5 w-24 bg-[#30363d] rounded-full overflow-hidden">
+                      <div className="h-full bg-[#d29922]" style={{ width: `${overallCompletion}%` }} />
+                    </div>
+                    <span className="text-[11px] text-[#8b949e]">{overallCompletion}%</span>
+                  </div>
+                  <span className="text-[11px] text-[#d29922] font-bold flex items-center gap-1">
+                    Resume <ArrowRight className="size-3" />
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
 
             <div className="ds-panel p-6 bg-[#0d1117]">
               <div className="flex items-center justify-between mb-4">
                 <span className="ds-label">Daily Brainstorm</span>
                 <Brain className="size-4 text-[#58a6ff]" />
               </div>
-              <p className="text-[14px] leading-relaxed text-[#c9d1d9]">
-                {dailyQuestion.question}
-              </p>
-              <Button className="mt-6 w-full h-10 border-[#30363d] bg-transparent text-[12px] font-bold text-[#e6edf3] hover:bg-[#161b22]">
-                Solve Challenge
-              </Button>
+              <div className="min-h-[80px]">
+                <p className="text-[14px] font-medium leading-relaxed text-[#c9d1d9] mb-2">
+                  Question of the day:
+                </p>
+                <p className="text-[14px] leading-relaxed text-[#8b949e]">
+                  {dailyQuestion.question}
+                </p>
+              </div>
+              <Link href="/curriculum">
+                <Button className="mt-6 w-full h-10 border-[#30363d] bg-transparent text-[12px] font-bold text-[#e6edf3] hover:bg-[#161b22] hover:border-[#58a6ff]/50">
+                  Go to Curriculum
+                </Button>
+              </Link>
             </div>
           </div>
         </motion.section>
