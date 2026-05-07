@@ -16,7 +16,7 @@ export interface Quiz {
 
 export interface QuizQuestion {
   id: string
-  type: 'mcq' | 'fill_blank' | 'visual'
+  type: 'mcq' | 'fill_blank' | 'visual' | 'true_false'
   question: string
   options?: string[]
   correct_answer: string
